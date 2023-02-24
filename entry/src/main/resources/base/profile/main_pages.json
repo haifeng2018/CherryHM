@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/LauncherPage",
+    "pages/SplashPage",
+    "pages/PrivacyPage",
+    "pages/UserServicesAgreementPage",
+    "pages/WebPage",
+    "pages/MainPage"
+  ]
+}

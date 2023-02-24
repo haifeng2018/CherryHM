@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "LauncherAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "LauncherAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility_kind_tip",
+      "value": "温馨提示"
+    },
+    {
+      "name": "user_services_agreement_content",
+      "value": "《用户协议》"
+    },
+    {
+      "name": "privacy_policy_content",
+      "value": "为了上传头像，我们会申请系统文件存储权限、相机拍摄、相册访问、设备信息、日志等权限，您也可以查看"
+    },
+    {
+      "name": "user_services_agreement",
+      "value": "《用户协议》"
+    },
+    {
+      "name": "and",
+      "value": "和"
+    },
+    {
+      "name": "privacy_policy",
+      "value": "《隐私协议》"
+    },
+    {
+      "name": "disagree",
+      "value": "不同意"
+    },
+    {
+      "name": "agree",
+      "value": "同意"
+    },
+    {
+      "name": "enter_app",
+      "value": "进入APP"
+    },
+    {
+      "name": "WebAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "WebAbility_label",
+      "value": "label"
+    }
+  ]
+}
