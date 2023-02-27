@@ -2,7 +2,7 @@ import Logger from '../util/Logger';
 import preferences from '@ohos.data.preferences';
 import common from '@ohos.app.ability.common';
 import router from '@ohos.router';
-import PrivacyPolicyDialog from '../dialog/PrivacyPolicyDialog';
+import PrivacyPolicyDialog from '../view/dialog/PrivacyPolicyDialog';
 import Constants from '../util/Constants';
 /*
  * -----------------------------------------------------------------

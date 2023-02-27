@@ -181,8 +181,13 @@ export default class Constants {
    */
   static readonly APP_HOME_PAGE_URL: string = 'pages/MainPage';
 
+  static readonly WEB_PAGE_URL: string = 'pages/WebPage';
+
   /**
    * Common layout weight.
    */
   static readonly COMMON_LAYOUT_WEIGHT: number = 1;
+
+  static readonly USER_SERVICES_AGREEMENT: string = 'https://app.service.hokkj.cn/';
+  static readonly PRIVACY_POLICY: string = 'https://app.privacy.hokkj.cn/';
 }

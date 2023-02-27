@@ -1,5 +1,5 @@
 import router from '@ohos.router';
-import Constants from '../util/Constants';
+import Constants from '../../util/Constants';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -38,20 +38,31 @@ export default struct PrivacyPolicyDialog {
           .fontSize($r('app.float.dialog_common_text_size'))
           .onClick(() => {
             this.controller.close();
-            router.pushUrl({ url: Constants.USER_SERVICES_AGREEMENT_PAGE_URL })
+            router.pushUrl({
+              url: Constants.WEB_PAGE_URL,
+              params: {
+                title: $r('app.string.user_services_agreement'),
+                url: Constants.USER_SERVICES_AGREEMENT,
+              },
+            })
           })
+
         Text($r('app.string.and'))
           .fontColor($r('app.color.color_333333'))
           .fontSize($r('app.float.dialog_common_text_size'))
-          .onClick(() => {
-            router.pushUrl({ url: Constants.PRIVACY_PAGE_URL })
-          })
+
         Text($r('app.string.privacy_policy'))
           .fontColor($r('app.color.color_0091FF'))
           .fontSize($r('app.float.dialog_common_text_size'))
           .onClick(() => {
             this.controller.close();
-            router.pushUrl({ url: Constants.PRIVACY_PAGE_URL })
+            router.pushUrl({
+              url: Constants.WEB_PAGE_URL,
+              params: {
+                title: $r('app.string.privacy_policy'),
+                url: Constants.PRIVACY_POLICY,
+              },
+            })
           })
       }.width('100%').justifyContent(FlexAlign.Center)
       Row() {
