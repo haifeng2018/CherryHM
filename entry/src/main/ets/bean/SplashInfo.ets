@@ -1,16 +1,7 @@
-/*
- * -----------------------------------------------------------------
- * Copyright (C) 2018-2028, by Victor, All rights reserved.
- * -----------------------------------------------------------------
- * File: SplashInfo
- * Author: Victor
- * Date: 2022/12/8 16:11
- * Description: 
- * -----------------------------------------------------------------
- */
 const imageData: any[] = [
   { 'id': '1', 'name': '第一张图片标题', 'image': $r('app.media.img_splash1') },
-  { 'id': '2', 'name': '第二张图片标题', 'image': $r('app.media.img_splash2') }
+  { 'id': '2', 'name': '第二张图片标题', 'image': $r('app.media.img_splash2') },
+  { 'id': '3', 'name': '第三张图片标题', 'image': $r('app.media.img_splash3') }
 ]
 
 /**

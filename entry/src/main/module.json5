@@ -19,16 +19,6 @@
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "visible": true
-      },
-      {
-        "name": "LauncherAbility",
-        "srcEntrance": "./ets/launcherability/LauncherAbility.ts",
-        "description": "$string:LauncherAbility_desc",
-        "icon": "$media:icon",
-        "label": "$string:LauncherAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
         "visible": true,
         "skills": [
           {
@@ -41,16 +31,6 @@
           }
         ]
       },
-      {
-        "name": "WebAbility",
-        "srcEntrance": "./ets/webability/WebAbility.ts",
-        "description": "$string:WebAbility_desc",
-        "icon": "$media:icon",
-        "label": "$string:WebAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
-        "visible": true
-      }
     ],
     "requestPermissions": [
       {

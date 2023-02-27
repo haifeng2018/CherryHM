@@ -1,6 +1,12 @@
+import router from '@ohos.router';
 @Entry
 @Component
 struct WebPage {
+
+  onPageHide() {
+    router.clear()
+  }
+
   controller:WebController = new WebController();
 
   build() {

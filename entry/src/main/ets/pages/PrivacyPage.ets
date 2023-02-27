@@ -1,6 +1,12 @@
+import router from '@ohos.router';
 @Entry
 @Component
 struct PrivacyPage {
+
+  onPageHide() {
+    router.clear();
+  }
+
   controller:WebController = new WebController();
   build() {
     Row() {

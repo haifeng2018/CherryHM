@@ -1,3 +1,6 @@
+import Logger from '../util/Logger';
+import preferences from '@ohos.data.preferences';
+import common from '@ohos.app.ability.common';
 import router from '@ohos.router';
 import PrivacyPolicyDialog from '../dialog/PrivacyPolicyDialog';
 import Constants from '../util/Constants';
@@ -15,6 +18,10 @@ import Constants from '../util/Constants';
 @Entry
 @Component
 struct Index {
+  private context: common.UIAbilityContext;
+  private timerId: number = 0;
+  private jumpToAdvertisingFlag: boolean = false;
+
   dialogController: CustomDialogController = new CustomDialogController({
     builder: PrivacyPolicyDialog(
       {
@@ -29,27 +36,74 @@ struct Index {
 
   onCancel() {
     // Exit the application.
-//    this.context.terminateSelf();
-    router.clear()
+    this.context.terminateSelf();
   }
 
   onConfirm() {
     // Save privacy agreement status.
-    //    this.saveIsPrivacy();
-    //    this.jumpToAdvertisingPage();
-    router.pushUrl({
-      url: 'pages/SplashPage',
-      params: {
-        data1: 'message',
-        data2: {
-          data3: [123, 456, 789]
-        },
-      },
+    this.saveIsPrivacy();
+    this.jumpToSplashPage()
+  }
+
+  onPageHide() {
+    if (this.jumpToAdvertisingFlag) {
+      router.clear();
+    }
+    clearTimeout(this.timerId);
+  }
+
+  jumpToSplashPage() {
+    router.pushUrl({ url: 'pages/SplashPage' })
+  }
+  /**
+   * Jump to advertising page.
+   */
+  jumpToAdvertisingPage() {
+    this.timerId = setTimeout(() => {
+      this.jumpToAdvertisingFlag = true;
+      router.pushUrl({
+        url: Constants.ADVERTISING_PAGE_URL
+      }).catch((error) => {
+        Logger.error(Constants.LAUNCHER_PAGE_TAG, 'LauncherPage pushUrl error ' + JSON.stringify(error));
+      });
+    }, Constants.LAUNCHER_DELAY_TIME);
+  }
+
+  saveIsPrivacy() {
+    let preferences: Promise<preferences.Preferences> = this.getDataPreferences();
+    preferences.then((result: preferences.Preferences) => {
+      let privacyPut = result.put(Constants.PREFERENCES_KEY_PRIVACY, false);
+      result.flush();
+      privacyPut.then(() => {
+        Logger.info(Constants.LAUNCHER_PAGE_TAG, 'Put the value of startup Successfully.');
+      }).catch((err) => {
+        Logger.error(Constants.LAUNCHER_PAGE_TAG, 'Put the value of startup Failed, err: ' + err);
+      });
+    }).catch((err) => {
+      Logger.error(Constants.LAUNCHER_PAGE_TAG, 'Get the preferences Failed, err: ' + err);
     });
   }
 
-  aboutToAppear() {
-    this.dialogController.open()
+  onPageShow() {
+    this.context = getContext(this) as common.UIAbilityContext;
+    // Get the operation class for saving data.
+    this.getDataPreferences().then((preferences: preferences.Preferences) => {
+      preferences.get(Constants.PREFERENCES_KEY_PRIVACY, true).then((value: preferences.ValueType) => {
+        Logger.info(Constants.LAUNCHER_PAGE_TAG, 'AboutToAppear value: ' + value);
+        if (value) {
+          this.dialogController.open();
+        } else {
+          this.jumpToAdvertisingPage();
+        }
+      });
+    });
+  }
+
+  /**
+   * Get data preferences action.
+   */
+  getDataPreferences() {
+    return preferences.getPreferences(this.context, Constants.PREFERENCES_FILE_NAME);
   }
 
   build() {

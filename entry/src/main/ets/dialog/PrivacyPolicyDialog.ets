@@ -37,6 +37,7 @@ export default struct PrivacyPolicyDialog {
           .fontColor($r('app.color.color_0091FF'))
           .fontSize($r('app.float.dialog_common_text_size'))
           .onClick(() => {
+            this.controller.close();
             router.pushUrl({ url: Constants.USER_SERVICES_AGREEMENT_PAGE_URL })
           })
         Text($r('app.string.and'))
@@ -49,7 +50,8 @@ export default struct PrivacyPolicyDialog {
           .fontColor($r('app.color.color_0091FF'))
           .fontSize($r('app.float.dialog_common_text_size'))
           .onClick(() => {
-            router.push({ url: Constants.PRIVACY_PAGE_URL })
+            this.controller.close();
+            router.pushUrl({ url: Constants.PRIVACY_PAGE_URL })
           })
       }.width('100%').justifyContent(FlexAlign.Center)
       Row() {

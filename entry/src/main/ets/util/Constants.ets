@@ -22,6 +22,11 @@ export default class Constants {
   static readonly LAUNCHER_PAGE_TAG: string = 'LauncherPage';
 
   /**
+   * The advertsing page tag.
+   */
+  static readonly ADVERTISING_PAGE_TAG: string = 'AdvertisingPage';
+
+  /**
    * Preference saved key.
    */
   static readonly PREFERENCES_KEY_PRIVACY: string = 'isPrivacy';
@@ -34,7 +39,7 @@ export default class Constants {
   /**
    * Launcher page count down.
    */
-  static readonly LAUNCHER_DELAY_TIME: number = 3000;
+  static readonly LAUNCHER_DELAY_TIME: number = 1000;
 
   /**
    * Image logo top margin.
@@ -119,7 +124,7 @@ export default class Constants {
   /**
    * Row container bottom margin.
    */
-  static readonly ADVERTISING_ROW_MARGIN_BOTTOM: string = '3.1%';
+  static readonly ADVERTISING_ROW_MARGIN_BOTTOM: string = '30.1%';
 
   /**
    * Dialog component width the percentage of the 90.
@@ -174,7 +179,7 @@ export default class Constants {
   /**
    * App home page url.
    */
-  static readonly APP_HOME_PAGE_URL: string = 'pages/AppHomePage';
+  static readonly APP_HOME_PAGE_URL: string = 'pages/MainPage';
 
   /**
    * Common layout weight.

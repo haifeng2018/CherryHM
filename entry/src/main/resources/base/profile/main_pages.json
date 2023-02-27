@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/LauncherPage",
+    "pages/AdvertisingPage",
     "pages/SplashPage",
     "pages/PrivacyPage",
     "pages/UserServicesAgreementPage",

@@ -3,30 +3,6 @@ import Constants from '../util/Constants';
 import { initializeOnStartup } from '../bean/SplashInfo';
 import { SplashInfo } from '../bean/SplashInfo';
 
-class MyDataSource implements IDataSource {
-  private list: number[] = []
-  private listener: DataChangeListener
-
-  constructor(list: number[]) {
-    this.list = list
-  }
-
-  totalCount(): number {
-    return this.list.length
-  }
-
-  getData(index: number): any {
-    return this.list[index]
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
-
 @Entry
 @Component
 struct SplashPage {
@@ -39,6 +15,10 @@ struct SplashPage {
     this.imageArray = initializeOnStartup()
   }
 
+  onPageHide() {
+    router.clear();
+  }
+
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       Swiper(this.swiperController) {
@@ -49,20 +29,20 @@ struct SplashPage {
             .height(Constants.FULL_HEIGHT) // 固定高度
         }, item => item.id.toString())
       }
-      .cachedCount(2)
+      .cachedCount(3)
       .index(0)
       .autoPlay(false)
       .interval(1000)
       .indicator(true)
-      .indicatorStyle({bottom:128,size: 25, mask: true,color:$r('app.color.color_80FFFFFF'),selectedColor:$r('app.color.white')})
+      .indicatorStyle({bottom:128,size: 20, mask: true,color:$r('app.color.color_80FFFFFF'),selectedColor:$r('app.color.white')})
       .loop(false)
       .duration(300)
       .itemSpace(0)
       .curve(Curve.Linear)
       .displayMode(SwiperDisplayMode.Stretch)
       .onChange((index: number) => {
-        this.enterAppBtnVisible = index == 1
-        if (index == 1) {
+        this.enterAppBtnVisible = index == 2
+        if (this.enterAppBtnVisible) {
           this.enterAppBtnOpacity = 1
         } else {
           this.enterAppBtnOpacity = 0
@@ -82,15 +62,7 @@ struct SplashPage {
           playMode: PlayMode.Normal // 动画模式
         }) // 对Button组件的宽高属性进行动画配置
         .onClick(() => {
-          router.pushUrl({
-            url: 'pages/MainPage',
-            params: {
-              data1: 'message',
-              data2: {
-                data3: [123, 456, 789]
-              },
-            },
-          });
+          router.pushUrl({ url: 'pages/MainPage' })
         })
     }
     .width(Constants.FULL_WIDTH)

@@ -139,6 +139,14 @@
     {
       "name": "home_page_text_size",
       "value": "30vp"
-    }
+    },
+    {
+      "name": "advertising_title_text_margin_top",
+      "value": "30vp"
+    },
+    {
+      "name": "advertising_title_text_margin_left",
+      "value": "260vp"
+    },
   ]
 }
