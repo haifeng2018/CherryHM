@@ -20,7 +20,6 @@ import Constants from '../util/Constants';
 struct Index {
   private context: common.UIAbilityContext;
   private timerId: number = 0;
-  private jumpToAdvertisingFlag: boolean = false;
 
   dialogController: CustomDialogController = new CustomDialogController({
     builder: PrivacyPolicyDialog(
@@ -41,15 +40,13 @@ struct Index {
 
   onConfirm() {
     // Save privacy agreement status.
-    this.saveIsPrivacy();
+    this.saveIsPrivacy()
     this.jumpToSplashPage()
   }
 
   onPageHide() {
-    if (this.jumpToAdvertisingFlag) {
-      router.clear();
-    }
-    clearTimeout(this.timerId);
+    router.clear()
+    clearTimeout(this.timerId)
   }
 
   jumpToSplashPage() {
@@ -60,7 +57,6 @@ struct Index {
    */
   jumpToAdvertisingPage() {
     this.timerId = setTimeout(() => {
-      this.jumpToAdvertisingFlag = true;
       router.pushUrl({
         url: Constants.ADVERTISING_PAGE_URL
       }).catch((error) => {

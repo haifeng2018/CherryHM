@@ -18,8 +18,8 @@ export interface NavItem {
 
 export enum TabId {
   HOME,
-  SCHEDULE,
-  WORKBENCH,
+  WeChat,
+  TV,
   ME
 }
 
@@ -33,14 +33,14 @@ export const NavList: NavItem[] = [
   {
     icon: $r('app.media.ic_schedule_normal'),
     icon_selected: $r('app.media.ic_schedule_checked'),
-    text: $r('app.string.tab_schedule'),
-    id: TabId.SCHEDULE
+    text: $r('app.string.tab_wechat'),
+    id: TabId.WeChat
   },
   {
-    icon: $r('app.media.ic_work_bench_normal'),
-    icon_selected: $r('app.media.ic_work_bench_checked'),
-    text: $r('app.string.tab_workbench'),
-    id: TabId.WORKBENCH
+    icon: $r('app.media.ic_tv_normal'),
+    icon_selected: $r('app.media.ic_tv_checked'),
+    text: $r('app.string.tab_tv'),
+    id: TabId.TV
   },
   {
     icon: $r('app.media.ic_me_normal'),

@@ -1,7 +1,7 @@
+import { TvTabContent } from '../view/widget/TvTabContent';
 import { TabId } from '../model/HomeTabModel';
 import { MeTabContent } from '../view/widget/MeTabContent';
-import { WorkBenchTabContent } from '../view/widget/WorkBenchTabContent';
-import { ScheduleTabContent } from '../view/widget/ScheduleTabContent';
+import { WeChatTabContent } from '../view/widget/WeChatTabContent';
 import { HomeTabContent } from '../view/widget/HomeTabContent';
 import { NavList } from '../model/HomeTabModel';
 @Entry
@@ -14,13 +14,16 @@ struct MainPage {
   @Builder TabBuilder(index: number) {
     Column() {
       Image(this.currentIndex == index ? NavList[index].icon_selected : NavList[index].icon)
-        .width('28vp')
-        .height('28vp')
+        .width('30vp')
+        .height('30vp')
         .objectFit(ImageFit.Contain)
         .opacity(this.currentIndex === index ? 1 : 0.4)
+        .scale({x:this.currentIndex === index ? 1.1 : 1.0,
+          y:this.currentIndex === index ? 1.1 : 1.0})
       Text(NavList[index].text)
-        .fontSize('12vp')
-        .fontColor(this.currentIndex == index ? $r('app.color.color_0091FF') : $r('app.color.color_999999'))
+        .margin({top:'4vp'})
+        .fontSize(this.currentIndex == index ? '16fp' : '15fp')
+        .fontColor(this.currentIndex == index ? $r('app.color.color_primary') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)
   }
 
@@ -32,12 +35,12 @@ struct MainPage {
         }.tabBar(this.TabBuilder(TabId.HOME))
 
         TabContent() {
-          ScheduleTabContent()
-        }.tabBar(this.TabBuilder(TabId.SCHEDULE))
+          WeChatTabContent()
+        }.tabBar(this.TabBuilder(TabId.WeChat))
 
         TabContent() {
-          WorkBenchTabContent()
-        }.tabBar(this.TabBuilder(TabId.WORKBENCH))
+          TvTabContent()
+        }.tabBar(this.TabBuilder(TabId.TV))
 
         TabContent() {
           MeTabContent()

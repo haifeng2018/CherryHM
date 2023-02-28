@@ -12,6 +12,16 @@
 export default class Constants {
 
   /**
+   * Title font weight.
+   */
+  static readonly TITLE_FONT_WEIGHT: number = 500;
+
+  /**
+   * Login text font weight.
+   */
+  static readonly LOGIN_TEXT_FONT_WEIGHT: number = 500;
+
+  /**
    * The main ability tag.
    */
   static readonly ENTRY_ABILITY_TAG: string = 'EntryAbility';
@@ -79,7 +89,7 @@ export default class Constants {
   /**
    * Advertising page url.
    */
-  static readonly ADVERTISING_PAGE_URL: string = 'pages/AdvertisingPage';
+  static readonly ADVERTISING_PAGE_URL: string = 'pages/AdPage';
 
   /**
    * Display countdown seconds.

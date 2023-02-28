@@ -17,6 +17,10 @@
       "value": "#F5F5F5"
     },
     {
+      "name": "color_F9F9F9",
+      "value": "#F9F9F9"
+    },
+    {
       "name": "color_666666",
       "value": "#666666"
     },
@@ -75,6 +79,22 @@
     {
       "name": "dialog_text_statement_color",
       "value": "#007DFF"
+    },
+    {
+      "name": "color_primary",
+      "value": "#FF5722"
+    },
+    {
+      "name": "color_primary_dark",
+      "value": "#E64A19"
+    },
+    {
+      "name": "color_accent",
+      "value": "#FF4081"
+    },
+    {
+      "name": "color_primary_center",
+      "value": "#5C1E0A"
     }
   ]
 }

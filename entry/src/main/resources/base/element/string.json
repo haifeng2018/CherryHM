@@ -69,12 +69,12 @@
       "value": "首页"
     },
     {
-      "name": "tab_schedule",
-      "value": "排期表"
+      "name": "tab_wechat",
+      "value": "公众号"
     },
     {
-      "name": "tab_workbench",
-      "value": "工作台"
+      "name": "tab_tv",
+      "value": "电视"
     },
     {
       "name": "tab_me",

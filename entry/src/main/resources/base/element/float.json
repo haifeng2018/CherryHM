@@ -148,5 +148,9 @@
       "name": "advertising_title_text_margin_left",
       "value": "260vp"
     },
+    {
+      "name": "fp_20",
+      "value": "20fp"
+    }
   ]
 }

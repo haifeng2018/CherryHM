@@ -1,3 +1,4 @@
+import Constants from '../../util/Constants';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -17,6 +18,26 @@ export struct MeTabContent {
       Image($r('app.media.img_me_header')).width('100%').height('40%').align(Alignment.Top)
 
       Column() {
+        Stack(){
+          Text($r('app.string.tab_me'))
+            .width(Constants.FULL_WIDTH)
+            .height('56vp')
+            .fontSize($r('app.float.fp_20'))
+            .fontColor($r('app.color.color_333333'))
+            .fontWeight(500)
+            .textAlign(TextAlign.Center)
+            .backgroundColor($r('app.color.color_primary'))
+          Image($r('app.media.ic_share'))
+            .width('30vp')
+            .height('30vp')
+            .align(Alignment.End)
+            .margin({right:'24vp'})
+        }
+        .width(Constants.FULL_WIDTH)
+        .backgroundColor($r('app.color.color_primary_dark'))
+        .alignContent(Alignment.End)
+        .padding({top:'36vp'})
+
         Text('我的').fontSize('18fp').fontColor($r('app.color.white')).width('100%').height('10%')
           .textAlign(TextAlign.Center).margin({ top: '20vp' })
 
