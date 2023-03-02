@@ -27,8 +27,8 @@ struct Index {
              .onClick(()=>{
              })
            }
-             .width('100%')
+             .width(Constants.MATCH_PARENT)
          }
-             .height('100%')
+             .height(Constants.MATCH_PARENT)
    }
  }

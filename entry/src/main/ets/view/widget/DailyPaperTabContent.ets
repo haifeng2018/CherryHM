@@ -56,7 +56,7 @@ export struct DailyPaperTabContent {
           })
         }
         .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.FULL_WIDTH)
+        .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
         .padding({top:'10vp',bottom:'10vp'})
       }
@@ -71,15 +71,17 @@ export struct DailyPaperTabContent {
         }, 1000)
         console.log('onRefreshing test')
       })
+      .width(Constants.MATCH_PARENT)
+      .layoutWeight(1)
     }
-    .width('100%')
-    .height('100%')
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
   @Builder headCell(dailyPagerInfo:  DailyPagerInfo) {
     Text(dailyPagerInfo.data.text)
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .height('66vp').fontSize('36fp')
       .textAlign(TextAlign.Center)
       .fontColor($r('app.color.color_666666'))
@@ -91,7 +93,7 @@ export struct DailyPaperTabContent {
     Column(){
       Image(dailyPagerInfo.data.content.data.cover.feed)
         .objectFit(ImageFit.Cover)
-        .width(Constants.FULL_WIDTH)
+        .width(Constants.MATCH_PARENT)
         .height('256vp')
         .borderRadius({topLeft:'10vp',topRight:'10vp'})
 
@@ -108,7 +110,7 @@ export struct DailyPaperTabContent {
       .padding({left:'10vp',top:'20vp'})
 
       Text(dailyPagerInfo.data.content.data.description)
-        .width(Constants.FULL_WIDTH)
+        .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
         .fontSize('10fp')
         .fontColor($r('app.color.color_999999'))
@@ -130,12 +132,11 @@ export struct DailyPaperTabContent {
           .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
       }.padding({left:'10vp',right:'10vp'})
     }
-    .width(Constants.FULL_WIDTH)
+    .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
     .padding({bottom:'10vp'})
     .alignItems(HorizontalAlign.Start)
     .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
-
   }
 }

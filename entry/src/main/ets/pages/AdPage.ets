@@ -40,8 +40,8 @@ struct AdvertisingPage {
   build() {
     Stack({ alignContent: Alignment.Top }) {
       Image($r('app.media.img_splash'))
-        .width(Constants.FULL_WIDTH)
-        .height(Constants.FULL_HEIGHT)
+        .width(Constants.MATCH_PARENT)
+        .height(Constants.MATCH_PARENT)
       Text($r('app.string.advertising_text_title', this.countDownSeconds))
         .fontColor(Color.White)
         .fontSize($r('app.float.advertising_text_font_size'))
@@ -66,7 +66,7 @@ struct AdvertisingPage {
           this.jumpToAppHomePage();
         })
     }
-    .width(Constants.FULL_WIDTH)
-    .height(Constants.FULL_HEIGHT)
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
   }
 }

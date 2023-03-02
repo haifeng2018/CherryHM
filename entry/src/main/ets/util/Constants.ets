@@ -167,14 +167,9 @@ export default class Constants {
   static readonly DIALOG_CONTROLLER_DY_OFFSET: number = -66;
 
   /**
-   * Width the percentage of the 100.
+   * Width or Height the percentage of the 100.
    */
-  static readonly FULL_WIDTH: string = '100%';
-
-  /**
-   * Height the percentage of the 100.
-   */
-  static readonly FULL_HEIGHT: string = '100%';
+  static readonly MATCH_PARENT: string = '100%';
 
   /**
    * User Services Agreement page url.

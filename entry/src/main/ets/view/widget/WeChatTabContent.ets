@@ -28,7 +28,7 @@ export struct WeChatTabContent {
     Column() {
       Stack(){
         Text($r('app.string.tab_discovery'))
-          .width(Constants.FULL_WIDTH)
+          .width(Constants.MATCH_PARENT)
           .height('56vp')
           .fontSize($r('app.float.fp_20'))
           .fontColor($r('app.color.color_333333'))
@@ -41,14 +41,14 @@ export struct WeChatTabContent {
           .align(Alignment.End)
           .margin({right:'24vp'})
       }
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.color_primary_dark'))
       .alignContent(Alignment.End)
       .padding({top:'36vp'})
 
       ForEach(this.array, (item, index) => {
         Text('内容' + item)
-          .width('100%')
+          .width(Constants.MATCH_PARENT)
           .height(50)
           .fontSize(18)
           .fontColor(Color.White)
@@ -75,7 +75,7 @@ export struct WeChatTabContent {
           })
       }, item => item)
 
-    }.width('100%').height('100%')
+    }.width(Constants.MATCH_PARENT).height(Constants.MATCH_PARENT)
   }
 
   onTouchEvent(event: TouchEvent, index: number) {

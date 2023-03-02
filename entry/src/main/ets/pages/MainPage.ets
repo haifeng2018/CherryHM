@@ -1,9 +1,8 @@
+import Constants from '../util/Constants';
 import { HotTabContent } from '../view/widget/HotTabContent';
-import { DailyPaperTabContent } from '../view/widget/DiscoveryTabContent';
-import { TvTabContent } from '../view/widget/TvTabContent';
+import { DiscoveryTabContent } from '../view/widget/DiscoveryTabContent';
 import { TabId } from '../model/HomeTabModel';
 import { MeTabContent } from '../view/widget/MeTabContent';
-import { WeChatTabContent } from '../view/widget/WeChatTabContent';
 import { HomeTabContent } from '../view/widget/HomeTabContent';
 import { NavList } from '../model/HomeTabModel';
 @Entry
@@ -37,25 +36,28 @@ struct MainPage {
         }.tabBar(this.TabBuilder(TabId.HOME))
 
         TabContent() {
-          DailyPaperTabContent()
+          DiscoveryTabContent()
         }.tabBar(this.TabBuilder(TabId.DISCOVERY))
 
         TabContent() {
           HotTabContent()
-        }.tabBar(this.TabBuilder(TabId.TV))
+        }.tabBar(this.TabBuilder(TabId.HOT))
 
         TabContent() {
           MeTabContent()
         }.tabBar(this.TabBuilder(TabId.ME))
       }
       .vertical(false)
-      .barWidth('100%')
+      .barWidth(Constants.MATCH_PARENT)
       .barHeight('80vp')
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width('100%')
+      .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.white'))
-    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+    }
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
+    .justifyContent(FlexAlign.Center)
   }
 }

@@ -22,7 +22,7 @@ export struct HomeTabContent {
   @Builder TabBuilder(index: number) {
     Column() {
       Text(this.tabTitles[index].name)
-        .height(Constants.FULL_HEIGHT)
+        .height(Constants.MATCH_PARENT)
         .padding('12vp')
         .fontSize(this.currentIndex === index ? '22fp' : '20fp')
         .fontWeight(this.currentIndex === index ? 700 : 500)
@@ -42,14 +42,14 @@ export struct HomeTabContent {
         }.tabBar(this.TabBuilder(1))
       }
       .vertical(false)
-      .barWidth('100%')
+      .barWidth(Constants.MATCH_PARENT)
       .barHeight('56vp')
       .barMode(BarMode.Scrollable)
       .margin({top:'36vp'})
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width('100%')
+      .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.white'))
       .alignRules({
         top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -70,8 +70,8 @@ export struct HomeTabContent {
           router.pushUrl({ url: 'pages/SearchPage' })
         })
     }
-    .width(Constants.FULL_WIDTH)
-    .height(Constants.FULL_HEIGHT)
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
   }
 

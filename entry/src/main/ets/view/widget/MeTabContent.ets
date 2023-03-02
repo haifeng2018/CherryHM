@@ -17,7 +17,7 @@ export struct MeTabContent {
     Stack() {
       Column() {
         Image($r('app.media.img_me_header_cover'))
-          .width(Constants.FULL_WIDTH)
+          .width(Constants.MATCH_PARENT)
           .height('188vp')
         Column() {
           Row(){
@@ -68,31 +68,31 @@ export struct MeTabContent {
 
           Row() {
             Text('缓存')
-              .height(Constants.FULL_HEIGHT)
+              .height(Constants.MATCH_PARENT)
               .layoutWeight(1)
               .fontSize('12fp')
               .fontColor($r('app.color.color_666666'))
               .textAlign(TextAlign.Center)
-            Divider().vertical(true).height(Constants.FULL_HEIGHT).color($r('app.color.color_666666'))
+            Divider().vertical(true).height(Constants.MATCH_PARENT).color($r('app.color.color_666666'))
             Text('收藏')
-              .height(Constants.FULL_HEIGHT)
+              .height(Constants.MATCH_PARENT)
               .layoutWeight(1)
               .fontSize('12fp')
               .fontColor($r('app.color.color_666666'))
               .textAlign(TextAlign.Center)
-            Divider().vertical(true).height(Constants.FULL_HEIGHT).color($r('app.color.color_666666'))
+            Divider().vertical(true).height(Constants.MATCH_PARENT).color($r('app.color.color_666666'))
             Text('观看记录')
-              .height(Constants.FULL_HEIGHT)
+              .height(Constants.MATCH_PARENT)
               .layoutWeight(1)
               .fontSize('12fp')
               .fontColor($r('app.color.color_666666'))
               .textAlign(TextAlign.Center)
           }
-          .width(Constants.FULL_WIDTH)
+          .width(Constants.MATCH_PARENT)
           .height('20vp')
           .margin({top:'30vp'})
         }
-        .width(Constants.FULL_WIDTH)
+        .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
         .alignItems(HorizontalAlign.Start)
       }
@@ -100,13 +100,12 @@ export struct MeTabContent {
       Image($r('app.media.default_img'))
         .width('80vp')
         .height('80vp')
-        .border({ width: '2vp' }).borderColor($r('app.color.white'))
-        .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
+        .borderRadius('40vp')
         .margin({'top':'148vp',left:'24vp'})
 
     }
-    .width(Constants.FULL_WIDTH)
-    .height(Constants.FULL_HEIGHT)
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
     .alignContent(Alignment.TopStart)
   }
 }

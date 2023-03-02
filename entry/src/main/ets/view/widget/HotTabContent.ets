@@ -25,7 +25,7 @@ export struct HotTabContent {
   @Builder TabBuilder(index: number) {
     Column() {
       Text(this.tabTitles[index].name)
-        .height(Constants.FULL_HEIGHT)
+        .height(Constants.MATCH_PARENT)
         .padding('12vp')
         .fontSize(this.currentIndex === index ? '22fp' : '20fp')
         .fontWeight(this.currentIndex === index ? 700 : 500)
@@ -37,7 +37,7 @@ export struct HotTabContent {
     Column() {
       Stack(){
         Text($r('app.string.tab_hot'))
-          .width(Constants.FULL_WIDTH)
+          .width(Constants.MATCH_PARENT)
           .height('56vp')
           .fontSize($r('app.float.fp_28'))
           .fontColor($r('app.color.color_333333'))
@@ -49,7 +49,7 @@ export struct HotTabContent {
           .align(Alignment.End)
           .margin({right:'24vp'})
       }
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.white'))
       .alignContent(Alignment.End)
       .padding({top:'36vp'})
@@ -68,17 +68,17 @@ export struct HotTabContent {
         }.tabBar(this.TabBuilder(2))
       }
       .vertical(false)
-      .barWidth('100%')
+      .barWidth(Constants.MATCH_PARENT)
       .barHeight('56vp')
       .barMode(BarMode.Fixed)
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width('100%')
+      .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.white'))
     }
-    .width(Constants.FULL_WIDTH)
-    .height(Constants.FULL_HEIGHT)
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
   }
 

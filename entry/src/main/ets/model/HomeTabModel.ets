@@ -19,7 +19,7 @@ export interface NavItem {
 export enum TabId {
   HOME,
   DISCOVERY,
-  TV,
+  HOT,
   ME
 }
 
@@ -40,7 +40,7 @@ export const NavList: NavItem[] = [
     icon: $r('app.media.ic_hot_normal'),
     icon_selected: $r('app.media.ic_hot_checked'),
     text: $r('app.string.tab_hot'),
-    id: TabId.TV
+    id: TabId.HOT
   },
   {
     icon: $r('app.media.ic_me_normal'),

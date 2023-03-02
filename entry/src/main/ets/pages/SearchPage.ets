@@ -62,7 +62,7 @@ struct SearchPage {
           Swiper() {
             ForEach(this.listSearch, item => {
               Text(item)
-                .width(Constants.FULL_WIDTH)
+                .width(Constants.MATCH_PARENT)
                 .height('40vp')
                 .fontSize('16fp')
                 .fontColor($r('app.color.color_666666'))
@@ -87,7 +87,7 @@ struct SearchPage {
           .align(Alignment.End)
           .margin({right:'24vp'})
       }
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .height('56vp')
       .backgroundColor($r('app.color.color_primary'))
 
@@ -98,7 +98,7 @@ struct SearchPage {
               Column(){
                 Image(categoryInfo.bgPicture)
                   .objectFit(ImageFit.Cover)
-                  .width(Constants.FULL_WIDTH)
+                  .width(Constants.MATCH_PARENT)
                   .layoutWeight(1)
                   .borderRadius({topLeft:'10vp',topRight:'10vp'})
                 Text(categoryInfo.description)
@@ -106,7 +106,7 @@ struct SearchPage {
                   .fontColor($r('app.color.color_333333'))
                   .padding('10vp')
               }
-              .width("100%")
+              .width(Constants.MATCH_PARENT)
               .height("256vp")
               .backgroundColor($r('app.color.white'))
               .borderRadius('10vp')
@@ -119,7 +119,7 @@ struct SearchPage {
         .columnsGap('10vp')
         .rowsGap('10vp')
         .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.FULL_WIDTH)
+        .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
         .padding('10vp')
       }
@@ -135,8 +135,8 @@ struct SearchPage {
         console.log('onRefreshing test')
       })
     }
-    .width('100%')
-    .height('100%')
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 }

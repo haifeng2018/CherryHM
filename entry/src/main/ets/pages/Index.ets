@@ -1,3 +1,4 @@
+import Constants from '../util/Constants';
 @Entry
 @Component
 struct Index {
@@ -10,8 +11,8 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
       }
-      .width('100%')
+      .width(Constants.MATCH_PARENT)
     }
-    .height('100%')
+    .height(Constants.MATCH_PARENT)
   }
 }

@@ -9,15 +9,15 @@ import HttpRequest from '../../util/HttpRequest';
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: DailyPaperTabContent
+ * File: DiscoveryPaperTabContent
  * Author: Victor
  * Date: 2023/2/27 15:10
- * Description: 首页-日报
+ * Description: 首页-发现
  * -----------------------------------------------------------------
  */
 @Preview
 @Component
-export struct DailyPaperTabContent {
+export struct DiscoveryTabContent {
 
   @State dailyPagerList: Array<DiscoveryInfo> = [];
   @State isRefreshing: boolean = false
@@ -45,7 +45,7 @@ export struct DailyPaperTabContent {
     Column() {
       Stack(){
         Text($r('app.string.tab_discovery'))
-          .width(Constants.FULL_WIDTH)
+          .width(Constants.MATCH_PARENT)
           .height('56vp')
           .fontSize($r('app.float.fp_28'))
           .fontColor($r('app.color.color_333333'))
@@ -58,7 +58,7 @@ export struct DailyPaperTabContent {
           .align(Alignment.End)
           .margin({right:'24vp'})
       }
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.white'))
       .alignContent(Alignment.End)
       .padding({top:'36vp'})
@@ -83,15 +83,15 @@ export struct DailyPaperTabContent {
                 if (item.data.iconType === 'round') {
                   this.authorCardCell(item)
                 }
-              } else if (item.type === 'columnCardList') {//数据格式问题
+              } else if (item.type === 'columnCardList') {
                 this.columnCardListCell(item)
               }
             }
             .padding({left:'10vp',right:'10vp'})
           })
         }
-        .width(Constants.FULL_WIDTH)
-        .height(Constants.FULL_HEIGHT)
+        .width(Constants.MATCH_PARENT)
+        .height(Constants.MATCH_PARENT)
         .padding({top:'10vp',bottom:'10vp'})
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
@@ -105,11 +105,11 @@ export struct DailyPaperTabContent {
         }, 1000)
         console.log('onRefreshing test')
       })
-      .width(Constants.FULL_WIDTH)
-      .layoutWeight(1)
+      .width(Constants.MATCH_PARENT)
+      .height(Constants.MATCH_PARENT)
     }
-    .width(Constants.FULL_WIDTH)
-    .height(Constants.FULL_HEIGHT)
+    .width(Constants.MATCH_PARENT)
+    .layoutWeight(1)
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
@@ -117,7 +117,7 @@ export struct DailyPaperTabContent {
     Swiper() {
       ForEach(info.data.itemList, item => {
         Image(item.data.image)
-          .width(Constants.FULL_WIDTH)
+          .width(Constants.MATCH_PARENT)
           .height('198vp')
           .borderRadius('10vp')
       })
@@ -139,7 +139,7 @@ export struct DailyPaperTabContent {
 
   @Builder textCardCell(info: DiscoveryInfo) {
     Text(info.data.text)
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .height('66vp')
       .fontSize('36fp')
       .textAlign(TextAlign.Start)
@@ -151,18 +151,18 @@ export struct DailyPaperTabContent {
   @Builder briefCardCell(info: DiscoveryInfo) {
     Stack() {
       Image(info.data.icon)
-        .width(Constants.FULL_WIDTH)
-        .height(Constants.FULL_HEIGHT)
+        .width(Constants.MATCH_PARENT)
+        .height(Constants.MATCH_PARENT)
         .borderRadius('10vp')
 
       Text(info.data.title)
-        .width(Constants.FULL_WIDTH)
-        .height(Constants.FULL_HEIGHT)
+        .width(Constants.MATCH_PARENT)
+        .height(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Center)
         .fontColor($r('app.color.color_666666'))
         .fontSize('22fp')
     }
-    .width(Constants.FULL_WIDTH)
+    .width(Constants.MATCH_PARENT)
     .height('198vp')
   }
 
@@ -174,14 +174,14 @@ export struct DailyPaperTabContent {
         .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
 
       Text(info.data.title)
-        .width(Constants.FULL_WIDTH)
-        .height(Constants.FULL_HEIGHT)
+        .width(Constants.MATCH_PARENT)
+        .height(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
         .fontColor($r('app.color.color_666666'))
         .fontSize('22fp')
         .margin({left:'20vp'})
     }
-    .width(Constants.FULL_WIDTH)
+    .width(Constants.MATCH_PARENT)
     .height('68vp')
     .backgroundColor($r('app.color.white'))
     .padding('10vp')
@@ -195,13 +195,13 @@ export struct DailyPaperTabContent {
           ListItem() {
             Stack() {
               Image(item.data.image)
-                .width(Constants.FULL_WIDTH)
-                .height(Constants.FULL_HEIGHT)
+                .width(Constants.MATCH_PARENT)
+                .height(Constants.MATCH_PARENT)
                 .borderRadius('10vp')
 
               Text(item.data.title)
-                .width(Constants.FULL_WIDTH)
-                .height(Constants.FULL_HEIGHT)
+                .width(Constants.MATCH_PARENT)
+                .height(Constants.MATCH_PARENT)
                 .textAlign(TextAlign.Center)
                 .fontColor($r('app.color.white'))
                 .fontSize('18fp')

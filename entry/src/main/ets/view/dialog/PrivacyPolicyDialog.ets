@@ -67,14 +67,13 @@ export default struct PrivacyPolicyDialog {
               },
             })
           })
-      }.width('100%')
+      }.width(Constants.MATCH_PARENT)
       .margin({top:'10vp'})
       .justifyContent(FlexAlign.Center)
 
       Divider()
         .vertical(false)
-        .width(Constants.FULL_WIDTH)
-        .height('10vp')
+        .width(Constants.MATCH_PARENT)
         .color($r('app.color.color_666666'))
         .opacity(0.6)
         .margin({top:'10vp'})
@@ -87,9 +86,7 @@ export default struct PrivacyPolicyDialog {
             this.controller.close();
             this.cancel();
           })
-          .width($r('app.float.dialog_blank_width'))
-          .height($r('app.float.dialog_blank_height'))
-        Divider().vertical(true).height('30vp').opacity(0.6).color($r('app.color.color_666666'))
+        Divider().vertical(true).height(Constants.MATCH_PARENT).opacity(0.6).color($r('app.color.color_666666'))
         Text($r('app.string.agree'))
           .fancy()
           .fontColor($r("app.color.color_0091FF"))
@@ -98,7 +95,7 @@ export default struct PrivacyPolicyDialog {
             this.confirm();
           })
       }
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .height('45vp')
     }
     .width(Constants.DIALOG_WIDTH_PERCENT)
@@ -109,7 +106,7 @@ export default struct PrivacyPolicyDialog {
 
 // Common text styles.
 @Extend(Text) function fancy () {
-  .height(Constants.FULL_HEIGHT)
+  .height(Constants.MATCH_PARENT)
   .layoutWeight(Constants.COMMON_LAYOUT_WEIGHT)
   .fontSize($r("app.float.dialog_fancy_text_size"))
   .textAlign(TextAlign.Center)

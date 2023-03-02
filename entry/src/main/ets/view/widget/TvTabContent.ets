@@ -49,14 +49,14 @@ export struct TvTabContent {
     Text(text)
       .fontSize(28)
       .backgroundColor($r('app.color.color_999999'))
-      .width("100%")
+      .width(Constants.MATCH_PARENT)
   }
 
   @Builder itemFoot(num:number) {
     Text('共' + num + "节课")
       .fontSize(10)
       .backgroundColor($r('app.color.color_666666'))
-      .width("100%")
+      .width(Constants.MATCH_PARENT)
       .padding(5)
   }
 
@@ -64,7 +64,7 @@ export struct TvTabContent {
     Column() {
       Stack(){
         Text($r('app.string.tab_hot'))
-          .width(Constants.FULL_WIDTH)
+          .width(Constants.MATCH_PARENT)
           .height('56vp')
           .fontSize($r('app.float.fp_20'))
           .fontColor($r('app.color.color_333333'))
@@ -77,7 +77,7 @@ export struct TvTabContent {
           .align(Alignment.End)
           .margin({right:'24vp'})
       }
-      .width(Constants.FULL_WIDTH)
+      .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.color_primary_dark'))
       .alignContent(Alignment.End)
       .padding({top:'36vp'})
@@ -90,7 +90,7 @@ export struct TvTabContent {
                 ForEach(item.projects, (project) => {
                   ListItem() {
                     Text(project)
-                      .width("100%").height(100).fontSize(20)
+                      .width(Constants.MATCH_PARENT).height(100).fontSize(20)
                       .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
                   }
                 }, item => item)
@@ -99,9 +99,9 @@ export struct TvTabContent {
               .divider({ strokeWidth: 1, color: $r('app.color.color_0091FF') }) // 每行之间的分界线
             })
           }
-          .width('100%')
+          .width(Constants.MATCH_PARENT)
           .sticky(StickyStyle.Header|StickyStyle.Footer)
-        }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+        }.width(Constants.MATCH_PARENT).height(Constants.MATCH_PARENT).backgroundColor(0xDCDCDC).padding({ top: 5 })
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)

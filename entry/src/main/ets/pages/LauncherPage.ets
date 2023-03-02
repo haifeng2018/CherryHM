@@ -105,10 +105,10 @@ struct Index {
   build() {
     Stack() {
       Image($r('app.media.img_splash'))
-        .width(Constants.FULL_WIDTH)
-        .height(Constants.FULL_HEIGHT)
+        .width(Constants.MATCH_PARENT)
+        .height(Constants.MATCH_PARENT)
     }
-    .width(Constants.FULL_WIDTH)
-    .height(Constants.FULL_HEIGHT)
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
   }
 }

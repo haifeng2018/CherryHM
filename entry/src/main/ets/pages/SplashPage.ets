@@ -25,8 +25,8 @@ struct SplashPage {
         ForEach(this.imageArray, item => { // ForEach循环渲染 item即是imageArray数组的每一项
           Image(item.image)
             .objectFit(ImageFit.Fill) // 图片铺满
-            .width(Constants.FULL_WIDTH)
-            .height(Constants.FULL_HEIGHT) // 固定高度
+            .width(Constants.MATCH_PARENT)
+            .height(Constants.MATCH_PARENT) // 固定高度
         }, item => item.id.toString())
       }
       .cachedCount(3)
@@ -70,8 +70,8 @@ struct SplashPage {
           router.pushUrl({ url: 'pages/MainPage' })
         })
     }
-    .width(Constants.FULL_WIDTH)
-    .height(Constants.FULL_HEIGHT)
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
   }
 }
 
