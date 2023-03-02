@@ -1,3 +1,6 @@
+import { TotalRankingTabContent } from './TotalRankingTabContent';
+import { MonthlyRankingTabContent } from './MonthlyRankingTabContent';
+import { WeeklyRankingTabContent } from './WeeklyRankingTabContent';
 import { DailyPaperTabContent } from './DailyPaperTabContent';
 import { FollowTabContent } from './FollowTabContent';
 import router from '@ohos.router';
@@ -6,18 +9,18 @@ import Constants from '../../util/Constants';
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: HomeTabContent
+ * File: HotTabContent
  * Author: Victor
  * Date: 2023/2/27 15:10
- * Description: 
+ * Description: 首页-热门
  * -----------------------------------------------------------------
  */
 @Preview
 @Component
-export struct HomeTabContent {
+export struct HotTabContent {
   @State currentIndex: number = 0
 
-  private tabTitles = [{ id: 0, name: '关注' }, { id: 1, name: '日报' }]
+  private tabTitles = [{ id: 0, name: '周排行' }, { id: 1, name: '月排行' }, { id: 2, name: '总排行' }]
 
   @Builder TabBuilder(index: number) {
     Column() {
@@ -31,44 +34,49 @@ export struct HomeTabContent {
   }
 
   build() {
-    RelativeContainer() {
+    Column() {
+      Stack(){
+        Text($r('app.string.tab_hot'))
+          .width(Constants.FULL_WIDTH)
+          .height('56vp')
+          .fontSize($r('app.float.fp_20'))
+          .fontColor($r('app.color.color_333333'))
+          .fontWeight(500)
+          .textAlign(TextAlign.Center)
+          .backgroundColor($r('app.color.white'))
+        Image($r('app.media.ic_share'))
+          .width('30vp')
+          .height('30vp')
+          .align(Alignment.End)
+          .margin({right:'24vp'})
+      }
+      .width(Constants.FULL_WIDTH)
+      .backgroundColor($r('app.color.white'))
+      .alignContent(Alignment.End)
+      .padding({top:'36vp'})
+
       Tabs() {
         TabContent() {
-          FollowTabContent()
+          WeeklyRankingTabContent()
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          DailyPaperTabContent()
+          MonthlyRankingTabContent()
         }.tabBar(this.TabBuilder(1))
+
+        TabContent() {
+          TotalRankingTabContent()
+        }.tabBar(this.TabBuilder(2))
       }
       .vertical(false)
       .barWidth('100%')
       .barHeight('56vp')
-      .barMode(BarMode.Scrollable)
-      .margin({top:'36vp'})
+      .barMode(BarMode.Fixed)
       .onChange((index: number) => {
         this.currentIndex = index
       })
       .width('100%')
       .backgroundColor($r('app.color.white'))
-      .alignRules({
-        top: {anchor: "__container__", align: VerticalAlign.Top},
-        left: {anchor: "__container__", align: HorizontalAlign.Start}
-      }).id('mHomeTab')
-
-      Image($r('app.media.ic_home_search'))
-        .width('30vp')
-        .height('30vp')
-        .margin({top:'40vp',right:'24vp'})
-        .padding('10vp')
-        .alignRules({
-          top: {anchor: "mHomeTab", align: VerticalAlign.Top},
-          right: {anchor: "mHomeTab", align: HorizontalAlign.End}
-        })
-        .id("mIvSearch")
-        .onClick(() => {
-          router.pushUrl({ url: 'pages/SearchPage' })
-        })
     }
     .width(Constants.FULL_WIDTH)
     .height(Constants.FULL_HEIGHT)

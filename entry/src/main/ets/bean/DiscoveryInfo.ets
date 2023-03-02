@@ -1,15 +1,19 @@
+import { DiscoveryItemData } from './DiscoveryItemData';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: HomeApi
+ * File: DiscoveryInfo
  * Author: Victor
- * Date: 2023/3/1 16:36
+ * Date: 2023/3/2 11:12
  * Description: 
  * -----------------------------------------------------------------
  */
-
-export class HomeApi {
-  static readonly FOLLOW: string = 'http://baobab.kaiyanapp.com/api/v6/community/tab/follow'
-  static readonly DAILY_PAPER: string = 'http://baobab.kaiyanapp.com/api/v5/index/tab/feed'
-}
+ export class DiscoveryInfo {
+  type: string
+  trackingData: string
+  tag: string
+  id: number
+  adIndex: number
+  data:DiscoveryItemData
+ }

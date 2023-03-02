@@ -1,8 +1,8 @@
+import { HomeApi } from '../../api/HomeApi';
 import { FollowInfo } from '../../bean/FollowInfo';
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
-import HomeApi from '../../api/HomeApi';
 import HttpRequest from '../../util/HttpRequest';
 /*
  * -----------------------------------------------------------------

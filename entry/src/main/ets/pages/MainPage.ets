@@ -1,3 +1,5 @@
+import { HotTabContent } from '../view/widget/HotTabContent';
+import { DailyPaperTabContent } from '../view/widget/DiscoveryTabContent';
 import { TvTabContent } from '../view/widget/TvTabContent';
 import { TabId } from '../model/HomeTabModel';
 import { MeTabContent } from '../view/widget/MeTabContent';
@@ -35,11 +37,11 @@ struct MainPage {
         }.tabBar(this.TabBuilder(TabId.HOME))
 
         TabContent() {
-          WeChatTabContent()
-        }.tabBar(this.TabBuilder(TabId.WeChat))
+          DailyPaperTabContent()
+        }.tabBar(this.TabBuilder(TabId.DISCOVERY))
 
         TabContent() {
-          TvTabContent()
+          HotTabContent()
         }.tabBar(this.TabBuilder(TabId.TV))
 
         TabContent() {
