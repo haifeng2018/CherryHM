@@ -33,6 +33,10 @@
       "value": "#FFFFFF"
     },
     {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
       "name": "color_999999",
       "value": "#999999"
     },

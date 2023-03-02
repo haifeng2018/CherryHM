@@ -34,7 +34,10 @@ struct SplashPage {
       .autoPlay(false)
       .interval(1000)
       .indicator(true)
-      .indicatorStyle({bottom:128,size: 20, mask: true,color:$r('app.color.color_80FFFFFF'),selectedColor:$r('app.color.white')})
+      .indicatorStyle({
+        bottom:128,size: 20, mask: true,
+        color:$r('app.color.color_80FFFFFF'),
+        selectedColor:$r('app.color.white')})
       .loop(false)
       .duration(300)
       .itemSpace(0)
@@ -49,10 +52,12 @@ struct SplashPage {
         }
       })
       Button($r('app.string.enter_app'))
+        .backgroundColor($r('app.color.color_666666'))
+        .fontColor($r('app.color.white'))
         .visibility(this.enterAppBtnVisible ? Visibility.Visible : Visibility.Hidden)
         .align(Alignment.Center)
         .width('50%')
-        .margin({bottom:80})
+        .margin({bottom:'88vp'})
         .opacity(this.enterAppBtnOpacity)
         .animation({
           duration: 1000, // 动画时长
@@ -67,13 +72,6 @@ struct SplashPage {
     }
     .width(Constants.FULL_WIDTH)
     .height(Constants.FULL_HEIGHT)
-  }
-  pageTransition() {
-    PageTransitionEnter({ duration: 500 })
-      .slide(SlideEffect.Left)
-    PageTransitionExit({ delay: 100 })
-      .translate({ x: 100.0, y: 100.0 })
-      .opacity(0)
   }
 }
 

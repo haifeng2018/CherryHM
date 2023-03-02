@@ -29,9 +29,12 @@ export default struct PrivacyPolicyDialog {
           top: $r('app.float.dialog_text_privacy_top'),
           bottom: $r('app.float.dialog_text_privacy_bottom')
         })
+
       Text($r('app.string.privacy_policy_content'))
         .fontSize($r('app.float.dialog_common_text_size'))
+        .lineHeight('28vp')
         .width(Constants.DIALOG_COMPONENT_WIDTH_PERCENT)
+
       Row(){
         Text($r('app.string.user_services_agreement'))
           .fontColor($r('app.color.color_0091FF'))
@@ -64,7 +67,18 @@ export default struct PrivacyPolicyDialog {
               },
             })
           })
-      }.width('100%').justifyContent(FlexAlign.Center)
+      }.width('100%')
+      .margin({top:'10vp'})
+      .justifyContent(FlexAlign.Center)
+
+      Divider()
+        .vertical(false)
+        .width(Constants.FULL_WIDTH)
+        .height('10vp')
+        .color($r('app.color.color_666666'))
+        .opacity(0.6)
+        .margin({top:'10vp'})
+
       Row() {
         Text($r('app.string.disagree'))
           .fancy()
@@ -73,10 +87,9 @@ export default struct PrivacyPolicyDialog {
             this.controller.close();
             this.cancel();
           })
-        Blank()
-          .backgroundColor($r('app.color.color_F5F5F5'))
           .width($r('app.float.dialog_blank_width'))
           .height($r('app.float.dialog_blank_height'))
+        Divider().vertical(true).height('30vp').opacity(0.6).color($r('app.color.color_666666'))
         Text($r('app.string.agree'))
           .fancy()
           .fontColor($r("app.color.color_0091FF"))
@@ -85,7 +98,8 @@ export default struct PrivacyPolicyDialog {
             this.confirm();
           })
       }
-      .margin({ bottom: Constants.DIALOG_ROW_MARGIN_BOTTOM })
+      .width(Constants.FULL_WIDTH)
+      .height('45vp')
     }
     .width(Constants.DIALOG_WIDTH_PERCENT)
     .borderRadius(Constants.DIALOG_BORDER_RADIUS)
@@ -95,8 +109,9 @@ export default struct PrivacyPolicyDialog {
 
 // Common text styles.
 @Extend(Text) function fancy () {
+  .height(Constants.FULL_HEIGHT)
+  .layoutWeight(Constants.COMMON_LAYOUT_WEIGHT)
   .fontSize($r("app.float.dialog_fancy_text_size"))
   .textAlign(TextAlign.Center)
   .fontWeight(FontWeight.Medium)
-  .layoutWeight(Constants.COMMON_LAYOUT_WEIGHT)
 }

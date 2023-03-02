@@ -9,61 +9,104 @@ import Constants from '../../util/Constants';
  * Description: 
  * -----------------------------------------------------------------
  */
-
+@Preview
 @Component
 export struct MeTabContent {
 
   build() {
     Stack() {
-      Image($r('app.media.img_me_header')).width('100%').height('40%').align(Alignment.Top)
-
       Column() {
-        Stack(){
-          Text($r('app.string.tab_me'))
-            .width(Constants.FULL_WIDTH)
-            .height('56vp')
-            .fontSize($r('app.float.fp_20'))
-            .fontColor($r('app.color.color_333333'))
-            .fontWeight(500)
-            .textAlign(TextAlign.Center)
-            .backgroundColor($r('app.color.color_primary'))
-          Image($r('app.media.ic_share'))
-            .width('30vp')
-            .height('30vp')
-            .align(Alignment.End)
-            .margin({right:'24vp'})
+        Image($r('app.media.img_me_header_cover'))
+          .width(Constants.FULL_WIDTH)
+          .height('188vp')
+        Column() {
+          Row(){
+            Text('Cherry')
+              .fontColor($r('app.color.color_333333'))
+              .fontSize('22fp')
+            Image($r('app.media.ic_me_edit_black'))
+              .width('40vp')
+              .height('40vp')
+          }.margin({top:'60vp',left:'24vp'})
+
+          Row(){
+            Text('0')
+              .fontColor($r('app.color.color_333333'))
+              .fontSize('12fp')
+
+            Text('粉丝')
+              .fontColor($r('app.color.color_666666'))
+              .fontSize('12fp')
+              .margin({left:'5vp'})
+
+            Text('0')
+              .fontColor($r('app.color.color_333333'))
+              .fontSize('12fp')
+              .margin({left:'30vp'})
+
+            Text('关注')
+              .fontColor($r('app.color.color_666666'))
+              .fontSize('12fp')
+              .margin({left:'5vp'})
+
+            Text('0')
+              .fontColor($r('app.color.color_333333'))
+              .fontSize('12fp')
+              .margin({left:'30vp'})
+
+            Text('徽章')
+              .fontColor($r('app.color.color_666666'))
+              .fontSize('12fp')
+              .margin({left:'5vp'})
+          }
+          .margin({top:'20vp',left:'24vp'})
+
+          Text('IP属地：广东')
+            .fontColor($r('app.color.color_666666'))
+            .fontSize('12fp')
+            .margin({left:'24vp',top:'36vp'})
+
+          Row() {
+            Text('缓存')
+              .height(Constants.FULL_HEIGHT)
+              .layoutWeight(1)
+              .fontSize('12fp')
+              .fontColor($r('app.color.color_666666'))
+              .textAlign(TextAlign.Center)
+            Divider().vertical(true).height(Constants.FULL_HEIGHT).color($r('app.color.color_666666'))
+            Text('收藏')
+              .height(Constants.FULL_HEIGHT)
+              .layoutWeight(1)
+              .fontSize('12fp')
+              .fontColor($r('app.color.color_666666'))
+              .textAlign(TextAlign.Center)
+            Divider().vertical(true).height(Constants.FULL_HEIGHT).color($r('app.color.color_666666'))
+            Text('观看记录')
+              .height(Constants.FULL_HEIGHT)
+              .layoutWeight(1)
+              .fontSize('12fp')
+              .fontColor($r('app.color.color_666666'))
+              .textAlign(TextAlign.Center)
+          }
+          .width(Constants.FULL_WIDTH)
+          .height('20vp')
+          .margin({top:'30vp'})
         }
         .width(Constants.FULL_WIDTH)
-        .backgroundColor($r('app.color.color_primary_dark'))
-        .alignContent(Alignment.End)
-        .padding({top:'36vp'})
+        .layoutWeight(1)
+        .alignItems(HorizontalAlign.Start)
+      }
 
-        Text('我的').fontSize('18fp').fontColor($r('app.color.white')).width('100%').height('10%')
-          .textAlign(TextAlign.Center).margin({ top: '20vp' })
+      Image($r('app.media.default_img'))
+        .width('80vp')
+        .height('80vp')
+        .border({ width: '2vp' }).borderColor($r('app.color.white'))
+        .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
+        .margin({'top':'148vp',left:'24vp'})
 
-        Row(){
-          Image($r('app.media.default_img')).width('80vp').height('80vp')
-            .border({ width: '2vp' }).borderColor($r('app.color.white'))
-            .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
-
-          Column(){
-            Text('王大锤').fontSize('22fp').fontColor($r('app.color.white')).width('100%')
-              .textAlign(TextAlign.Start).margin({ left: '10vp',top:'10vp' })
-
-            Text('I\'m the master of my fate, the captain of my soul.')
-              .fontSize('18fp').fontColor($r('app.color.white')).width('100%')
-              .layoutWeight(1)
-              .maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis })
-              .textAlign(TextAlign.Start).margin({ left: '10vp',right:'10vp',top:'10vp' })
-
-          }.width('80%').height('80vp')
-
-          Image($r('app.media.ic_right_white')).width('50vp').height('50vp')
-
-        }.width('100%').height('10%').alignItems(VerticalAlign.Center).margin({ left: '20vp',top:'20vp' })
-
-      }.width('100%').height('100%').alignItems(HorizontalAlign.Start)
-
-    }.width('100%').height('100%').alignContent(Alignment.Top)
+    }
+    .width(Constants.FULL_WIDTH)
+    .height(Constants.FULL_HEIGHT)
+    .alignContent(Alignment.TopStart)
   }
 }

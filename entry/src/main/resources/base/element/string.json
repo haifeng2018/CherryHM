@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "开眼"
     },
     {
       "name": "LauncherAbility_desc",
@@ -18,7 +18,7 @@
     },
     {
       "name": "LauncherAbility_label",
-      "value": "label"
+      "value": "开眼"
     },
     {
       "name": "MainAbility_kind_tip",
@@ -62,7 +62,7 @@
     },
     {
       "name": "WebAbility_label",
-      "value": "label"
+      "value": "开眼"
     },
     {
       "name": "tab_home",

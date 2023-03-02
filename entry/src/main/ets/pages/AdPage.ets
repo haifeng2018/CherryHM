@@ -39,7 +39,7 @@ struct AdvertisingPage {
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
-      Image($r('app.media.ic_advertising_background'))
+      Image($r('app.media.img_splash'))
         .width(Constants.FULL_WIDTH)
         .height(Constants.FULL_HEIGHT)
       Text($r('app.string.advertising_text_title', this.countDownSeconds))
@@ -65,43 +65,8 @@ struct AdvertisingPage {
         .onClick(() => {
           this.jumpToAppHomePage();
         })
-      Row() {
-        Image($r('app.media.ic_logo'))
-          .width($r('app.float.advertising_image_width'))
-          .height($r('app.float.advertising_image_height'))
-          .margin({ bottom: Constants.ADVERTISING_ROW_MARGIN_BOTTOM })
-        Column() {
-          Text($r('app.string.healthy_life_text'))
-            .bottomTextStyle(FontWeight.Bolder,
-            Constants.ADVERTISING_HEALTHY_LIFE_TEXT_SPACING,
-            $r('app.float.advertising_text_title_size'),
-            $r('app.color.advertising_text_title_color'))
-          Text($r('app.string.healthy_life_introduce'))
-            .bottomTextStyle(FontWeight.Normal,
-            Constants.ADVERTISING_TEXT_INTRODUCE_LETTER_SPACING,
-            $r('app.float.advertising_text_introduce_size'),
-            $r('app.color.launcher_text_introduce_color'))
-            .opacity($r('app.float.advertising_text_opacity'))
-            .margin({ top: Constants.ADVERTISING_TEXT_INTRODUCE_MARGIN_TOP })
-        }
-        .alignItems(HorizontalAlign.Start)
-        .margin({
-          left: Constants.ADVERTISING_COLUMN_MARGIN_LEFT,
-          bottom: Constants.ADVERTISING_ROW_MARGIN_BOTTOM
-        })
-      }
-      .alignItems(VerticalAlign.Bottom)
-      .height(Constants.FULL_HEIGHT)
     }
     .width(Constants.FULL_WIDTH)
     .height(Constants.FULL_HEIGHT)
   }
-}
-// Bottom text common style.
-@Extend(Text) function bottomTextStyle (fontWeight: number,
-  textAttribute: number, fontSize: Resource, fontColor: Resource) {
-    .fontWeight(fontWeight)
-    .letterSpacing(textAttribute)
-    .fontSize(fontSize)
-    .fontColor(fontColor)
 }

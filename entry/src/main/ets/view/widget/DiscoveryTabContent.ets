@@ -47,7 +47,7 @@ export struct DailyPaperTabContent {
         Text($r('app.string.tab_discovery'))
           .width(Constants.FULL_WIDTH)
           .height('56vp')
-          .fontSize($r('app.float.fp_20'))
+          .fontSize($r('app.float.fp_28'))
           .fontColor($r('app.color.color_333333'))
           .fontWeight(500)
           .textAlign(TextAlign.Center)
