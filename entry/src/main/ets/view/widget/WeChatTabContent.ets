@@ -27,7 +27,7 @@ export struct WeChatTabContent {
   build() {
     Column() {
       Stack(){
-        Text($r('app.string.tab_wechat'))
+        Text($r('app.string.tab_discovery'))
           .width(Constants.FULL_WIDTH)
           .height('56vp')
           .fontSize($r('app.float.fp_20'))

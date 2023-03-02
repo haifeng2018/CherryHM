@@ -1,3 +1,4 @@
+import { Logger } from './Logger';
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +24,7 @@ class HttpRequest {
   constructor() {
     this.url = ''
     this.options = {
-      method:  http.RequestMethod.GET,
+      method: http.RequestMethod.GET,
       extraData: this.extraData,
       header: { 'Content-Type': 'application/json' },
       readTimeout: 50000,
@@ -81,10 +82,17 @@ class HttpRequest {
     return result
   }
 
-  async request() {
+  async request(callback) {
     let httpRequest = http.createHttp()
     let result = httpRequest.request(this.url, this.options)
-    return result
+    result.then((data) =>{
+      if (data.responseCode == 200) {
+        let resultJson = JSON.parse(data.result.toString())
+        callback.onSuccess(resultJson)
+      } else {
+        callback.onFail(data.responseCode)
+      }
+    })
   }
 }
 

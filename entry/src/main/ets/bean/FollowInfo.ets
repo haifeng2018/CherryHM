@@ -1,22 +1,19 @@
+import { FollowItemData } from './FollowItemData';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: HomeTabModel
+ * File: FollowInfo
  * Author: Victor
- * Date: 2023/2/27 14:53
+ * Date: 2023/3/1 17:12
  * Description: 
  * -----------------------------------------------------------------
  */
-
-export class CategoryInfo {
+export class FollowInfo {
+  type: string;
+  trackingData: string;
+  tag: string;
   id: number;
-  defaultAuthorId: number;
-  tagId: number;
-  name: string;
-  alias: string;
-  description: string;
-  bgPicture: string;
-  bgColor: string;
-  headerImage: string;
+  adIndex: number;
+  data:FollowItemData;
 }

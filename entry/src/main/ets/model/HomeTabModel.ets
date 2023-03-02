@@ -31,15 +31,15 @@ export const NavList: NavItem[] = [
     id: TabId.HOME
   },
   {
-    icon: $r('app.media.ic_schedule_normal'),
-    icon_selected: $r('app.media.ic_schedule_checked'),
-    text: $r('app.string.tab_wechat'),
+    icon: $r('app.media.ic_discovery_normal'),
+    icon_selected: $r('app.media.ic_discovery_checked'),
+    text: $r('app.string.tab_discovery'),
     id: TabId.WeChat
   },
   {
-    icon: $r('app.media.ic_tv_normal'),
-    icon_selected: $r('app.media.ic_tv_checked'),
-    text: $r('app.string.tab_tv'),
+    icon: $r('app.media.ic_hot_normal'),
+    icon_selected: $r('app.media.ic_hot_checked'),
+    text: $r('app.string.tab_hot'),
     id: TabId.TV
   },
   {

@@ -2,21 +2,14 @@
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: HomeTabModel
+ * File: CoverInfo
  * Author: Victor
- * Date: 2023/2/27 14:53
+ * Date: 2023/3/1 17:49
  * Description: 
  * -----------------------------------------------------------------
  */
-
-export class CategoryInfo {
-  id: number;
-  defaultAuthorId: number;
-  tagId: number;
-  name: string;
-  alias: string;
-  description: string;
-  bgPicture: string;
-  bgColor: string;
-  headerImage: string;
+export class CoverInfo {
+  feed: string;
+  detail: string;
+  blurred: string;
 }

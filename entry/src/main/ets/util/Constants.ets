@@ -200,4 +200,5 @@ export default class Constants {
 
   static readonly USER_SERVICES_AGREEMENT: string = 'https://app.service.hokkj.cn/';
   static readonly PRIVACY_POLICY: string = 'https://app.privacy.hokkj.cn/';
+
 }

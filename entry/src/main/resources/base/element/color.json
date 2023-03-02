@@ -95,6 +95,10 @@
     {
       "name": "color_primary_center",
       "value": "#5C1E0A"
+    },
+    {
+      "name": "color_1400001E",
+      "value": "#1400001E"
     }
   ]
 }

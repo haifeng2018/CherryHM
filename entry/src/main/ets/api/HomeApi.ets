@@ -2,21 +2,14 @@
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: HomeTabModel
+ * File: HomeApi
  * Author: Victor
- * Date: 2023/2/27 14:53
+ * Date: 2023/3/1 16:36
  * Description: 
  * -----------------------------------------------------------------
  */
 
-export class CategoryInfo {
-  id: number;
-  defaultAuthorId: number;
-  tagId: number;
-  name: string;
-  alias: string;
-  description: string;
-  bgPicture: string;
-  bgColor: string;
-  headerImage: string;
+export default class HomeApi {
+  static readonly FOLLOW: string = 'http://baobab.kaiyanapp.com/api/v6/community/tab/follow'
+  static readonly DAILY_PAPER: string = 'http://baobab.kaiyanapp.com/api/v5/index/tab/feed'
 }

@@ -69,12 +69,12 @@
       "value": "首页"
     },
     {
-      "name": "tab_wechat",
-      "value": "公众号"
+      "name": "tab_discovery",
+      "value": "发现"
     },
     {
-      "name": "tab_tv",
-      "value": "电视"
+      "name": "tab_hot",
+      "value": "热门"
     },
     {
       "name": "tab_me",

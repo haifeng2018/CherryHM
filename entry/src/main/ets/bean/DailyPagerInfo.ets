@@ -1,22 +1,19 @@
+import { DailyPagerItemData } from './DailyPagerItemData';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: HomeTabModel
+ * File: DailyPagerInfo
  * Author: Victor
- * Date: 2023/2/27 14:53
+ * Date: 2023/3/2 10:19
  * Description: 
  * -----------------------------------------------------------------
  */
-
-export class CategoryInfo {
-  id: number;
-  defaultAuthorId: number;
-  tagId: number;
-  name: string;
-  alias: string;
-  description: string;
-  bgPicture: string;
-  bgColor: string;
-  headerImage: string;
-}
+ export class DailyPagerInfo {
+   type: string
+   trackingData: string
+   tag: string
+   id: number
+   adIndex: number
+   data: DailyPagerItemData
+ }

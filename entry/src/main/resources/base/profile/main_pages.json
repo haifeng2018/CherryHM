@@ -5,6 +5,7 @@
     "pages/AdPage",
     "pages/SplashPage",
     "pages/WebPage",
-    "pages/MainPage"
+    "pages/MainPage",
+    "pages/SearchPage"
   ]
 }

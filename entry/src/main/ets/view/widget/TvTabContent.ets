@@ -63,7 +63,7 @@ export struct TvTabContent {
   build() {
     Column() {
       Stack(){
-        Text($r('app.string.tab_tv'))
+        Text($r('app.string.tab_hot'))
           .width(Constants.FULL_WIDTH)
           .height('56vp')
           .fontSize($r('app.float.fp_20'))

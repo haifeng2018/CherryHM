@@ -23,7 +23,7 @@ struct MainPage {
       Text(NavList[index].text)
         .margin({top:'4vp'})
         .fontSize(this.currentIndex == index ? '16fp' : '15fp')
-        .fontColor(this.currentIndex == index ? $r('app.color.color_primary') : $r('app.color.color_999999'))
+        .fontColor(this.currentIndex == index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)
   }
 
