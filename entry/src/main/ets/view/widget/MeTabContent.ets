@@ -27,7 +27,9 @@ export struct MeTabContent {
             Image($r('app.media.ic_me_edit_black'))
               .width('40vp')
               .height('40vp')
-          }.margin({top:'60vp',left:'24vp'})
+          }
+          .width(Constants.MATCH_PARENT)
+          .margin({top:'60vp',left:'24vp'})
 
           Row(){
             Text('0')
@@ -59,11 +61,13 @@ export struct MeTabContent {
               .fontSize('12fp')
               .margin({left:'5vp'})
           }
+          .width(Constants.MATCH_PARENT)
           .margin({top:'20vp',left:'24vp'})
 
           Text('IP属地：广东')
             .fontColor($r('app.color.color_666666'))
             .fontSize('12fp')
+            .width(Constants.MATCH_PARENT)
             .margin({left:'24vp',top:'36vp'})
 
           Row() {
@@ -91,10 +95,19 @@ export struct MeTabContent {
           .width(Constants.MATCH_PARENT)
           .height('20vp')
           .margin({top:'30vp'})
+
+          Image($r('app.media.img_me_no_video'))
+            .width('110vp')
+            .height('110vp')
+            .margin({top:'60vp'})
+
+          Text('暂无作品')
+            .fontColor($r('app.color.color_666666'))
+            .fontSize('18fp')
+            .margin({top:'10vp'})
         }
         .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
-        .alignItems(HorizontalAlign.Start)
       }
 
       Image($r('app.media.default_img'))
@@ -102,6 +115,16 @@ export struct MeTabContent {
         .height('80vp')
         .borderRadius('40vp')
         .margin({'top':'148vp',left:'24vp'})
+
+      Row(){
+        Blank()
+        Image($r('app.media.ic_me_setting'))
+          .width('56vp')
+          .height('56vp')
+          .padding('5vp')
+      }
+      .padding({top:'36vp',right:'19vp'})
+      .width(Constants.MATCH_PARENT)
 
     }
     .width(Constants.MATCH_PARENT)

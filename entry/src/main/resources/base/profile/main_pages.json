@@ -6,6 +6,7 @@
     "pages/SplashPage",
     "pages/WebPage",
     "pages/MainPage",
-    "pages/SearchPage"
+    "pages/SearchPage",
+    "pages/VideoDetailPage"
   ]
 }

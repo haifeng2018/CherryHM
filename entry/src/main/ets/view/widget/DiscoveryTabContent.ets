@@ -1,6 +1,6 @@
+import { VideoCellData } from '../../bean/VideoCellData';
+import { VideoInfo } from '../../bean/VideoInfo';
 import { DiscoveryApi } from '../../api/DiscoveryApi';
-import { DiscoveryCellInfo } from '../../bean/DiscoveryCellInfo';
-import { DiscoveryInfo } from '../../bean/DiscoveryInfo';
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
@@ -19,7 +19,7 @@ import HttpRequest from '../../util/HttpRequest';
 @Component
 export struct DiscoveryTabContent {
 
-  @State dailyPagerList: Array<DiscoveryInfo> = [];
+  @State dailyPagerList: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 
   scroller: Scroller = new Scroller()
@@ -106,14 +106,14 @@ export struct DiscoveryTabContent {
         console.log('onRefreshing test')
       })
       .width(Constants.MATCH_PARENT)
-      .height(Constants.MATCH_PARENT)
+      .layoutWeight(1)
     }
     .width(Constants.MATCH_PARENT)
-    .layoutWeight(1)
+    .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
-  @Builder horizontalScrollCardCell(info: DiscoveryInfo) {
+  @Builder horizontalScrollCardCell(info: VideoInfo) {
     Swiper() {
       ForEach(info.data.itemList, item => {
         Image(item.data.image)
@@ -137,7 +137,7 @@ export struct DiscoveryTabContent {
     .curve(Curve.Linear)
   }
 
-  @Builder textCardCell(info: DiscoveryInfo) {
+  @Builder textCardCell(info: VideoInfo) {
     Text(info.data.text)
       .width(Constants.MATCH_PARENT)
       .height('66vp')
@@ -148,7 +148,7 @@ export struct DiscoveryTabContent {
       .textOverflow({ overflow: TextOverflow.Ellipsis })
   }
 
-  @Builder briefCardCell(info: DiscoveryInfo) {
+  @Builder briefCardCell(info: VideoInfo) {
     Stack() {
       Image(info.data.icon)
         .width(Constants.MATCH_PARENT)
@@ -166,7 +166,7 @@ export struct DiscoveryTabContent {
     .height('198vp')
   }
 
-  @Builder authorCardCell(info: DiscoveryInfo) {
+  @Builder authorCardCell(info: VideoInfo) {
     Row() {
 
       Image(info.data.icon).width('40vp').height('40vp')
@@ -189,7 +189,7 @@ export struct DiscoveryTabContent {
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 
-  @Builder columnCardListCell(info: DiscoveryInfo) {
+  @Builder columnCardListCell(info: VideoInfo) {
      List({ space: 10 }) {
         ForEach(info.data.itemList, (item) => {
           ListItem() {

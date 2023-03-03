@@ -1,3 +1,4 @@
+import { RouterPath } from '../util/RouterPath';
 import router from '@ohos.router';
 import Constants from '../util/Constants';
 import { initializeOnStartup } from '../bean/SplashInfo';
@@ -67,7 +68,7 @@ struct SplashPage {
           playMode: PlayMode.Normal // 动画模式
         }) // 对Button组件的宽高属性进行动画配置
         .onClick(() => {
-          router.pushUrl({ url: 'pages/MainPage' })
+          router.pushUrl({ url: RouterPath.MAIN_PAGE })
         })
     }
     .width(Constants.MATCH_PARENT)

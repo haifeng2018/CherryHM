@@ -1,18 +1,19 @@
-import { FollowInfo } from './FollowInfo';
+import { VideoRelatedItemData } from './VideoRelatedItemData';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: FollowData
+ * File: VideoRelatedInfo
  * Author: Victor
- * Date: 2023/3/1 17:12
+ * Date: 2023/3/3 16:13
  * Description: 
  * -----------------------------------------------------------------
  */
-export class FollowData {
-  count: number;
-  total: number;
-  nextPageUrl: string;
-  adExist: boolean;
-  itemList: Array<FollowInfo>;
-}
+ export class VideoRelatedInfo {
+   type: string
+   trackingData: string
+   tag: string
+   id: number
+   adIndex: number
+   data: VideoRelatedItemData
+ }

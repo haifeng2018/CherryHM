@@ -103,6 +103,10 @@
     {
       "name": "color_1400001E",
       "value": "#1400001E"
+    },
+    {
+      "name": "color_DDDDDD",
+      "value": "#DDDDDD"
     }
   ]
 }

@@ -1,3 +1,4 @@
+import { RouterPath } from '../util/RouterPath';
 import Logger from '../util/Logger';
 import preferences from '@ohos.data.preferences';
 import common from '@ohos.app.ability.common';
@@ -17,7 +18,8 @@ import Constants from '../util/Constants';
 
 @Entry
 @Component
-struct Index {
+struct LauncherPage {
+  private TAG = 'LauncherPage';
   private context: common.UIAbilityContext;
   private timerId: number = 0;
 
@@ -28,7 +30,7 @@ struct Index {
         confirm: this.onConfirm.bind(this)
       }),
     alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: Constants.DIALOG_CONTROLLER_DY_OFFSET },
+    offset: { dx: 0, dy: -66 },
     customStyle: true,
     autoCancel: false
   });
@@ -50,7 +52,7 @@ struct Index {
   }
 
   jumpToSplashPage() {
-    router.pushUrl({ url: 'pages/SplashPage' })
+    router.pushUrl({ url: RouterPath.SPLASH_PAGE })
   }
   /**
    * Jump to advertising page.
@@ -58,9 +60,9 @@ struct Index {
   jumpToAdvertisingPage() {
     this.timerId = setTimeout(() => {
       router.pushUrl({
-        url: Constants.ADVERTISING_PAGE_URL
+        url: RouterPath.AD_PAGE
       }).catch((error) => {
-        Logger.error(Constants.LAUNCHER_PAGE_TAG, 'LauncherPage pushUrl error ' + JSON.stringify(error));
+        Logger.error(RouterPath.LAUNCHER_PAGE, 'LauncherPage pushUrl error ' + JSON.stringify(error));
       });
     }, Constants.LAUNCHER_DELAY_TIME);
   }
@@ -71,12 +73,12 @@ struct Index {
       let privacyPut = result.put(Constants.PREFERENCES_KEY_PRIVACY, false);
       result.flush();
       privacyPut.then(() => {
-        Logger.info(Constants.LAUNCHER_PAGE_TAG, 'Put the value of startup Successfully.');
+        Logger.info(this.TAG, 'Put the value of startup Successfully.');
       }).catch((err) => {
-        Logger.error(Constants.LAUNCHER_PAGE_TAG, 'Put the value of startup Failed, err: ' + err);
+        Logger.error(this.TAG, 'Put the value of startup Failed, err: ' + err);
       });
     }).catch((err) => {
-      Logger.error(Constants.LAUNCHER_PAGE_TAG, 'Get the preferences Failed, err: ' + err);
+      Logger.error(this.TAG, 'Get the preferences Failed, err: ' + err);
     });
   }
 
@@ -85,7 +87,7 @@ struct Index {
     // Get the operation class for saving data.
     this.getDataPreferences().then((preferences: preferences.Preferences) => {
       preferences.get(Constants.PREFERENCES_KEY_PRIVACY, true).then((value: preferences.ValueType) => {
-        Logger.info(Constants.LAUNCHER_PAGE_TAG, 'AboutToAppear value: ' + value);
+        Logger.info(this.TAG, 'AboutToAppear value: ' + value);
         if (value) {
           this.dialogController.open();
         } else {

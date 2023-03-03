@@ -1,3 +1,4 @@
+import { RouterPath } from '../util/RouterPath';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
@@ -59,7 +60,7 @@ export default class EntryAbility extends UIAbility {
             });
         })
         // 3.为沉浸式窗口加载对应的目标页面。
-        windowStage.loadContent("pages/LauncherPage", (err) => {
+        windowStage.loadContent(RouterPath.MAIN_PAGE, (err) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;

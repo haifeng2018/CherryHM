@@ -1,3 +1,4 @@
+import { RouterPath } from '../util/RouterPath';
 import router from '@ohos.router';
 import Logger from '../util/Logger';
 import Constants from '../util/Constants';
@@ -7,8 +8,9 @@ import Constants from '../util/Constants';
  */
 @Entry
 @Component
-struct AdvertisingPage {
-  @State countDownSeconds: number = Constants.ADVERTISING_COUNT_DOWN_SECONDS;
+struct AdPage {
+  private TAG = 'AdPage';
+  @State countDownSeconds: number = 2;
   private timeId: number;
 
   onPageShow() {
@@ -18,7 +20,7 @@ struct AdvertisingPage {
       } else {
         this.countDownSeconds--;
       }
-    }, Constants.ADVERTISING_INTERVAL_TIME);
+    }, Constants.AD_INTERVAL_TIME);
   }
 
   onPageHide() {
@@ -31,9 +33,9 @@ struct AdvertisingPage {
    */
   jumpToAppHomePage() {
     router.pushUrl({
-      url: Constants.APP_HOME_PAGE_URL
+      url: RouterPath.MAIN_PAGE
     }).catch((error) => {
-      Logger.error(Constants.ADVERTISING_PAGE_TAG, 'AdvertisingPage pushUrl error ' + JSON.stringify(error));
+      Logger.error(this.TAG, 'AdvertisingPage pushUrl error ' + JSON.stringify(error));
     });
   }
 
@@ -45,7 +47,7 @@ struct AdvertisingPage {
       Text($r('app.string.advertising_text_title', this.countDownSeconds))
         .fontColor(Color.White)
         .fontSize($r('app.float.advertising_text_font_size'))
-        .letterSpacing(Constants.ADVERTISING_TITLE_TEXT_LETTER_SPACING)
+        .letterSpacing('0.05')
         .backgroundColor($r('app.color.advertising_text_background_color'))
         .border({
           radius: $r('app.float.advertising_text_radius'),

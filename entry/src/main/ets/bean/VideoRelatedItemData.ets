@@ -5,20 +5,24 @@ import { CoverInfo } from './CoverInfo';
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: WeeklyRankingItemData
+ * File: VideoRelatedItemData
  * Author: Victor
- * Date: 2023/3/2 16:04
+ * Date: 2023/3/3 16:14
  * Description: 
  * -----------------------------------------------------------------
  */
-export class WeeklyRankingItemData {
-  dataType: string
-  id: number
-  title: string
-  description: string
-  releaseTime: number
-  playUrl: string
-  cover: CoverInfo
-  author: AuthorInfo
-  consumption: ConsumptionInfo
-}
+ export class VideoRelatedItemData {
+   type:string
+   dataType:string
+   text:string
+   id: number
+   releaseTime: number
+   duration: number
+   title: string
+   description: string
+   playUrl: string
+   category: string
+   cover: CoverInfo
+   author: AuthorInfo
+   consumption: ConsumptionInfo
+ }

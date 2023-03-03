@@ -1,4 +1,6 @@
-import { WeeklyRankingInfo } from '../../bean/WeeklyRankingInfo';
+import { RouterPath } from '../../util/RouterPath';
+import router from '@ohos.router';
+import { VideoInfo } from '../../bean/VideoInfo';
 import { HotApi } from '../../api/HotApi';
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
@@ -18,7 +20,7 @@ import HttpRequest from '../../util/HttpRequest';
 @Component
 export struct WeeklyRankingTabContent {
 
-  @State followList: Array<WeeklyRankingInfo> = [];
+  @State followList: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 
   scroller: Scroller = new Scroller()
@@ -76,27 +78,27 @@ export struct WeeklyRankingTabContent {
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
-  @Builder listCell (data: WeeklyRankingInfo) {
+  @Builder listCell (info: VideoInfo) {
     Column(){
-      Image(data.data.cover.feed)
+      Image(info.data.cover.feed)
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height('256vp')
         .borderRadius({topLeft:'10vp',topRight:'10vp'})
 
       Row() {
-        Image(data.data.author.icon).width('40vp').height('40vp')
+        Image(info.data.author.icon).width('40vp').height('40vp')
           .border({ width: '2vp' }).borderColor($r('app.color.white'))
           .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
 
-        Text(data.data.author.name)
+        Text(info.data.author.name)
           .fontColor($r('app.color.color_666666'))
           .fontSize('12fp')
           .padding('10vp')
       }
       .padding({left:'10vp',top:'20vp'})
 
-      Text(data.data.description)
+      Text(info.data.description)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
         .fontSize('10fp')
@@ -107,15 +109,15 @@ export struct WeeklyRankingTabContent {
 
       Row() {
         Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
-        Text(data.data.consumption.collectionCount.toString())
+        Text(info.data.consumption.collectionCount.toString())
           .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
 
         Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'20vp'})
-        Text(data.data.consumption.replyCount.toString())
+        Text(info.data.consumption.replyCount.toString())
           .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
 
         Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'20vp'})
-        Text(data.data.consumption.shareCount.toString())
+        Text(info.data.consumption.shareCount.toString())
           .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
       }.padding({left:'10vp',right:'10vp'})
     }
@@ -125,5 +127,20 @@ export struct WeeklyRankingTabContent {
     .alignItems(HorizontalAlign.Start)
     .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.VIDEO_DETAIL_PAGE,
+        params: {
+          playUrl: info.data.playUrl,
+          id: info.data.id,
+          title: info.data.title,
+          description: info.data.description,
+          category: info.data.category,
+          collectionCount: info.data.consumption.collectionCount,
+          shareCount: info.data.consumption.shareCount,
+          replyCount: info.data.consumption.replyCount,
+        }
+      })
+    })
   }
 }

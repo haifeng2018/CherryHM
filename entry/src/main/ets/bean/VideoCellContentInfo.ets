@@ -1,16 +1,19 @@
+import { VideoCellContentData } from './VideoCellContentData';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: DiscoveryItemHeader
+ * File: VideoCellContentInfo
  * Author: Victor
- * Date: 2023/3/2 11:28
+ * Date: 2023/3/3 16:44
  * Description: 
  * -----------------------------------------------------------------
  */
-export class DiscoveryItemHeader {
-  id: number
-  title: string
-  font: string
-  textAlign: string
-}
+ export class VideoCellContentInfo {
+   type: string
+   trackingData: string
+   tag: string
+   id: number
+   adIndex: number
+   data: VideoCellContentData
+ }

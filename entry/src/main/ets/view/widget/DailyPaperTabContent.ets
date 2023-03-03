@@ -1,5 +1,8 @@
+import { RouterPath } from '../../util/RouterPath';
+import router from '@ohos.router';
+import { VideoCellData } from '../../bean/VideoCellData';
+import { VideoInfo } from '../../bean/VideoInfo';
 import { HomeApi } from '../../api/HomeApi';
-import { DailyPagerInfo } from '../../bean/DailyPagerInfo';
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
@@ -18,7 +21,8 @@ import HttpRequest from '../../util/HttpRequest';
 @Component
 export struct DailyPaperTabContent {
 
-  @State dailyPagerList: Array<DailyPagerInfo> = [];
+  // @ts-ignore
+  @State dailyPagerList: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 
   scroller: Scroller = new Scroller()
@@ -79,7 +83,7 @@ export struct DailyPaperTabContent {
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
-  @Builder headCell(dailyPagerInfo:  DailyPagerInfo) {
+  @Builder headCell(dailyPagerInfo: VideoInfo) {
     Text(dailyPagerInfo.data.text)
       .width(Constants.MATCH_PARENT)
       .height('66vp').fontSize('36fp')
@@ -89,27 +93,27 @@ export struct DailyPaperTabContent {
       .textOverflow({ overflow: TextOverflow.Ellipsis })
   }
 
-  @Builder contentCell (dailyPagerInfo:  DailyPagerInfo) {
+  @Builder contentCell (info: VideoInfo) {
     Column(){
-      Image(dailyPagerInfo.data.content.data.cover.feed)
+      Image(info.data.content.data.cover.feed)
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height('256vp')
         .borderRadius({topLeft:'10vp',topRight:'10vp'})
 
       Row() {
-        Image(dailyPagerInfo.data.content.data.author.icon).width('40vp').height('40vp')
+        Image(info.data.content.data.author.icon).width('40vp').height('40vp')
           .border({ width: '2vp' }).borderColor($r('app.color.white'))
           .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
 
-        Text(dailyPagerInfo.data.content.data.author.name)
+        Text(info.data.content.data.author.name)
           .fontColor($r('app.color.color_666666'))
           .fontSize('12fp')
           .padding('10vp')
       }
       .padding({left:'10vp',top:'20vp'})
 
-      Text(dailyPagerInfo.data.content.data.description)
+      Text(info.data.content.data.description)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
         .fontSize('10fp')
@@ -120,15 +124,15 @@ export struct DailyPaperTabContent {
 
       Row() {
         Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
-        Text(dailyPagerInfo.data.content.data.consumption.collectionCount.toString())
+        Text(info.data.content.data.consumption.collectionCount.toString())
           .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
 
         Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'20vp'})
-        Text(dailyPagerInfo.data.content.data.consumption.replyCount.toString())
+        Text(info.data.content.data.consumption.replyCount.toString())
           .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
 
         Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'20vp'})
-        Text(dailyPagerInfo.data.content.data.consumption.shareCount.toString())
+        Text(info.data.content.data.consumption.shareCount.toString())
           .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
       }.padding({left:'10vp',right:'10vp'})
     }
@@ -138,5 +142,20 @@ export struct DailyPaperTabContent {
     .alignItems(HorizontalAlign.Start)
     .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.VIDEO_DETAIL_PAGE,
+        params: {
+          playUrl: info.data.content.data.playUrl,
+          id: info.data.content.data.id,
+          title: info.data.content.data.title,
+          description: info.data.content.data.description,
+          category: info.data.content.data.category,
+          collectionCount: info.data.content.data.consumption.collectionCount,
+          shareCount: info.data.content.data.consumption.shareCount,
+          replyCount: info.data.content.data.consumption.replyCount,
+        }
+      })
+    })
   }
 }

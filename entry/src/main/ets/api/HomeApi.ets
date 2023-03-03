@@ -10,6 +10,8 @@
  */
 
 export class HomeApi {
-  static readonly FOLLOW: string = 'http://baobab.kaiyanapp.com/api/v6/community/tab/follow'
-  static readonly DAILY_PAPER: string = 'http://baobab.kaiyanapp.com/api/v5/index/tab/feed'
+  static readonly FOLLOW = 'http://baobab.kaiyanapp.com/api/v6/community/tab/follow'
+  static readonly DAILY_PAPER = 'http://baobab.kaiyanapp.com/api/v5/index/tab/feed'
+  static readonly HOT_KEYWORD = 'http://baobab.kaiyanapp.com/api/v3/queries/hot'
+  static readonly VIDEO_RELATED = 'http://baobab.kaiyanapp.com/api/v4/video/related?id='
 }

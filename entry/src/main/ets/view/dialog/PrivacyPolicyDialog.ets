@@ -1,3 +1,4 @@
+import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
 import Constants from '../../util/Constants';
 /*
@@ -20,11 +21,11 @@ export default struct PrivacyPolicyDialog {
   build() {
     Column() {
       Text($r('app.string.MainAbility_kind_tip'))
-        .width(Constants.DIALOG_COMPONENT_WIDTH_PERCENT)
+        .width(Constants.MATCH_PARENT)
         .fontColor($r('app.color.color_333333'))
         .fontSize($r('app.float.dialog_text_privacy_size'))
         .textAlign(TextAlign.Center)
-        .fontWeight(Constants.DIALOG_TITLE_FONT_WEIGHT)
+        .fontWeight(1)
         .margin({
           top: $r('app.float.dialog_text_privacy_top'),
           bottom: $r('app.float.dialog_text_privacy_bottom')
@@ -33,7 +34,8 @@ export default struct PrivacyPolicyDialog {
       Text($r('app.string.privacy_policy_content'))
         .fontSize($r('app.float.dialog_common_text_size'))
         .lineHeight('28vp')
-        .width(Constants.DIALOG_COMPONENT_WIDTH_PERCENT)
+        .width(Constants.MATCH_PARENT)
+      .padding({left:'24vp',right:'24vp'})
 
       Row(){
         Text($r('app.string.user_services_agreement'))
@@ -42,7 +44,7 @@ export default struct PrivacyPolicyDialog {
           .onClick(() => {
             this.controller.close();
             router.pushUrl({
-              url: Constants.WEB_PAGE_URL,
+              url: RouterPath.WEB_PAGE,
               params: {
                 title: $r('app.string.user_services_agreement'),
                 url: Constants.USER_SERVICES_AGREEMENT,
@@ -60,7 +62,7 @@ export default struct PrivacyPolicyDialog {
           .onClick(() => {
             this.controller.close();
             router.pushUrl({
-              url: Constants.WEB_PAGE_URL,
+              url: RouterPath.WEB_PAGE,
               params: {
                 title: $r('app.string.privacy_policy'),
                 url: Constants.PRIVACY_POLICY,
@@ -98,8 +100,8 @@ export default struct PrivacyPolicyDialog {
       .width(Constants.MATCH_PARENT)
       .height('45vp')
     }
-    .width(Constants.DIALOG_WIDTH_PERCENT)
-    .borderRadius(Constants.DIALOG_BORDER_RADIUS)
+    .width('92%')
+    .borderRadius('10vp')
     .backgroundColor(Color.White)
   }
 }
@@ -107,7 +109,7 @@ export default struct PrivacyPolicyDialog {
 // Common text styles.
 @Extend(Text) function fancy () {
   .height(Constants.MATCH_PARENT)
-  .layoutWeight(Constants.COMMON_LAYOUT_WEIGHT)
+  .layoutWeight(1)
   .fontSize($r("app.float.dialog_fancy_text_size"))
   .textAlign(TextAlign.Center)
   .fontWeight(FontWeight.Medium)

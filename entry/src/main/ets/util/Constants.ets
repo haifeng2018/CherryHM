@@ -12,31 +12,6 @@
 export default class Constants {
 
   /**
-   * Title font weight.
-   */
-  static readonly TITLE_FONT_WEIGHT: number = 500;
-
-  /**
-   * Login text font weight.
-   */
-  static readonly LOGIN_TEXT_FONT_WEIGHT: number = 500;
-
-  /**
-   * The main ability tag.
-   */
-  static readonly ENTRY_ABILITY_TAG: string = 'EntryAbility';
-
-  /**
-   * The launcher page tag.
-   */
-  static readonly LAUNCHER_PAGE_TAG: string = 'LauncherPage';
-
-  /**
-   * The advertsing page tag.
-   */
-  static readonly ADVERTISING_PAGE_TAG: string = 'AdvertisingPage';
-
-  /**
    * Preference saved key.
    */
   static readonly PREFERENCES_KEY_PRIVACY: string = 'isPrivacy';
@@ -52,146 +27,15 @@ export default class Constants {
   static readonly LAUNCHER_DELAY_TIME: number = 1000;
 
   /**
-   * Image logo top margin.
-   */
-  static readonly LAUNCHER_IMAGE_MARGIN_TOP: string = '16.2%';
-
-  /**
-   * Healthy living text spacing.
-   */
-  static readonly LAUNCHER_LIFE_TEXT_SPACING: number = 0.1;
-
-  /**
-   * Healthy living title text top margin.
-   */
-  static readonly LAUNCHER_TEXT_TITLE_MARGIN_TOP: string = '0.5%';
-
-  /**
-   * Content control height.
-   */
-  static readonly LAUNCHER_TEXT_INTRODUCE_HEIGHT: string = '2.7%';
-
-  /**
-   * Healthy living instructions.
-   */
-  static readonly LAUNCHER_TEXT_INTRODUCE_SPACING: number = 3.4;
-
-  /**
-   * Healthy living content top margin.
-   */
-  static readonly LAUNCHER_TEXT_INTRODUCE_MARGIN_TOP: string = '1.3%';
-
-  /**
    * Interval execution time.
    */
-  static readonly ADVERTISING_INTERVAL_TIME: number = 1000;
-
-  /**
-   * Advertising page url.
-   */
-  static readonly ADVERTISING_PAGE_URL: string = 'pages/AdPage';
-
-  /**
-   * Display countdown seconds.
-   */
-  static readonly ADVERTISING_COUNT_DOWN_SECONDS: number = 2;
-
-  /**
-   * Count down text spacing.
-   */
-  static readonly ADVERTISING_TITLE_TEXT_LETTER_SPACING: number = 0.05;
-
-  /**
-   * Count down text top margin.
-   */
-  static readonly ADVERTISING_TITLE_TEXT_MARGIN_TOP: string = '3.2%';
-
-  /**
-   * Count down text left margin.
-   */
-  static readonly ADVERTISING_TITLE_TEXT_MARGIN_LEFT: string = '72.2%';
-
-  /**
-   * Advertising page healthy text spacing.
-   */
-  static readonly ADVERTISING_HEALTHY_LIFE_TEXT_SPACING: number = 0.1;
-
-  /**
-   * Advertising page health description text spacing.
-   */
-  static readonly ADVERTISING_TEXT_INTRODUCE_LETTER_SPACING: number = 3.4;
-
-  /**
-   * Advertising page health description text top margin.
-   */
-  static readonly ADVERTISING_TEXT_INTRODUCE_MARGIN_TOP: string = '0.4%';
-
-  /**
-   * Column container left margin.
-   */
-  static readonly ADVERTISING_COLUMN_MARGIN_LEFT: string = '3.1%';
-
-  /**
-   * Row container bottom margin.
-   */
-  static readonly ADVERTISING_ROW_MARGIN_BOTTOM: string = '30.1%';
-
-  /**
-   * Dialog component width the percentage of the 90.
-   */
-  static readonly DIALOG_COMPONENT_WIDTH_PERCENT: string = '90%';
-
-  /**
-   * Dialog title text weight.
-   */
-  static readonly DIALOG_TITLE_FONT_WEIGHT: number = 600;
-
-  /**
-   * Dialog width the percentage of the 93.3.
-   */
-  static readonly DIALOG_WIDTH_PERCENT: string = '93.3%';
-
-  /**
-   * Dialog border radius.
-   */
-  static readonly DIALOG_BORDER_RADIUS: number = 24;
-
-  /**
-   * Dialog component bottom margin,
-   */
-  static readonly DIALOG_ROW_MARGIN_BOTTOM: string = '3.1%';
-
-  /**
-   * Dialog y-axis offset distance.
-   */
-  static readonly DIALOG_CONTROLLER_DY_OFFSET: number = -66;
+  static readonly AD_INTERVAL_TIME: number = 1000;
 
   /**
    * Width or Height the percentage of the 100.
    */
   static readonly MATCH_PARENT: string = '100%';
-
-  /**
-   * User Services Agreement page url.
-   */
-  static readonly USER_SERVICES_AGREEMENT_PAGE_URL: string = 'pages/UserServicesAgreementPage';
-
-  /**
-   * Privacy page url.
-   */
-  static readonly PRIVACY_PAGE_URL: string = 'pages/PrivacyPage';
-
-  /**
-   * App home page url.
-   */
-  static readonly APP_HOME_PAGE_URL: string = 'pages/MainPage';
-
-  static readonly WEB_PAGE_URL: string = 'pages/WebPage';
-
-  /**
-   * Common layout weight.
-   */
-  static readonly COMMON_LAYOUT_WEIGHT: number = 1;
+  static readonly INTENT_DATA_KEY: string = 'data';
 
   static readonly USER_SERVICES_AGREEMENT: string = 'https://app.service.hokkj.cn/';
   static readonly PRIVACY_POLICY: string = 'https://app.privacy.hokkj.cn/';
