@@ -1,3 +1,4 @@
+import { OwnInfo } from './OwnInfo';
 import { CoverInfo } from './CoverInfo';
 import { AuthorInfo } from './AuthorInfo';
 import { ConsumptionInfo } from './ConsumptionInfo';
@@ -18,7 +19,11 @@ export class VideoCellContentData {
   description: string
   playUrl: string
   category: string
+  date: number
+  url: string
+  urls: Array<string>
   cover: CoverInfo
   author: AuthorInfo
+  owner: OwnInfo
   consumption: ConsumptionInfo
 }

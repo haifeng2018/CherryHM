@@ -18,7 +18,7 @@
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
+        "startWindowBackground": "$color:white",
         "visible": true,
         "skills": [
           {

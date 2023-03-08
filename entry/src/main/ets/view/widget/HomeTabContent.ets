@@ -1,5 +1,5 @@
 import { DailyPaperTabContent } from './DailyPaperTabContent';
-import { FollowTabContent } from './FollowTabContent';
+import { CommunityFollowTabContent } from './CommunityFollowTabContent';
 import router from '@ohos.router';
 import Constants from '../../util/Constants';
 /*
@@ -34,7 +34,7 @@ export struct HomeTabContent {
     RelativeContainer() {
       Tabs() {
         TabContent() {
-          FollowTabContent()
+          CommunityFollowTabContent()
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {

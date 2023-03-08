@@ -48,7 +48,7 @@ struct AdPage {
         .fontColor(Color.White)
         .fontSize($r('app.float.advertising_text_font_size'))
         .letterSpacing('0.05')
-        .backgroundColor($r('app.color.advertising_text_background_color'))
+        .backgroundColor($r('app.color.color_33000000'))
         .border({
           radius: $r('app.float.advertising_text_radius'),
           width: $r('app.float.advertising_text_border_width'),

@@ -1,4 +1,3 @@
-import { Logger } from './Logger';
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -83,6 +82,7 @@ class HttpRequest {
   }
 
   async request(callback) {
+    console.log('HttpRequest-url = ' + this.url);
     let httpRequest = http.createHttp()
     let result = httpRequest.request(this.url, this.options)
     result.then((data) =>{

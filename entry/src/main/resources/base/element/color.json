@@ -1,8 +1,28 @@
 {
   "color": [
     {
-      "name": "start_window_background",
-      "value": "#FFFFFF"
+      "name": "color_primary",
+      "value": "#FF5722"
+    },
+    {
+      "name": "color_primary_dark",
+      "value": "#E64A19"
+    },
+    {
+      "name": "color_accent",
+      "value": "#FF4081"
+    },
+    {
+      "name": "color_primary_center",
+      "value": "#5C1E0A"
+    },
+    {
+      "name": "transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "color_1400001E",
+      "value": "#1400001E"
     },
     {
       "name": "color_333333",
@@ -25,6 +45,10 @@
       "value": "#666666"
     },
     {
+      "name": "color_80DDDDDD",
+      "value": "#80DDDDDD"
+    },
+    {
       "name": "color_80FFFFFF",
       "value": "#80FFFFFF"
     },
@@ -45,68 +69,28 @@
       "value": "#423099"
     },
     {
-      "name": "privacy_back_text",
+      "name": "color_007DFF",
       "value": "#007DFF"
     },
     {
-      "name": "launcher_text_title_color",
+      "name": "color_182431",
       "value": "#182431"
     },
     {
-      "name": "launcher_text_introduce_color",
-      "value": "#182431"
-    },
-    {
-      "name": "advertising_text_title_color",
-      "value": "#182431"
-    },
-    {
-      "name": "advertising_text_background_color",
+      "name": "color_33000000",
       "value": "#33000000"
     },
     {
-      "name": "home_page_text_color",
+      "name": "color_14224D",
       "value": "#14224D"
-    },
-    {
-      "name": "dialog_fancy_text_color",
-      "value": "#007DFF"
-    },
-    {
-      "name": "dialog_text_color",
-      "value": "#182431"
-    },
-    {
-      "name": "dialog_blank_background_color",
-      "value": "#F5F5F5"
-    },
-    {
-      "name": "dialog_text_statement_color",
-      "value": "#007DFF"
-    },
-    {
-      "name": "color_primary",
-      "value": "#FF5722"
-    },
-    {
-      "name": "color_primary_dark",
-      "value": "#E64A19"
-    },
-    {
-      "name": "color_accent",
-      "value": "#FF4081"
-    },
-    {
-      "name": "color_primary_center",
-      "value": "#5C1E0A"
-    },
-    {
-      "name": "color_1400001E",
-      "value": "#1400001E"
     },
     {
       "name": "color_DDDDDD",
       "value": "#DDDDDD"
+    },
+    {
+      "name": "color_4DFFFFFF",
+      "value": "#4DFFFFFF"
     }
   ]
 }

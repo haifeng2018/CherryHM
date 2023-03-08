@@ -1,3 +1,4 @@
+import promptAction from '@ohos.promptAction';
 import { RouterPath } from '../util/RouterPath';
 import Logger from '../util/Logger';
 import preferences from '@ohos.data.preferences';
@@ -27,7 +28,8 @@ struct LauncherPage {
     builder: PrivacyPolicyDialog(
       {
         cancel: this.onCancel.bind(this),
-        confirm: this.onConfirm.bind(this)
+        confirm: this.onConfirm.bind(this),
+        dismiss: this.onDismiss.bind(this)
       }),
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -66 },
@@ -46,8 +48,20 @@ struct LauncherPage {
     this.jumpToSplashPage()
   }
 
+  onDismiss() {
+    promptAction.showToast({ message: 'onDismiss 666'});
+    // Exit the application.
+    this.getDataPreferences().then((preferences: preferences.Preferences) => {
+      preferences.get(Constants.PREFERENCES_KEY_PRIVACY, true).then((value: preferences.ValueType) => {
+        Logger.info(this.TAG, 'AboutToAppear value: ' + value);
+        if (!value) {
+          this.context.terminateSelf();
+        }
+      });
+    });
+  }
+
   onPageHide() {
-    router.clear()
     clearTimeout(this.timerId)
   }
 
@@ -113,4 +127,5 @@ struct LauncherPage {
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
   }
+
 }

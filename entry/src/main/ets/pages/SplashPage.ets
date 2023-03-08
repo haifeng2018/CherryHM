@@ -37,8 +37,8 @@ struct SplashPage {
       .indicator(true)
       .indicatorStyle({
         bottom:128,size: 20, mask: true,
-        color:$r('app.color.color_80FFFFFF'),
-        selectedColor:$r('app.color.white')})
+        color:$r('app.color.color_80DDDDDD'),
+        selectedColor:$r('app.color.color_DDDDDD')})
       .loop(false)
       .duration(300)
       .itemSpace(0)

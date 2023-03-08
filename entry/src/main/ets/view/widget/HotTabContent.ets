@@ -1,8 +1,6 @@
 import { TotalRankingTabContent } from './TotalRankingTabContent';
 import { MonthlyRankingTabContent } from './MonthlyRankingTabContent';
 import { WeeklyRankingTabContent } from './WeeklyRankingTabContent';
-import { DailyPaperTabContent } from './DailyPaperTabContent';
-import { FollowTabContent } from './FollowTabContent';
 import router from '@ohos.router';
 import Constants from '../../util/Constants';
 /*

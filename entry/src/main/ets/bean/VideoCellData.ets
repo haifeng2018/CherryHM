@@ -1,3 +1,5 @@
+import { OwnInfo } from './OwnInfo';
+import { BannerInfo } from './BannerInfo';
 import { VideoCellContentInfo } from './VideoCellContentInfo';
 import { VideoInfo } from './VideoInfo';
 import { VideoCellHeaderInfo } from './VideoCellHeaderInfo';
@@ -24,6 +26,8 @@ import { CoverInfo } from './CoverInfo';
   count: number
   title: string
   icon: string
+  image: string
+  backgroundImage: string
   description: string
   playUrl: string
   category: string
@@ -33,4 +37,6 @@ import { CoverInfo } from './CoverInfo';
   header: VideoCellHeaderInfo
   content: VideoCellContentInfo
   itemList:Array<VideoCellContentInfo>
+  titleList:Array<string>
+  bannerList:Array<BannerInfo>
  }

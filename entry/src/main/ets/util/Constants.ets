@@ -37,7 +37,7 @@ export default class Constants {
   static readonly MATCH_PARENT: string = '100%';
   static readonly INTENT_DATA_KEY: string = 'data';
 
-  static readonly USER_SERVICES_AGREEMENT: string = 'https://app.service.hokkj.cn/';
-  static readonly PRIVACY_POLICY: string = 'https://app.privacy.hokkj.cn/';
+  static readonly USER_SERVICES_AGREEMENT: string = 'https://github.com/haifeng2018/CherryHM';
+  static readonly PRIVACY_POLICY: string = 'https://gitee.com/victor1990/CherryHM';
 
 }

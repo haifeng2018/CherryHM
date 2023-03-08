@@ -45,11 +45,11 @@ export default class EntryAbility extends UIAbility {
                 console.info('Succeeded in setting the window layout to full-screen mode.');
             });
             let sysBarProps = {
-                statusBarColor: '#ff00ff',
-                navigationBarColor: '#00ff00',
+                statusBarColor: "$color:white",
+                navigationBarColor: "$color:transparent",
                 // 以下两个属性从API Version 8开始支持
-                statusBarContentColor: '#ffffff',
-                navigationBarContentColor: '#ffffff'
+                statusBarContentColor: "$color:color_F9F9F9",
+                navigationBarContentColor: "$color:white"
             };
             windowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
                 if (err.code) {
@@ -60,7 +60,7 @@ export default class EntryAbility extends UIAbility {
             });
         })
         // 3.为沉浸式窗口加载对应的目标页面。
-        windowStage.loadContent(RouterPath.MAIN_PAGE, (err) => {
+        windowStage.loadContent(RouterPath.LAUNCHER_PAGE, (err) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;

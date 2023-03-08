@@ -1,3 +1,4 @@
+import router from '@ohos.router';
 import { HomeApi } from '../api/HomeApi';
 import promptAction from '@ohos.promptAction';
 import { CategoryInfo } from '../model/HomeDataModel';
@@ -97,12 +98,14 @@ struct SearchPage {
       .borderRadius('20vp')
       .margin({left: '24vp',right:'10vp'})
 
-      Text('搜索')
+      Text('取消')
         .fontSize('18fp')
         .fontColor($r('app.color.color_333333'))
         .align(Alignment.End)
         .padding({left:'10vp',right:'24vp'})
-        .onClick(() => this.searchAction())
+        .onClick(() => {
+          router.back()
+        })
     }
     .width(Constants.MATCH_PARENT)
     .height('56vp')

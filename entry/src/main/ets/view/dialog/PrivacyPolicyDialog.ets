@@ -17,6 +17,7 @@ export default struct PrivacyPolicyDialog {
   controller: CustomDialogController;
   cancel: () => void;
   confirm: () => void;
+  dismiss: () => void;
 
   build() {
     Column() {

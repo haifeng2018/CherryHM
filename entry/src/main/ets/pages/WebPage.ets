@@ -13,22 +13,36 @@ struct WebPage {
   controller:WebController = new WebController();
 
   build() {
-    Row() {
       Column() {
-        Row(){
-          Image($r('app.media.ic_back'))
-            .width(55).height(55).padding(16)
-            .objectFit(ImageFit.Cover)
-            .onClick(() =>{
-                router.back()
-            })
+        Stack(){
+          Text(this.title)
+            .width(Constants.MATCH_PARENT)
+            .height('30vp')
+            .fontSize('22fp')
+            .fontColor($r('app.color.color_333333'))
+            .textAlign(TextAlign.Center)
+            .backgroundColor($r('app.color.white'))
 
-          Text(this.title).fontSize(18).fontColor($r('app.color.color_333333')).textAlign(TextAlign.Center).layoutWeight(1)
+          Image($r('app.media.ic_back'))
+            .width('30vp')
+            .height('30vp')
+            .objectFit(ImageFit.Contain)
+            .margin({left:'14vp'})
+            .onClick(() =>{
+              router.back()
+            })
         }
-        Web({ src:this.url, controller:this.controller }).layoutWeight(1)
+        .width(Constants.MATCH_PARENT)
+        .backgroundColor($r('app.color.white'))
+        .alignContent(Alignment.BottomStart)
+        .padding({top:'36vp',bottom:'5vp'})
+
+        Web({ src:this.url, controller:this.controller })
+          .width(Constants.MATCH_PARENT)
+          .layoutWeight(1)
       }
       .width(Constants.MATCH_PARENT)
-    }
-    .height(Constants.MATCH_PARENT)
+      .height(Constants.MATCH_PARENT)
+      .backgroundColor($r('app.color.color_F9F9F9'))
   }
 }

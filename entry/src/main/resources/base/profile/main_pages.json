@@ -7,6 +7,8 @@
     "pages/WebPage",
     "pages/MainPage",
     "pages/SearchPage",
-    "pages/VideoDetailPage"
+    "pages/VideoDetailPage",
+    "pages/PosterPage",
+    "pages/CategoryDetailPage"
   ]
 }

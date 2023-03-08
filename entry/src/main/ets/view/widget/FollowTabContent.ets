@@ -1,7 +1,8 @@
-import { VideoInfo } from '../../bean/VideoInfo';
 import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
-import { HomeApi } from '../../api/HomeApi';
+import { VideoCellData } from '../../bean/VideoCellData';
+import { VideoInfo } from '../../bean/VideoInfo';
+import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
@@ -10,17 +11,17 @@ import HttpRequest from '../../util/HttpRequest';
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: FollowTabContent
+ * File: DailyPaperTabContent
  * Author: Victor
  * Date: 2023/2/27 15:10
- * Description: 首页-关注
+ * Description: 首页-发现-关注
  * -----------------------------------------------------------------
  */
 @Preview
 @Component
 export struct FollowTabContent {
 
-  @State followList: Array<VideoInfo> = [];
+  @State datas: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 
   scroller: Scroller = new Scroller()
@@ -30,11 +31,11 @@ export struct FollowTabContent {
   }
 
   sendFollowRequest () {
-    HttpRequest.url = HomeApi.FOLLOW
+    HttpRequest.url = DiscoveryApi.FOLLOW
     HttpRequest.setMethod(http.RequestMethod.GET)
     HttpRequest.request({
       onSuccess: (value) => {
-        this.followList = value.itemList
+        this.datas = value.itemList
       },
       onFail: (errorCode) => {
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
@@ -45,17 +46,14 @@ export struct FollowTabContent {
   build() {
     Column() {
       Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        Grid(this.scroller) {
-          ForEach(this.followList, (followInfo) => {
-            GridItem() {
-              this.followCell(followInfo)
-            }.padding({left:'10vp',right:'10vp'})
+        List({ space: 20 }) {
+          ForEach(this.datas, (item) => {
+            ListItem() {
+              this.contentCell(item)
+            }
+            .padding({left:'10vp',right:'10vp'})
           })
         }
-        .layoutDirection(GridDirection.Column)
-        .columnsTemplate('1fr')
-        .columnsGap('10vp')
-        .rowsGap('20vp')
         .backgroundColor($r('app.color.color_F9F9F9'))
         .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
@@ -80,70 +78,127 @@ export struct FollowTabContent {
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
-  @Builder followCell (info: VideoInfo) {
-    Column(){
-      Image(info.data.content.data.cover.feed)
-        .objectFit(ImageFit.Cover)
-        .width(Constants.MATCH_PARENT)
-        .height('256vp')
-        .borderRadius({topLeft:'10vp',topRight:'10vp'})
+  @Builder headCell(info: VideoInfo) {
+    Row(){
+      Image(info.data.header.icon)
+        .width('40vp')
+        .height('40vp')
+        .border({ width: '2vp' })
+        .borderColor($r('app.color.white'))
+        .borderRadius('40vp')
 
-      Row() {
-        Image(info.data.content.data.author.icon).width('40vp').height('40vp')
-          .border({ width: '2vp' }).borderColor($r('app.color.white'))
-          .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
-
-        Text(info.data.content.data.author.name)
-          .fontColor($r('app.color.color_666666'))
+      Column() {
+        Text(info.data.header.title)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_333333'))
           .fontSize('12fp')
-          .padding('10vp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+
+        Text(info.data.header.description)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_666666'))
+          .fontSize('10fp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
-      .padding({left:'10vp',top:'20vp'})
+      .layoutWeight(1)
+      .padding({left:'10vp'})
 
-      Text(info.data.content.data.description)
-        .width(Constants.MATCH_PARENT)
-        .textAlign(TextAlign.Start)
-        .fontSize('10fp')
-        .fontColor($r('app.color.color_999999'))
-        .maxLines(2)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .padding('10vp')
+    }
+    .width(Constants.MATCH_PARENT)
+    .padding('10vp')
+  }
 
-      Row() {
-        Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
-        Text(info.data.content.data.consumption.collectionCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
+  @Builder contentCell (info: VideoInfo) {
+    Column(){
+      this.headCell(info)
+      List({ space: 10 }) {
+        ForEach(info.data.itemList, (item) => {
+          ListItem() {
+            Column(){
+              Stack() {
+                Image(item.data.cover.feed)
+                  .width(Constants.MATCH_PARENT)
+                  .height(Constants.MATCH_PARENT)
+                  .borderRadius('10vp')
 
-        Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'20vp'})
-        Text(info.data.content.data.consumption.replyCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
+                Text(item.data.category)
+                  .textAlign(TextAlign.Center)
+                  .fontColor($r('app.color.color_333333'))
+                  .fontSize('16fp')
+                  .backgroundColor($r('app.color.color_4DFFFFFF'))
+                  .margin({top:'5vp',right:'5vp'})
+                  .padding({top:'5vp',bottom:'5vp',left:'10vp',right:'10vp'})
+                  .borderRadius('5vp')
+              }
+              .width(Constants.MATCH_PARENT)
+              .height('168vp')
+              .alignContent(Alignment.TopEnd)
 
-        Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'20vp'})
-        Text(info.data.content.data.consumption.shareCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
-      }.padding({left:'10vp',right:'10vp'})
+              Text(item.data.title)
+                .width(Constants.MATCH_PARENT)
+                .textAlign(TextAlign.Start)
+                .fontColor($r('app.color.color_333333'))
+                .fontSize('18fp')
+                .padding('5vp')
+
+              Text(this.formatReleaseDate(item.data.releaseTime))
+                .width(Constants.MATCH_PARENT)
+                .textAlign(TextAlign.Start)
+                .fontColor($r('app.color.color_666666'))
+                .fontSize('18fp')
+                .padding({left:'5vp'})
+            }
+            .width('318vp')
+            .padding({bottom:'5vp'})
+          }
+          .onClick(() => {
+            router.pushUrl({
+              url: RouterPath.VIDEO_DETAIL_PAGE,
+              params: {
+                playUrl: item.data.playUrl,
+                id: item.data.id,
+                title: item.data.title,
+                description: item.data.description,
+                category: item.data.category,
+                collectionCount: item.data.consumption.collectionCount,
+                shareCount: item.data.consumption.shareCount,
+                replyCount: item.data.consumption.replyCount,
+              }
+            })
+          })
+        })
+      }.listDirection(Axis.Horizontal)
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .padding({bottom:'10vp'})
     .alignItems(HorizontalAlign.Start)
-    .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
-    .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
-    .onClick(() => {
-      router.pushUrl({
-          url: RouterPath.VIDEO_DETAIL_PAGE,
-          params: {
-            playUrl: info.data.content.data.playUrl,
-            id: info.data.content.data.id,
-            title: info.data.content.data.title,
-            description: info.data.content.data.description,
-            category: info.data.content.data.category,
-            collectionCount: info.data.content.data.consumption.collectionCount,
-            shareCount: info.data.content.data.consumption.shareCount,
-            replyCount: info.data.content.data.consumption.replyCount,
-          }
-      })
-    })
+    .borderRadius('5vp')
+    .shadow({ radius: 5, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 10 })
+  }
 
+  formatReleaseDate(releaseTime: number): string {
+    let releaseDate = new Date(releaseTime)
+
+    let year = releaseDate.getFullYear().toString()
+    let month = releaseDate.getMonth().toString()
+    let day = releaseDate.getDay().toString()
+    let hours = releaseDate.getHours()
+    let mins = releaseDate.getMinutes()
+
+    let hoursStr = hours.toString()
+    if (hours < 10) {
+      hoursStr = "0" + hours
+    }
+
+    let minsStr = hours.toString()
+    if (mins < 10) {
+        minsStr = "0" + mins
+    }
+
+    return year + '/' + month + '/' + day + ' ' + hoursStr + ':' + minsStr
   }
 }
