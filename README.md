@@ -2,27 +2,27 @@
 这是一款鸿蒙版本短视频应用，项目中的 API 均来自开眼视频，纯属学习交流使用，不得用于商业用途！
 
 # Screenshot：
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_1.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_2.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_3.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_4.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_5.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_6.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_7.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_8.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_9.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_10.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_11.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_12.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_13.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_14.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_15.png)
-![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/st_16.png)
+![image](https://s2.loli.net/2023/03/08/5obYDlgkL2Gyt1V.png)
+![image](https://s2.loli.net/2023/03/08/A9Kyn4HuIBCGfd5.png)
+![image](https://s2.loli.net/2023/03/08/8YNKRLDmeo6UrzC.png)
+![image](https://s2.loli.net/2023/03/08/OApgD4W2T9fcJU6.png)
+![image](https://s2.loli.net/2023/03/08/maKy4Evf7Utxcnd.png)
+![image](https://s2.loli.net/2023/03/08/jqNAxLK2EZfyHFk.png)
+![image](https://s2.loli.net/2023/03/08/bilMpzWwFJZmHBj.png)
+![image](https://s2.loli.net/2023/03/08/8DNe4QYVZXg6dWl.png)
+![image](https://s2.loli.net/2023/03/08/TCIXJB97HOjoYi8.png)
+![image](https://s2.loli.net/2023/03/08/OGmiwpsaU3bqF5e.png)
+![image](https://s2.loli.net/2023/03/08/IFgiWdwBnDX9GtM.png)
+![image](https://s2.loli.net/2023/03/08/LR8l2abVP74or9s.png)
+![image](https://s2.loli.net/2023/03/08/hGkwIQzU76xldYV.png)
+![image](https://s2.loli.net/2023/03/08/5iH9DCckeyZqv2R.png)
+![image](https://s2.loli.net/2023/03/08/YJx7X5BIvu4lbLP.png)
+![image](https://s2.loli.net/2023/03/08/FQJwSD7hNI3kuy1.png)
 
 # Focus on developers：
 - Gmail： victor423099@gmail.com
 - Sina Weibo
-- ![image](https://github.com/Victor2018/FunnyClips/raw/master/SrceenShot/sina_weibo.jpg)
+- ![image](https://s2.loli.net/2023/03/08/OYLFCSr4h2NnIk3.jpg)
 
 ## License
 
