@@ -15,7 +15,7 @@ export class DiscoveryApi {
   static readonly FOLLOW = 'http://baobab.kaiyanapp.com/api/v4/tabs/follow'
   static readonly CATEGORY = 'http://baobab.kaiyanapp.com/api/v4/categories'
   static readonly TOPICS = 'http://baobab.kaiyanapp.com/api/v3/specialTopics'
-  static readonly LIGHT_TOPICS = 'http://baobab.kaiyanapp.com/api/v3/lightTopics/internal/{id}'
+  static readonly LIGHT_TOPICS = 'http://baobab.kaiyanapp.com/api/v3/lightTopics/internal/'
   static readonly NEWS = 'http://baobab.kaiyanapp.com/api/v7/information/list?vc=6030000&deviceModel=HM'
   static readonly RECOMMEND = 'http://baobab.kaiyanapp.com/api/v7/community/tab/rec'
 }

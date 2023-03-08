@@ -19,4 +19,5 @@ export class RouterPath {
   static readonly VIDEO_DETAIL_PAGE = 'pages/VideoDetailPage';
   static readonly POSTER_PAGE = 'pages/PosterPage';
   static readonly CATEGORY_DETAIL_PAGE = 'pages/CategoryDetailPage';
+  static readonly LIGHT_TOPICS_PAGE = 'pages/LightTopicsPage';
 }

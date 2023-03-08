@@ -1,7 +1,5 @@
-import { TotalRankingTabContent } from './TotalRankingTabContent';
-import { MonthlyRankingTabContent } from './MonthlyRankingTabContent';
-import { WeeklyRankingTabContent } from './WeeklyRankingTabContent';
-import router from '@ohos.router';
+import { HotApi } from '../../api/HotApi';
+import { RankingTabContent } from './RankingTabContent';
 import Constants from '../../util/Constants';
 /*
  * -----------------------------------------------------------------
@@ -54,15 +52,15 @@ export struct HotTabContent {
 
       Tabs() {
         TabContent() {
-          WeeklyRankingTabContent()
+          RankingTabContent({url: HotApi.WEEKLY_RANKING})
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          MonthlyRankingTabContent()
+          RankingTabContent({url: HotApi.MONTHLY_RANKING})
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          TotalRankingTabContent()
+          RankingTabContent({url: HotApi.TOTAL_RANKING})
         }.tabBar(this.TabBuilder(2))
       }
       .vertical(false)

@@ -1,7 +1,6 @@
 import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
-import { HotApi } from '../../api/HotApi';
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
@@ -10,27 +9,27 @@ import HttpRequest from '../../util/HttpRequest';
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: MonthlyRankingTabContent
+ * File: WeeklyRankingTabContent
  * Author: Victor
  * Date: 2023/2/27 15:10
- * Description: 首页-热门-月排行
+ * Description: 首页-热门-周排行、月排行、总排行
  * -----------------------------------------------------------------
  */
 @Preview
 @Component
-export struct MonthlyRankingTabContent {
-
+export struct RankingTabContent {
+  @State url: string = "";
   @State followList: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 
   scroller: Scroller = new Scroller()
 
   aboutToAppear() {
-    this.sendFollowRequest()
+    this.sendRankingRequest()
   }
 
-  sendFollowRequest () {
-    HttpRequest.url = HotApi.MONTHLY_RANKING
+  sendRankingRequest () {
+    HttpRequest.url = this.url
     HttpRequest.setMethod(http.RequestMethod.GET)
     HttpRequest.request({
       onSuccess: (value) => {
@@ -68,7 +67,7 @@ export struct MonthlyRankingTabContent {
       .onRefreshing(() => {
         setTimeout(() => {
           this.isRefreshing = false
-          this.sendFollowRequest()
+          this.sendRankingRequest()
         }, 1000)
         console.log('onRefreshing test')
       })

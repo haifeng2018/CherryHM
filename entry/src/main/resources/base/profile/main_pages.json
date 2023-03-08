@@ -9,6 +9,7 @@
     "pages/SearchPage",
     "pages/VideoDetailPage",
     "pages/PosterPage",
-    "pages/CategoryDetailPage"
+    "pages/CategoryDetailPage",
+    "pages/LightTopicsPage"
   ]
 }

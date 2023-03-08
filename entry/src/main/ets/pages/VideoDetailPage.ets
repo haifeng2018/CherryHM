@@ -14,7 +14,7 @@ struct VideoDetailPage {
   // 滑动的y偏移量
   private yTotalOffset = 0
   // 标题栏透明度
-  @State titleBarOpacity: number = 0
+  @State titleBarOpacity: number = 0.3
 
   @State playUrl: string = router.getParams()?.['playUrl'];
   @State videoId: number = router.getParams()?.['id'];

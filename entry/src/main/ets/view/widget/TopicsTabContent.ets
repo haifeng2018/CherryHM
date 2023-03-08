@@ -88,16 +88,9 @@ export struct TopicsTabContent {
       .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
       .onClick(() => {
         router.pushUrl({
-          url: RouterPath.VIDEO_DETAIL_PAGE,
+          url: RouterPath.LIGHT_TOPICS_PAGE,
           params: {
-            playUrl: info.data.content.data.playUrl,
-            id: info.data.content.data.id,
-            title: info.data.content.data.title,
-            description: info.data.content.data.description,
-            category: info.data.content.data.category,
-            collectionCount: info.data.content.data.consumption.collectionCount,
-            shareCount: info.data.content.data.consumption.shareCount,
-            replyCount: info.data.content.data.consumption.replyCount,
+            topicId: info.data.id,
           }
         })
       })
