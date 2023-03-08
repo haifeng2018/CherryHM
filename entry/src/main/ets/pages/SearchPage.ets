@@ -1,7 +1,7 @@
+import { VideoInfo } from '../bean/VideoInfo';
 import router from '@ohos.router';
 import { HomeApi } from '../api/HomeApi';
 import promptAction from '@ohos.promptAction';
-import { CategoryInfo } from '../model/HomeDataModel';
 import http from '@ohos.net.http';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
@@ -27,10 +27,9 @@ struct SearchPage {
     '北交所15日开市 10家企业直接上市', '腾讯与抖音商谈对等开放',
   ]
 
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
   @State result: string = ''
   @State hotKeyWord: Array<string> = [];
-  @State categoryList: Array<CategoryInfo> = [];
+  @State datas: Array<VideoInfo> = [];
   @State private historyArr: string[] = ["Text", "Button", "TextField", "Image", "Switch", "Checkbox", "RadioButton", "ProgressBar", "ScrollView"]
   @State isRefreshing: boolean = false
 
@@ -193,7 +192,7 @@ struct SearchPage {
   @Builder searchResult() {
     Refresh({ refreshing: this.isRefreshing, offset: 56, friction: 66 }) {
       Grid(this.scroller) {
-        ForEach(this.categoryList, (categoryInfo) => {
+        ForEach(this.datas, (categoryInfo) => {
           GridItem() {
             Column(){
               Image(categoryInfo.bgPicture)
