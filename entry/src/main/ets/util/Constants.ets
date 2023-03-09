@@ -37,6 +37,10 @@ export default class Constants {
   static readonly MATCH_PARENT: string = '100%';
   static readonly INTENT_DATA_KEY: string = 'data';
 
+  static readonly POSTER_DETAIL_TRANSITION_ID = 'posterDetailShareId';
+  static readonly TRANSITION_ANIMATION_DURATION: number = 600;
+  static readonly SHARE_ITEM_ANIMATION_DELAY = 100;
+
   static readonly USER_SERVICES_AGREEMENT: string = 'https://github.com/haifeng2018/CherryHM';
   static readonly PRIVACY_POLICY: string = 'https://gitee.com/victor1990/CherryHM';
 

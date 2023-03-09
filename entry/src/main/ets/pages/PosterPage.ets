@@ -18,6 +18,11 @@ struct PosterPage {
           .width(Constants.MATCH_PARENT)
           .layoutWeight(1)
           .objectFit(ImageFit.Contain)
+          .sharedTransition(Constants.POSTER_DETAIL_TRANSITION_ID, {
+            duration: Constants.TRANSITION_ANIMATION_DURATION,
+            curve: Curve.Smooth,
+            delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+          })
       }
       .width(Constants.MATCH_PARENT)
       .height(Constants.MATCH_PARENT)

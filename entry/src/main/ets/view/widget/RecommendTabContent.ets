@@ -87,6 +87,11 @@ export struct RecommendTabContent {
         .width(Constants.MATCH_PARENT)
         .height('198vp')
         .borderRadius({topLeft:'10vp',topRight:'10vp'})
+        .sharedTransition(Constants.POSTER_DETAIL_TRANSITION_ID, {
+          duration: Constants.TRANSITION_ANIMATION_DURATION,
+          curve: Curve.Smooth,
+          delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+        })
 
       Row() {
         Image(info.data.content.data.owner.avatar).width('40vp').height('40vp')

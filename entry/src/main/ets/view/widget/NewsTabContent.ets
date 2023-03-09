@@ -1,9 +1,6 @@
 import { VideoInfo } from '../../bean/VideoInfo';
-import { RouterPath } from '../../util/RouterPath';
-import router from '@ohos.router';
 import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
-import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
 /*
