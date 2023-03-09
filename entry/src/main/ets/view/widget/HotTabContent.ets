@@ -92,6 +92,7 @@ export struct HotTabContent {
         this.currentIndex = index
       })
       .width(Constants.MATCH_PARENT)
+      .layoutWeight(1)
       .backgroundColor($r('app.color.white'))
     }
     .width(Constants.MATCH_PARENT)
