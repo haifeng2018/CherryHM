@@ -19,7 +19,6 @@ import HttpRequest from '../../util/HttpRequest';
 @Preview
 @Component
 export struct CommunityFollowTabContent {
-
   @State followList: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 

@@ -24,7 +24,7 @@ export struct HomeTabContent {
       Text(this.tabTitles[index].name)
         .height(Constants.MATCH_PARENT)
         .padding('12vp')
-        .fontSize(this.currentIndex === index ? '22fp' : '20fp')
+        .fontSize(this.currentIndex === index ? '20fp' : '18fp')
         .fontWeight(this.currentIndex === index ? 700 : 500)
         .fontColor(this.currentIndex == index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)
@@ -45,7 +45,7 @@ export struct HomeTabContent {
       .barWidth(Constants.MATCH_PARENT)
       .barHeight('56vp')
       .barMode(BarMode.Scrollable)
-      .margin({top:'36vp'})
+      .margin({top:$r('app.float.status_bar_height')})
       .onChange((index: number) => {
         this.currentIndex = index
       })
@@ -57,9 +57,9 @@ export struct HomeTabContent {
       }).id('mHomeTab')
 
       Image($r('app.media.ic_home_search'))
-        .width('30vp')
-        .height('30vp')
-        .margin({top:'40vp',right:'24vp'})
+        .width('40vp')
+        .height('40vp')
+        .margin({top:$r('app.float.status_bar_height'),right:'24vp'})
         .padding('10vp')
         .alignRules({
           top: {anchor: "mHomeTab", align: VerticalAlign.Top},

@@ -1,6 +1,10 @@
 {
   "float": [
     {
+      "name": "status_bar_height",
+      "value": "0vp"
+    },
+    {
       "name": "launcher_logo_size",
       "value": "119vp"
     },
@@ -151,6 +155,10 @@
     {
       "name": "fp_20",
       "value": "20fp"
+    },
+    {
+      "name": "fp_22",
+      "value": "22fp"
     },
     {
       "name": "fp_28",

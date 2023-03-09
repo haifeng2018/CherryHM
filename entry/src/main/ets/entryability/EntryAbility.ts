@@ -27,16 +27,17 @@ export default class EntryAbility extends UIAbility {
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
             // 2.实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
-            let names = [];
+//            let names = ['status','navigation'];
+            /*let names = [];
             windowClass.setWindowSystemBarEnable(names, (err) => {
                 if (err.code) {
                     console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
                     return;
                 }
                 console.info('Succeeded in setting the system bar to be visible.');
-            });
+            });*/
             // 2.实现沉浸式效果。方式二：设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
-            let isLayoutFullScreen = true;
+            let isLayoutFullScreen = false;
             windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err) => {
                 if (err.code) {
                     console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -44,12 +45,15 @@ export default class EntryAbility extends UIAbility {
                 }
                 console.info('Succeeded in setting the window layout to full-screen mode.');
             });
-            let sysBarProps = {
-                statusBarColor: "$color:white",
-                navigationBarColor: "$color:transparent",
+
+            var sysBarProps={
+                isStatusBarLightIcon: true,
+                isNavigationBarLightIcon:true,
+                statusBarColor: '$color:white',
+                navigationBarColor: '$color:transparent',
                 // 以下两个属性从API Version 8开始支持
                 statusBarContentColor: "$color:color_F9F9F9",
-                navigationBarContentColor: "$color:white"
+                navigationBarContentColor: "$color:white",
             };
             windowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
                 if (err.code) {

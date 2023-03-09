@@ -14,7 +14,7 @@ struct VideoDetailPage {
   // 滑动的y偏移量
   private yTotalOffset = 0
   // 标题栏透明度
-  @State titleBarOpacity: number = 0.3
+  @State titleBarOpacity: number = 0.5
 
   @State playUrl: string = router.getParams()?.['playUrl'];
   @State videoId: number = router.getParams()?.['id'];
@@ -79,6 +79,7 @@ struct VideoDetailPage {
                   console.info('onFinish')
                 })
                 .onPrepared((e) => {
+                  this.titleBarOpacity = 0
                   console.info('onPrepared is ' + e.duration)
                 })
                 .onSeeking((e) => {
@@ -217,7 +218,7 @@ struct VideoDetailPage {
         .width(Constants.MATCH_PARENT)
         .height('56vp')
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_28'))
+        .fontSize($r('app.float.fp_22'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .onStart(() => {
@@ -238,7 +239,7 @@ struct VideoDetailPage {
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .padding({top:'36vp'})
+    .padding({top:$r('app.float.status_bar_height')})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .opacity(this.titleBarOpacity)
   }

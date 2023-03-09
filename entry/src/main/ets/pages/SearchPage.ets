@@ -65,7 +65,11 @@ struct SearchPage {
   }
 
   @Builder titleBar() {
-    Divider().vertical(false).strokeWidth('36vp').color($r('app.color.white')).lineCap(LineCapStyle.Square)
+    /*Divider().vertical(false)
+      .strokeWidth('36vp')
+      .color($r('app.color.white'))
+      .lineCap(LineCapStyle.Square)*/
+
     Row(){
       Stack() {
         Image($r('app.media.ic_search'))

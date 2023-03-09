@@ -86,7 +86,7 @@ export struct DailyPaperTabContent {
   @Builder headCell(dailyPagerInfo: VideoInfo) {
     Text(dailyPagerInfo.data.text)
       .width(Constants.MATCH_PARENT)
-      .height('66vp').fontSize('36fp')
+      .height('40vp').fontSize('28fp')
       .textAlign(TextAlign.Center)
       .fontColor($r('app.color.color_666666'))
       .maxLines(2)

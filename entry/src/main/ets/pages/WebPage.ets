@@ -35,7 +35,7 @@ struct WebPage {
         .width(Constants.MATCH_PARENT)
         .backgroundColor($r('app.color.white'))
         .alignContent(Alignment.BottomStart)
-        .padding({top:'36vp',bottom:'5vp'})
+        .padding({top:$r('app.float.status_bar_height'),bottom:'5vp'})
 
         Web({ src:this.url, controller:this.controller })
           .width(Constants.MATCH_PARENT)

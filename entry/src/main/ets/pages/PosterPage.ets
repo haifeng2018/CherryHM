@@ -45,7 +45,7 @@ struct PosterPage {
         .width(Constants.MATCH_PARENT)
         .height('56vp')
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_28'))
+        .fontSize($r('app.float.fp_22'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .onStart(() => {
@@ -66,7 +66,7 @@ struct PosterPage {
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .padding({top:'36vp'})
+    .padding({top:$r('app.float.status_bar_height')})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 
