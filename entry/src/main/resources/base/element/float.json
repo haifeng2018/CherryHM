@@ -153,12 +153,24 @@
       "value": "260vp"
     },
     {
+      "name": "fp_16",
+      "value": "16fp"
+    },
+    {
+      "name": "fp_18",
+      "value": "18fp"
+    },
+    {
       "name": "fp_20",
       "value": "20fp"
     },
     {
       "name": "fp_22",
       "value": "22fp"
+    },
+    {
+      "name": "fp_24",
+      "value": "24fp"
     },
     {
       "name": "fp_28",

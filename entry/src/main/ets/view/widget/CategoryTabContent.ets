@@ -48,7 +48,7 @@ export struct CategoryTabContent {
         Grid(this.scroller) {
           ForEach(this.datas, (data) => {
             GridItem() {
-              this.contentCell(data)
+              this.cellLayout(data)
             }
           })
         }
@@ -80,7 +80,7 @@ export struct CategoryTabContent {
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
-  @Builder contentCell (info: CategoryInfo) {
+  @Builder cellLayout (info: CategoryInfo) {
     Stack(){
       Image(info.bgPicture)
         .objectFit(ImageFit.Cover)
@@ -99,12 +99,18 @@ export struct CategoryTabContent {
     .backgroundColor($r('app.color.white'))
     .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
+    .sharedTransition(`${this.datas.indexOf(info)}${info.id}`, {
+      duration: Constants.TRANSITION_ANIMATION_DURATION,
+      curve: Curve.Smooth,
+      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+    })
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.CATEGORY_DETAIL_PAGE,
         params: {
           categoryId: info.id,
-          categoryName: info.name
+          categoryName: info.name,
+          shareId: `${this.datas.indexOf(info)}${info.id}`
         }
       })
     })

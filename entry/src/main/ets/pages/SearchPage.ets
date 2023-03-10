@@ -102,7 +102,7 @@ struct SearchPage {
       .margin({left: '24vp',right:'10vp'})
 
       Text('取消')
-        .fontSize('18fp')
+        .fontSize($r('app.float.fp_20'))
         .fontColor($r('app.color.color_333333'))
         .align(Alignment.End)
         .padding({left:'10vp',right:'24vp'})

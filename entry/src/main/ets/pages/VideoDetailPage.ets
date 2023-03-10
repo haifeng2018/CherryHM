@@ -1,3 +1,4 @@
+import { VideoCellContentData } from '../bean/VideoCellContentData';
 import router from '@ohos.router';
 import { VideoInfo } from '../bean/VideoInfo';
 import { VideoRelatedInfo } from '../bean/VideoRelatedInfo';
@@ -9,23 +10,16 @@ import HttpRequest from '../util/HttpRequest';
 @Entry
 @Component
 struct VideoDetailPage {
+  @State shareId: string = router.getParams()?.['shareId'];
   @State isRefreshing: boolean = false
 
   // 滑动的y偏移量
   private yTotalOffset = 0
   // 标题栏透明度
-  @State titleBarOpacity: number = 0.5
+  @State titleBarOpacity: number = 1
 
-  @State playUrl: string = router.getParams()?.['playUrl'];
-  @State videoId: number = router.getParams()?.['id'];
-  @State title: string = router.getParams()?.['title'];
-  @State description: string = router.getParams()?.['description'];
-  @State category: string = router.getParams()?.['category'];
-  @State collectionCount: number = router.getParams()?.['collectionCount'];
-  @State shareCount: number = router.getParams()?.['shareCount'];
-  @State replyCount: number = router.getParams()?.['replyCount'];
+  @State data: VideoCellContentData = router.getParams()?.['data'];
 
-  @State previewUri: Resource = $r('app.media.default_img')
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = true
   @State showControls: boolean = false
@@ -33,19 +27,17 @@ struct VideoDetailPage {
 
   private scroller: Scroller = new Scroller()
 
-  @State videoRelatedList: Array<VideoRelatedInfo> = [];
-
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State datas: Array<VideoRelatedInfo> = [];
 
   aboutToAppear() {
     this.sendVideoRelatedRequest()
   }
 
   sendVideoRelatedRequest () {
-    HttpRequest.url = HomeApi.VIDEO_RELATED + this.videoId
+    HttpRequest.url = HomeApi.VIDEO_RELATED + this.data.id
     HttpRequest.request({
       onSuccess: (value) => {
-        this.videoRelatedList = value.itemList
+        this.datas = value.itemList
       },
       onFail: (errorCode) => {
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
@@ -59,11 +51,11 @@ struct VideoDetailPage {
           Scroll(this.scroller) {
             Column() {
               Video({
-                src: this.playUrl,
-                previewUri: this.previewUri,
+                src: this.data.playUrl,
+                previewUri: this.data.cover.feed,
                 currentProgressRate: this.curRate,
                 controller: this.videoController
-              }).width(Constants.MATCH_PARENT).aspectRatio(1.3)
+              }).width(Constants.MATCH_PARENT).aspectRatio(1.77)
                 .autoPlay(this.isAutoPlay)
                 .controls(this.showControls)
                 .onStart(() => {
@@ -79,8 +71,8 @@ struct VideoDetailPage {
                   console.info('onFinish')
                 })
                 .onPrepared((e) => {
-                  this.titleBarOpacity = 0
                   console.info('onPrepared is ' + e.duration)
+                  this.titleBarOpacity = 0
                 })
                 .onSeeking((e) => {
                   console.info('onSeeking is ' + e.time)
@@ -95,61 +87,59 @@ struct VideoDetailPage {
                   this.videoController.start()
                 })
 
-              Text(this.title)
+              Text(this.data.title)
                 .width(Constants.MATCH_PARENT)
                 .fontColor($r('app.color.color_333333'))
-                .fontSize('22fp')
+                .fontSize($r('app.float.fp_24'))
                 .padding('10vp')
 
-              Text(this.category)
+              Text(this.data.category)
                 .width(Constants.MATCH_PARENT)
                 .fontColor($r('app.color.color_666666'))
-                .fontSize('18fp')
+                .fontSize($r('app.float.fp_20'))
                 .padding('10vp')
 
-              Text(this.description)
+              Text(this.data.description)
                 .width(Constants.MATCH_PARENT)
                 .fontColor($r('app.color.color_333333'))
-                .fontSize('12fp')
+                .fontSize($r('app.float.fp_18'))
                 .maxLines(3)
                 .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .padding('10vp')
 
               Row(){
                 Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
-                Text(this.collectionCount.toString())
-                  .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
+                Text(this.data.consumption.collectionCount.toString())
+                  .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
 
-                Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'20vp'})
-                Text(this.replyCount.toString())
-                  .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
+                Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
+                Text(this.data.consumption.replyCount.toString())
+                  .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
 
-                Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'20vp'})
-                Text(this.shareCount.toString())
-                  .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
+                Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
+                Text(this.data.consumption.shareCount.toString())
+                  .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
               }
               .width(Constants.MATCH_PARENT)
               .padding('10vp')
 
-              List({ space: 20 }) {
-                ForEach(this.videoRelatedList, (item) => {
-                  ListItem() {
-                    if (item.type === 'textCard') {
-                      this.textCardCell(item)
-                    } else if (item.type === 'videoSmallCard') {
-                      this.videoSmallCardCell(item)
-                    }
+              Divider().color($r('app.color.color_80DDDDDD'))
+              this.headCell(this.data)
+              Divider().color($r('app.color.color_80DDDDDD'))
+
+              //这个地方不能用list容器会和scroll滑动冲突
+              ForEach(this.datas, (item) => {
+                  if (item.type === 'textCard') {
+                    this.textCardCell(item)
+                  } else if (item.type === 'videoSmallCard') {
+                    this.videoSmallCardCell(item)
                   }
-                  .padding('10vp')
-                })
-              }
-              .width(Constants.MATCH_PARENT)
-              .height(Constants.MATCH_PARENT)
+              })
             }
             .width(Constants.MATCH_PARENT)
           }
           .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
-          .scrollBar(BarState.On)  // 滚动条常驻显示
+          .scrollBar(BarState.Off)  // 滚动条常驻显示
           .scrollBarColor(Color.Gray)  // 滚动条颜色
           .scrollBarWidth(30) // 滚动条宽度
           .edgeEffect(EdgeEffect.None)
@@ -166,7 +156,6 @@ struct VideoDetailPage {
             if (scale > 1) {
               this.titleBarOpacity = 1
             }
-
           })
           .onScrollEdge((side: Edge) => {
             console.info('To the edge')
@@ -195,6 +184,11 @@ struct VideoDetailPage {
       .height(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.color_F9F9F9'))
       .alignContent(Alignment.Top)
+      .sharedTransition(this.shareId, {
+        duration: Constants.TRANSITION_ANIMATION_DURATION,
+        curve: Curve.Smooth,
+        delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+      })
   }
 
   @Builder titleBar() {
@@ -213,12 +207,12 @@ struct VideoDetailPage {
         step: 20,
         loop: Infinity,
         fromStart: true,
-        src: this.title
+        src: this.data.title
       })
         .width(Constants.MATCH_PARENT)
         .height('56vp')
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_22'))
+        .fontSize($r('app.float.fp_24'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .onStart(() => {
@@ -247,11 +241,48 @@ struct VideoDetailPage {
   @Builder textCardCell(info: VideoInfo) {
     Text(info.data.text)
       .width(Constants.MATCH_PARENT)
+      .padding({left:'10vp'})
       .fontSize('22fp')
       .textAlign(TextAlign.Start)
       .fontColor($r('app.color.color_666666'))
       .maxLines(2)
       .textOverflow({ overflow: TextOverflow.Ellipsis })
+      .padding('10vp')
+  }
+
+  @Builder headCell(info: VideoCellContentData) {
+    if (info.author != null) {
+      Row(){
+        if (info.author.icon != null) {
+          Image(info.author.icon)
+            .width('40vp')
+            .height('40vp')
+            .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+        }
+
+        Column() {
+          Text(info.author.name)
+            .width(Constants.MATCH_PARENT)
+            .fontColor($r('app.color.color_333333'))
+            .fontSize('18fp')
+            .padding('2vp')
+            .textAlign(TextAlign.Start)
+
+          Text(info.author.description)
+            .width(Constants.MATCH_PARENT)
+            .fontColor($r('app.color.color_666666'))
+            .fontSize('12fp')
+            .padding('2vp')
+            .textAlign(TextAlign.Start)
+            .maxLines(1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+        .layoutWeight(1)
+        .padding({left:'10vp'})
+      }
+      .width(Constants.MATCH_PARENT)
+      .padding('10vp')
+    }
   }
 
   @Builder videoSmallCardCell(info: VideoInfo) {
@@ -260,7 +291,6 @@ struct VideoDetailPage {
         Image(info.data.cover.detail)
           .width('168vp')
           .height(Constants.MATCH_PARENT)
-          .borderRadius({ topLeft:'10vp',bottomLeft:'10vp' })
 
         Column() {
           Text(info.data.category)
@@ -269,7 +299,7 @@ struct VideoDetailPage {
             .textAlign(TextAlign.End)
             .fontColor($r('app.color.color_666666'))
             .fontSize('18fp')
-            .padding('5vp')
+            .padding({ right:'10vp' })
 
           Text(info.data.title)
             .width(Constants.MATCH_PARENT)
@@ -279,8 +309,7 @@ struct VideoDetailPage {
             .fontSize('16fp')
             .maxLines(2)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .padding('5vp')
-            .margin({left:'30vp'})
+            .padding({ bottom:'10vp',left:'30vp',right: '10vp' })
             .align(Alignment.Bottom)
 
         }
@@ -300,18 +329,11 @@ struct VideoDetailPage {
     .width(Constants.MATCH_PARENT)
     .height('118vp')
     .backgroundColor($r('app.color.white'))
-    .borderRadius('10vp')
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .alignContent(Alignment.Start)
+    .margin({top:'5vp',bottom:'5vp'})
     .onClick(() => {
-      this.playUrl = info.data.playUrl
-      this.videoId = info.data.id
-      this.title = info.data.title
-      this.description = info.data.description
-      this.category = info.data.category
-      this.collectionCount = info.data.consumption.collectionCount
-      this.shareCount = info.data.consumption.shareCount
-      this.replyCount = info.data.consumption.replyCount
+      this.data = info.data
       this.sendVideoRelatedRequest()
     })
   }

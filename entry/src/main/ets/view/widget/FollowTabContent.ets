@@ -46,18 +46,16 @@ export struct FollowTabContent {
   build() {
     Column() {
       Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List({ space: 20 }) {
+        List() {
           ForEach(this.datas, (item) => {
             ListItem() {
               this.contentCell(item)
             }
-            .padding({left:'10vp',right:'10vp'})
           })
         }
         .backgroundColor($r('app.color.color_F9F9F9'))
         .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
-        .padding({top:'10vp',bottom:'10vp'})
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         refreshStatus
@@ -83,22 +81,20 @@ export struct FollowTabContent {
       Image(info.data.header.icon)
         .width('40vp')
         .height('40vp')
-        .border({ width: '2vp' })
-        .borderColor($r('app.color.white'))
-        .borderRadius('40vp')
+        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
 
       Column() {
         Text(info.data.header.title)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('12fp')
+          .fontSize('18fp')
           .padding('2vp')
           .textAlign(TextAlign.Start)
 
         Text(info.data.header.description)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('10fp')
+          .fontSize('12fp')
           .padding('2vp')
           .textAlign(TextAlign.Start)
           .maxLines(1)
@@ -106,10 +102,9 @@ export struct FollowTabContent {
       }
       .layoutWeight(1)
       .padding({left:'10vp'})
-
     }
     .width(Constants.MATCH_PARENT)
-    .padding('10vp')
+    .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
   }
 
   @Builder contentCell (info: VideoInfo) {
@@ -135,14 +130,17 @@ export struct FollowTabContent {
                   .borderRadius('5vp')
               }
               .width(Constants.MATCH_PARENT)
-              .height('168vp')
+              .height('198vp')
               .alignContent(Alignment.TopEnd)
 
               Text(item.data.title)
                 .width(Constants.MATCH_PARENT)
                 .textAlign(TextAlign.Start)
                 .fontColor($r('app.color.color_333333'))
-                .fontSize('18fp')
+                .fontSize('16fp')
+                .maxLines(1)
+                .textOverflow({overflow: TextOverflow.Ellipsis})
+                .margin({top:'5vp'})
                 .padding('5vp')
 
               Text(this.formatReleaseDate(item.data.releaseTime))
@@ -150,34 +148,38 @@ export struct FollowTabContent {
                 .textAlign(TextAlign.Start)
                 .fontColor($r('app.color.color_666666'))
                 .fontSize('18fp')
-                .padding({left:'5vp'})
+                .padding('5vp')
             }
-            .width('318vp')
-            .padding({bottom:'5vp'})
+            .width('328vp')
           }
+          .sharedTransition(`${info.data.itemList.indexOf(item)}${item.data.id}`, {
+            duration: Constants.TRANSITION_ANIMATION_DURATION,
+            curve: Curve.Smooth,
+            delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+          })
           .onClick(() => {
             router.pushUrl({
               url: RouterPath.VIDEO_DETAIL_PAGE,
               params: {
-                playUrl: item.data.playUrl,
-                id: item.data.id,
-                title: item.data.title,
-                description: item.data.description,
-                category: item.data.category,
-                collectionCount: item.data.consumption.collectionCount,
-                shareCount: item.data.consumption.shareCount,
-                replyCount: item.data.consumption.replyCount,
+                data:item.data,
+                shareId: `${info.data.itemList.indexOf(item)}${item.data.id}`
               }
             })
           })
         })
-      }.listDirection(Axis.Horizontal)
+      }
+      .listDirection(Axis.Horizontal)
+      .padding({left:'20vp'})
+
+      Text()
+        .width(Constants.MATCH_PARENT)
+        .height('1vp')
+        .margin({top:'5vp'})
+        .backgroundColor($r('app.color.color_80DDDDDD'))
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
     .alignItems(HorizontalAlign.Start)
-    .borderRadius('5vp')
-    .shadow({ radius: 5, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 10 })
   }
 
   formatReleaseDate(releaseTime: number): string {

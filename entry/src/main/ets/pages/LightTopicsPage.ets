@@ -10,10 +10,9 @@ import HttpRequest from '../util/HttpRequest';
 @Entry
 @Component
 struct LightTopicsPage {
-  @State isRefreshing: boolean = false
-
+  @State shareId: string = router.getParams()?.['shareId'];
   @State topicId: number = router.getParams()?.['topicId'];
-
+  @State isRefreshing: boolean = false
   @State data: LightTopicsData = new LightTopicsData();
 
   aboutToAppear() {
@@ -41,7 +40,7 @@ struct LightTopicsPage {
           List() {
             ForEach(this.data.itemList, (item) => {
               ListItem() {
-                this.listCell(item)
+                this.cellLayout(item)
               }
             })
           }
@@ -68,6 +67,11 @@ struct LightTopicsPage {
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
+    .sharedTransition(this.shareId, {
+      duration: Constants.TRANSITION_ANIMATION_DURATION,
+      curve: Curve.Smooth,
+      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+    })
   }
 
   @Builder titleBar() {
@@ -91,7 +95,7 @@ struct LightTopicsPage {
         .width(Constants.MATCH_PARENT)
         .height('56vp')
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_22'))
+        .fontSize($r('app.float.fp_24'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .onStart(() => {
@@ -116,7 +120,7 @@ struct LightTopicsPage {
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 
-  @Builder listCell (info: LightTopicsInfo) {
+  @Builder cellLayout (info: LightTopicsInfo) {
     Stack(){
       Image(info.data.content.data.cover.feed)
         .objectFit(ImageFit.Cover)
@@ -130,18 +134,17 @@ struct LightTopicsPage {
       }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
+    .sharedTransition(`${info.data.content.data.id}`, {
+      duration: Constants.TRANSITION_ANIMATION_DURATION,
+      curve: Curve.Smooth,
+      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+    })
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.VIDEO_DETAIL_PAGE,
         params: {
-          playUrl: info.data.content.data.playUrl,
-          id: info.data.content.data.id,
-          title: info.data.content.data.title,
-          description: info.data.content.data.description,
-          category: info.data.content.data.category,
-          collectionCount: info.data.content.data.consumption.collectionCount,
-          shareCount: info.data.content.data.consumption.shareCount,
-          replyCount: info.data.content.data.consumption.replyCount,
+          data: info.data.content.data,
+          shareId: `${info.data.content.data.id}`
         }
       })
     })

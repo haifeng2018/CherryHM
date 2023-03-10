@@ -42,6 +42,7 @@ struct SplashPage {
       .loop(false)
       .duration(300)
       .itemSpace(0)
+      .effectMode(EdgeEffect.Spring)
       .curve(Curve.Linear)
       .displayMode(SwiperDisplayMode.Stretch)
       .onChange((index: number) => {

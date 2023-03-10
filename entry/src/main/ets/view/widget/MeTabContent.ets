@@ -113,8 +113,8 @@ export struct MeTabContent {
       Image($r('app.media.default_img'))
         .width('80vp')
         .height('80vp')
-        .borderRadius('40vp')
         .margin({'top':'148vp',left:'24vp'})
+        .border({ width: '2vp',color:$r('app.color.white'),radius:'40vp',style:BorderStyle.Solid })
 
       Row(){
         Blank()

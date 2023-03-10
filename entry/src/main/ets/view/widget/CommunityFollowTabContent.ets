@@ -19,21 +19,19 @@ import HttpRequest from '../../util/HttpRequest';
 @Preview
 @Component
 export struct CommunityFollowTabContent {
-  @State followList: Array<VideoInfo> = [];
+  @State datas: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 
-  scroller: Scroller = new Scroller()
-
   aboutToAppear() {
-    this.sendFollowRequest()
+    this.sendCommunityFollowRequest()
   }
 
-  sendFollowRequest () {
+  sendCommunityFollowRequest () {
     HttpRequest.url = HomeApi.FOLLOW
     HttpRequest.setMethod(http.RequestMethod.GET)
     HttpRequest.request({
       onSuccess: (value) => {
-        this.followList = value.itemList
+        this.datas = value.itemList
       },
       onFail: (errorCode) => {
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
@@ -44,21 +42,16 @@ export struct CommunityFollowTabContent {
   build() {
     Column() {
       Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        Grid(this.scroller) {
-          ForEach(this.followList, (followInfo) => {
-            GridItem() {
-              this.followCell(followInfo)
-            }.padding({left:'10vp',right:'10vp'})
+        List() {
+          ForEach(this.datas, (followInfo) => {
+            ListItem() {
+              this.cellLayout(followInfo)
+            }
           })
         }
-        .layoutDirection(GridDirection.Column)
-        .columnsTemplate('1fr')
-        .columnsGap('10vp')
-        .rowsGap('20vp')
         .backgroundColor($r('app.color.color_F9F9F9'))
         .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
-        .padding({top:'10vp',bottom:'10vp'})
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         refreshStatus
@@ -67,7 +60,7 @@ export struct CommunityFollowTabContent {
       .onRefreshing(() => {
         setTimeout(() => {
           this.isRefreshing = false
-          this.sendFollowRequest()
+          this.sendCommunityFollowRequest()
         }, 1000)
         console.log('onRefreshing test')
       })
@@ -79,30 +72,63 @@ export struct CommunityFollowTabContent {
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
-  @Builder followCell (info: VideoInfo) {
-    Column(){
-      Image(info.data.content.data.cover.feed)
-        .objectFit(ImageFit.Cover)
-        .width(Constants.MATCH_PARENT)
-        .height('256vp')
-        .borderRadius({topLeft:'10vp',topRight:'10vp'})
+  @Builder authorLayout(info: VideoInfo) {
+    Row(){
+      Image(info.data.content.data.author.icon)
+        .width('40vp')
+        .height('40vp')
+        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
 
-      Row() {
-        Image(info.data.content.data.author.icon).width('40vp').height('40vp')
-          .border({ width: '2vp' }).borderColor($r('app.color.white'))
-          .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
-
+      Column() {
         Text(info.data.content.data.author.name)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_333333'))
+          .fontSize('18fp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+
+        Text(info.data.content.data.author.description)
+          .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
           .fontSize('12fp')
-          .padding('10vp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
-      .padding({left:'10vp',top:'20vp'})
+      .layoutWeight(1)
+      .padding({left:'10vp'})
+    }
+    .width(Constants.MATCH_PARENT)
+    .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+  }
+
+  @Builder cellLayout (info: VideoInfo) {
+    Column(){
+      this.authorLayout(info)
+      Stack() {
+        Image(info.data.content.data.cover.feed)
+          .objectFit(ImageFit.Cover)
+          .width(Constants.MATCH_PARENT)
+          .height(Constants.MATCH_PARENT)
+
+        Text(info.data.content.data.category)
+          .textAlign(TextAlign.Center)
+          .fontColor($r('app.color.color_333333'))
+          .fontSize('16fp')
+          .backgroundColor($r('app.color.color_4DFFFFFF'))
+          .margin({top:'5vp',right:'5vp'})
+          .padding({top:'5vp',bottom:'5vp',left:'10vp',right:'10vp'})
+          .borderRadius('5vp')
+      }
+      .width(Constants.MATCH_PARENT)
+      .height('256vp')
+      .alignContent(Alignment.TopEnd)
 
       Text(info.data.content.data.description)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
-        .fontSize('10fp')
+        .fontSize('16fp')
         .fontColor($r('app.color.color_999999'))
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -111,38 +137,42 @@ export struct CommunityFollowTabContent {
       Row() {
         Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
         Text(info.data.content.data.consumption.collectionCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
 
-        Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'20vp'})
+        Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
         Text(info.data.content.data.consumption.replyCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
 
-        Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'20vp'})
+        Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
         Text(info.data.content.data.consumption.shareCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('10fp').margin({left:'5vp'})
-      }.padding({left:'10vp',right:'10vp'})
+          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+      }
+      .width(Constants.MATCH_PARENT)
+      .justifyContent(FlexAlign.End)
+      .padding({left:'10vp',right:'10vp'})
+
+      Text()
+        .width(Constants.MATCH_PARENT)
+        .height('1vp')
+        .margin({top:'10vp'})
+        .backgroundColor($r('app.color.color_80DDDDDD'))
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .padding({bottom:'10vp'})
     .alignItems(HorizontalAlign.Start)
-    .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
-    .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
+    .sharedTransition(`${this.datas.indexOf(info)}${info.data.content.data.id}`, {
+      duration: Constants.TRANSITION_ANIMATION_DURATION,
+      curve: Curve.Smooth,
+      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+    })
     .onClick(() => {
       router.pushUrl({
           url: RouterPath.VIDEO_DETAIL_PAGE,
           params: {
-            playUrl: info.data.content.data.playUrl,
-            id: info.data.content.data.id,
-            title: info.data.content.data.title,
-            description: info.data.content.data.description,
-            category: info.data.content.data.category,
-            collectionCount: info.data.content.data.consumption.collectionCount,
-            shareCount: info.data.content.data.consumption.shareCount,
-            replyCount: info.data.content.data.consumption.replyCount,
+            data:info.data.content.data,
+            shareId: `${this.datas.indexOf(info)}${info.data.content.data.id}`
           }
       })
     })
-
   }
 }

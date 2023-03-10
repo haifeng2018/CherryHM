@@ -1,3 +1,4 @@
+import { VideoCellContentData } from './VideoCellContentData';
 import { VideoCellData } from './VideoCellData';
 /*
  * -----------------------------------------------------------------
@@ -15,5 +16,5 @@ export class VideoInfo {
   tag: string;
   id: number;
   adIndex: number;
-  data: VideoCellData;
+  data: VideoCellContentData;
 }

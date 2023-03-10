@@ -1,3 +1,6 @@
+import { BannerInfo } from './BannerInfo';
+import { VideoCellContentInfo } from './VideoCellContentInfo';
+import { VideoCellHeaderInfo } from './VideoCellHeaderInfo';
 import { OwnInfo } from './OwnInfo';
 import { CoverInfo } from './CoverInfo';
 import { AuthorInfo } from './AuthorInfo';
@@ -26,4 +29,18 @@ export class VideoCellContentData {
   author: AuthorInfo
   owner: OwnInfo
   consumption: ConsumptionInfo
+
+  type:string
+  dataType:string
+  text:string
+  duration: number
+  count: number
+  icon: string
+  image: string
+  backgroundImage: string
+  header: VideoCellHeaderInfo
+  content: VideoCellContentInfo
+  itemList:Array<VideoCellContentInfo>
+  titleList:Array<string>
+  bannerList:Array<BannerInfo>
 }

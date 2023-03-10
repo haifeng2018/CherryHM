@@ -1,10 +1,11 @@
+import { VideoCellContentData } from '../bean/VideoCellContentData';
 import Constants from '../util/Constants';
 import router from '@ohos.router';
 @Entry
 @Component
 struct PosterPage {
-  description: string = router.getParams()?.['description'];
-  url: string = router.getParams()?.['url'];
+  @State data: VideoCellContentData = router.getParams()?.['data'];
+  @State shareId: string = router.getParams()?.['shareId'];
 
   onPageHide() {
     router.clear()
@@ -14,11 +15,11 @@ struct PosterPage {
       Column() {
         this.titleBar()
 
-        Image(this.url)
+        Image(this.data.url)
           .width(Constants.MATCH_PARENT)
           .layoutWeight(1)
-          .objectFit(ImageFit.Contain)
-          .sharedTransition(Constants.POSTER_DETAIL_TRANSITION_ID, {
+          .objectFit(ImageFit.Cover)
+          .sharedTransition(this.shareId, {
             duration: Constants.TRANSITION_ANIMATION_DURATION,
             curve: Curve.Smooth,
             delay: Constants.SHARE_ITEM_ANIMATION_DELAY
@@ -45,12 +46,12 @@ struct PosterPage {
         step: 20,
         loop: Infinity,
         fromStart: true,
-        src: this.description
+        src: this.data.description
       })
         .width(Constants.MATCH_PARENT)
         .height('56vp')
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_22'))
+        .fontSize($r('app.float.fp_24'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .onStart(() => {

@@ -24,8 +24,6 @@ export struct TopicsTabContent {
   @State datas: Array<VideoInfo> = [];
   @State isRefreshing: boolean = false
 
-  scroller: Scroller = new Scroller()
-
   aboutToAppear() {
     this.sendTopicsRequest()
   }
@@ -46,18 +44,16 @@ export struct TopicsTabContent {
   build() {
     Column() {
       Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List({ space: 20 }) {
+        List() {
           ForEach(this.datas, (item) => {
             ListItem() {
                 this.contentCell(item)
             }
-            .padding({left:'10vp',right:'10vp'})
           })
         }
         .backgroundColor($r('app.color.color_F9F9F9'))
         .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
-        .padding({top:'10vp',bottom:'10vp'})
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         refreshStatus
@@ -83,14 +79,17 @@ export struct TopicsTabContent {
       .objectFit(ImageFit.Cover)
       .width(Constants.MATCH_PARENT)
       .height('256vp')
-      .borderRadius('10vp')
-      .width(Constants.MATCH_PARENT)
-      .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
+      .sharedTransition(`${this.datas.indexOf(info)}${info.data.id}`, {
+        duration: Constants.TRANSITION_ANIMATION_DURATION,
+        curve: Curve.Smooth,
+        delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+      })
       .onClick(() => {
         router.pushUrl({
           url: RouterPath.LIGHT_TOPICS_PAGE,
           params: {
             topicId: info.data.id,
+            shareId: `${this.datas.indexOf(info)}${info.data.id}`
           }
         })
       })

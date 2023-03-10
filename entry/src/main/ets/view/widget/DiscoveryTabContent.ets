@@ -32,7 +32,7 @@ export struct DiscoveryTabContent {
       Text(this.tabTitles[index].name)
         .height(Constants.MATCH_PARENT)
         .padding('12vp')
-        .fontSize(this.currentIndex === index ? '20fp' : '18fp')
+        .fontSize(this.currentIndex === index ? '22fp' : '20fp')
         .fontWeight(this.currentIndex === index ? 700 : 500)
         .fontColor(this.currentIndex == index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)

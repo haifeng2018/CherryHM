@@ -40,7 +40,7 @@ struct CategoryDetailPage {
         List() {
           ForEach(this.datas, (item) => {
             ListItem() {
-              this.listCell(item)
+              this.cellLayout(item)
             }
           })
         }
@@ -89,7 +89,7 @@ struct CategoryDetailPage {
         .width(Constants.MATCH_PARENT)
         .height('56vp')
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_22'))
+        .fontSize($r('app.float.fp_24'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .onStart(() => {
@@ -114,7 +114,7 @@ struct CategoryDetailPage {
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 
-  @Builder listCell (info: VideoInfo) {
+  @Builder cellLayout (info: VideoInfo) {
     Stack(){
       Image(info.data.cover.feed)
         .objectFit(ImageFit.Cover)
@@ -128,18 +128,17 @@ struct CategoryDetailPage {
       }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
+    .sharedTransition(`${this.datas.indexOf(info)}${info.data.id}`, {
+      duration: Constants.TRANSITION_ANIMATION_DURATION,
+      curve: Curve.Smooth,
+      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+    })
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.VIDEO_DETAIL_PAGE,
         params: {
-          playUrl: info.data.playUrl,
-          id: info.data.id,
-          title: info.data.title,
-          description: info.data.description,
-          category: info.data.category,
-          collectionCount: info.data.consumption.collectionCount,
-          shareCount: info.data.consumption.shareCount,
-          replyCount: info.data.consumption.replyCount,
+          data: info.data,
+          shareId: `${this.datas.indexOf(info)}${info.data.id}`
         }
       })
     })
