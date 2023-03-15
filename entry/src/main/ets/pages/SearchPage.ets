@@ -21,16 +21,15 @@ import HttpRequest from '../util/HttpRequest';
 @Component
 struct SearchPage {
   private listSearch = [
-    '中共中央召开党外人士座谈会', '推动构建亚太命运共同体',
-    '十九届六中全会精神新闻发布会', '中方邀拜登出席东奥？外交部回应',
-    '大连8天215人感染：多为大学生', '胡塞武装突袭美国驻也门大使馆',
-    '北交所15日开市 10家企业直接上市', '腾讯与抖音商谈对等开放',
+    '你真的不跟我年前的自己说点什么？', '用一个好故事描述生活的不可思议',
+    '每部电影都是一部记录片', '用镜头拉近世界与你的距离',
+    '发现世界的奇妙和辽阔'
   ]
 
   @State result: string = ''
   @State hotKeyWord: Array<string> = [];
   @State datas: Array<VideoInfo> = [];
-  @State private historyArr: string[] = ["Text", "Button", "TextField", "Image", "Switch", "Checkbox", "RadioButton", "ProgressBar", "ScrollView"]
+  @State private historyArr: string[] = ["剧情", "综艺", "创意", "影视", "旅行", "记录", "音乐", "科技", "时尚"]
   @State isRefreshing: boolean = false
 
   scroller: Scroller = new Scroller()
