@@ -1,8 +1,11 @@
+import LMList from './refresh/LMList';
+import { RefreshConfig } from './refresh/RefreshConfig';
 import { VideoInfo } from '../../bean/VideoInfo';
 import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -17,64 +20,64 @@ import HttpRequest from '../../util/HttpRequest';
 @Component
 export struct NewsTabContent {
 
-  @State datas: Array<VideoInfo> = [];
-  @State isRefreshing: boolean = false
+  @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  scroller: Scroller = new Scroller()
-
-  aboutToAppear() {
-    this.sendNewsRequest()
-  }
+  @State nextPageUrl: string = DiscoveryApi.NEWS
 
   sendNewsRequest () {
-    HttpRequest.url = DiscoveryApi.NEWS
+    HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
-        this.datas = value.itemList
+        this.pageState = PageState.Success;
+        if (this.nextPageUrl === DiscoveryApi.NEWS) {
+          this.datas = value.itemList
+        } else {
+          this.datas = this.datas.concat(value.itemList);
+        }
+        this.nextPageUrl = value.nextPageUrl
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
+  aboutToAppear() {
+    this.sendNewsRequest()
+  }
+
+  refreshData () {
+    this.nextPageUrl = DiscoveryApi.NEWS
+    this.sendNewsRequest()
+  }
+
+  loadMoreData () {
+    this.sendNewsRequest()
+  }
+
   build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List({ space: 20 }) {
-          ForEach(this.datas, (item) => {
-            ListItem() {
-              if (item.type === 'textCard') {
-                this.headCell(item)
-              } else {
-                this.contentCell(item)
-              }
-            }
-            .padding({left:'10vp',right:'10vp'})
-          })
-        }
-        .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.MATCH_PARENT)
-        .layoutWeight(1)
-        .padding({top:'10vp',bottom:'10vp'})
+    LMList({
+      itemLayout: (data) => this.itemLayout(data),
+      onRefresh: () => {
+        this.refreshData()
+      },
+      onLoadMore: () => {
+        this.loadMoreData()
       }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-          this.sendNewsRequest()
-        }, 1000)
-        console.log('onRefreshing test')
-      })
-      .width(Constants.MATCH_PARENT)
-      .layoutWeight(1)
-    }
+    })
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
+  }
+
+  @Builder itemLayout (data: VideoInfo) {
+    if (data.type === 'textCard') {
+      this.headCell(data)
+    } else {
+      this.contentCell(data)
+    }
   }
 
   @Builder headCell(dailyPagerInfo: VideoInfo) {

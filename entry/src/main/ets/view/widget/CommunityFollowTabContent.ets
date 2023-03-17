@@ -1,11 +1,13 @@
-import { VideoInfo } from '../../bean/VideoInfo';
-import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
+import { RouterPath } from '../../util/RouterPath';
+import { VideoInfo } from '../../bean/VideoInfo';
+import { RefreshConfig } from './refresh/RefreshConfig';
+import LMList from './refresh/LMList';
 import { HomeApi } from '../../api/HomeApi';
 import promptAction from '@ohos.promptAction';
-import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -19,54 +21,53 @@ import HttpRequest from '../../util/HttpRequest';
 @Preview
 @Component
 export struct CommunityFollowTabContent {
-  @State datas: Array<VideoInfo> = [];
-  @State isRefreshing: boolean = false
+  @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  aboutToAppear() {
-    this.sendCommunityFollowRequest()
-  }
+  @State nextPageUrl: string = HomeApi.FOLLOW
 
   sendCommunityFollowRequest () {
-    HttpRequest.url = HomeApi.FOLLOW
-    HttpRequest.setMethod(http.RequestMethod.GET)
+    HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
-        this.datas = value.itemList
+        this.pageState = PageState.Success;
+        if (this.nextPageUrl === HomeApi.FOLLOW) {
+          this.datas = value.itemList
+        } else {
+          this.datas = this.datas.concat(value.itemList);
+        }
+        this.nextPageUrl = value.nextPageUrl
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
+  aboutToAppear() {
+    this.sendCommunityFollowRequest()
+  }
+
+  refreshData () {
+    this.nextPageUrl = HomeApi.FOLLOW
+    this.sendCommunityFollowRequest()
+  }
+
+  loadMoreData () {
+    this.sendCommunityFollowRequest()
+  }
+
   build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List() {
-          ForEach(this.datas, (followInfo) => {
-            ListItem() {
-              this.cellLayout(followInfo)
-            }
-          })
-        }
-        .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.MATCH_PARENT)
-        .layoutWeight(1)
+    LMList({
+      itemLayout: (data) => this.itemLayout(data),
+      onRefresh: () => {
+        this.refreshData()
+      },
+      onLoadMore: () => {
+        this.loadMoreData()
       }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-          this.sendCommunityFollowRequest()
-        }, 1000)
-        console.log('onRefreshing test')
-      })
-      .width(Constants.MATCH_PARENT)
-      .layoutWeight(1)
-    }
+    })
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
@@ -103,7 +104,7 @@ export struct CommunityFollowTabContent {
     .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
   }
 
-  @Builder cellLayout (info: VideoInfo) {
+  @Builder itemLayout (info: VideoInfo) {
     Column(){
       this.authorLayout(info)
       Stack() {
@@ -167,11 +168,11 @@ export struct CommunityFollowTabContent {
     })
     .onClick(() => {
       router.pushUrl({
-          url: RouterPath.VIDEO_DETAIL_PAGE,
-          params: {
-            data:info.data.content.data,
-            shareId: `${this.datas.indexOf(info)}${info.data.content.data.id}`
-          }
+        url: RouterPath.VIDEO_DETAIL_PAGE,
+        params: {
+          data:info.data.content.data,
+          shareId: `${this.datas.indexOf(info)}${info.data.content.data.id}`
+        }
       })
     })
   }

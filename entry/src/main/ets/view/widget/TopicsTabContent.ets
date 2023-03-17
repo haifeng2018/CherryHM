@@ -1,3 +1,5 @@
+import LMList from './refresh/LMList';
+import { RefreshConfig } from './refresh/RefreshConfig';
 import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
@@ -6,6 +8,7 @@ import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -20,61 +23,59 @@ import HttpRequest from '../../util/HttpRequest';
 @Component
 export struct TopicsTabContent {
 
-  // @ts-ignore
-  @State datas: Array<VideoInfo> = [];
-  @State isRefreshing: boolean = false
+  @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  aboutToAppear() {
-    this.sendTopicsRequest()
-  }
+  @State nextPageUrl: string = DiscoveryApi.TOPICS
 
   sendTopicsRequest () {
-    HttpRequest.url = DiscoveryApi.TOPICS
-    HttpRequest.setMethod(http.RequestMethod.GET)
+    HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
-        this.datas = value.itemList
+        this.pageState = PageState.Success;
+        if (this.nextPageUrl === DiscoveryApi.TOPICS) {
+          this.datas = value.itemList
+        } else {
+          this.datas = this.datas.concat(value.itemList);
+        }
+        this.nextPageUrl = value.nextPageUrl
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
+  aboutToAppear() {
+    this.sendTopicsRequest()
+  }
+
+  refreshData () {
+    this.nextPageUrl = DiscoveryApi.TOPICS
+    this.sendTopicsRequest()
+  }
+
+  loadMoreData () {
+    this.sendTopicsRequest()
+  }
+
   build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List() {
-          ForEach(this.datas, (item) => {
-            ListItem() {
-                this.contentCell(item)
-            }
-          })
-        }
-        .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.MATCH_PARENT)
-        .layoutWeight(1)
+    LMList({
+      itemLayout: (data) => this.itemLayout(data),
+      onRefresh: () => {
+        this.refreshData()
+      },
+      onLoadMore: () => {
+        this.loadMoreData()
       }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-          this.sendTopicsRequest()
-        }, 1000)
-        console.log('onRefreshing test')
-      })
-      .width(Constants.MATCH_PARENT)
-      .layoutWeight(1)
-    }
+    })
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
   }
 
-  @Builder contentCell (info: VideoInfo) {
+  @Builder itemLayout (info: VideoInfo) {
     Image(info.data.image)
       .objectFit(ImageFit.Cover)
       .width(Constants.MATCH_PARENT)

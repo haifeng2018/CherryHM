@@ -28,7 +28,6 @@ export struct RankingTabContent {
 
   sendRankingRequest () {
     HttpRequest.url = this.url
-    HttpRequest.setMethod(http.RequestMethod.GET)
     HttpRequest.request({
       onSuccess: (value) => {
         this.datas = value.itemList

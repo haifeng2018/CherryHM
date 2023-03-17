@@ -1,12 +1,14 @@
+import LMList from './refresh/LMList';
+import { RefreshConfig } from './refresh/RefreshConfig';
 import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
-import { VideoCellData } from '../../bean/VideoCellData';
 import { VideoInfo } from '../../bean/VideoInfo';
 import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -21,56 +23,53 @@ import HttpRequest from '../../util/HttpRequest';
 @Component
 export struct FollowTabContent {
 
-  @State datas: Array<VideoInfo> = [];
-  @State isRefreshing: boolean = false
+  @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  scroller: Scroller = new Scroller()
-
-  aboutToAppear() {
-    this.sendFollowRequest()
-  }
+  @State nextPageUrl: string = DiscoveryApi.FOLLOW
 
   sendFollowRequest () {
-    HttpRequest.url = DiscoveryApi.FOLLOW
-    HttpRequest.setMethod(http.RequestMethod.GET)
+    HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
-        this.datas = value.itemList
+        this.pageState = PageState.Success;
+        if (this.nextPageUrl === DiscoveryApi.FOLLOW) {
+          this.datas = value.itemList
+        } else {
+          this.datas = this.datas.concat(value.itemList);
+        }
+        this.nextPageUrl = value.nextPageUrl
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
+  aboutToAppear() {
+    this.sendFollowRequest()
+  }
+
+  refreshData () {
+    this.nextPageUrl = DiscoveryApi.FOLLOW
+    this.sendFollowRequest()
+  }
+
+  loadMoreData () {
+    this.sendFollowRequest()
+  }
+
   build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List() {
-          ForEach(this.datas, (item) => {
-            ListItem() {
-              this.contentCell(item)
-            }
-          })
-        }
-        .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.MATCH_PARENT)
-        .layoutWeight(1)
+    LMList({
+      itemLayout: (data) => this.itemLayout(data),
+      onRefresh: () => {
+        this.refreshData()
+      },
+      onLoadMore: () => {
+        this.loadMoreData()
       }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-          this.sendFollowRequest()
-        }, 1000)
-        console.log('onRefreshing test')
-      })
-      .width(Constants.MATCH_PARENT)
-      .layoutWeight(1)
-    }
+    })
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
@@ -107,7 +106,7 @@ export struct FollowTabContent {
     .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
   }
 
-  @Builder contentCell (info: VideoInfo) {
+  @Builder itemLayout (info: VideoInfo) {
     Column(){
       this.headCell(info)
       List({ space: 10 }) {
