@@ -9,25 +9,40 @@ export default struct RefreshHeader {
   @ObjectLink refreshLayoutClass: RefreshLoadLayoutPrams;
 
   build() {
-    if (this.refreshLayoutClass.isVisible) {
-      Row() {
-        LoadingProgress()
-          .width(this.getSize(this.refreshLayoutClass.scale))
-          .height(this.getSize(this.refreshLayoutClass.scale))
+    Row() {
+      LoadingProgress()
+        .width('50vp')
+        .height('50vp')
 
-        Text(this.refreshLayoutClass.textValue)
-          .fontColor($r('app.color.color_666666'))
-          .fontSize($r('app.float.fp_18'))
-      }
-      .width(Constants.MATCH_PARENT)
-      .justifyContent(FlexAlign.Center)
-      .height(this.refreshLayoutClass.heightValue)
+      Text(this.refreshLayoutClass.textValue)
+        .fontColor($r('app.color.color_666666'))
+        .fontSize($r('app.float.fp_18'))
     }
+    .width(Constants.MATCH_PARENT)
+    .justifyContent(FlexAlign.Center)
+    .height(this.refreshLayoutClass.heightValue)
+    .opacity(this.getOpacity())
+//    .scale({x:this.getOpacity(),y:this.getOpacity()})
   }
 
-  getSize (scale: number): string {
-//    return `${scale * 50}vp`
-    return '50vp'
+  getSize (): string {
+    let size = this.getOpacity() * 50
+    if (size > 50) {
+      size = 50
+    }
+    return `${size}vp`
+  }
+
+  getOpacity():number {
+    if (this.refreshLayoutClass.offsetY > 2*this.refreshLayoutClass.heightValue) {
+      let y = this.refreshLayoutClass.offsetY - 2*this.refreshLayoutClass.heightValue
+      let opacity = y / this.refreshLayoutClass.heightValue
+      if (opacity > 1) {
+        opacity = 1
+      }
+      return opacity
+    }
+    return 0
   }
 
 }

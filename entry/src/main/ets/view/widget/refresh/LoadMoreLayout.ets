@@ -12,13 +12,13 @@ export default struct LoadMoreLayout {
     Column() {
       if (this.loadMoreLayoutClass.isVisible) {
         RefreshHeader({
-          refreshLayoutClass: new RefreshLoadLayoutPrams(1,this.loadMoreLayoutClass.isVisible,
-            this.loadMoreLayoutClass.imageSrc, this.loadMoreLayoutClass.textValue, this.loadMoreLayoutClass.heightValue)
+          refreshLayoutClass: new RefreshLoadLayoutPrams(this.loadMoreLayoutClass.isVisible,
+             this.loadMoreLayoutClass.textValue, this.loadMoreLayoutClass.heightValue,this.loadMoreLayoutClass.offsetY)
         })
       } else {
         RefreshHeader({
-          refreshLayoutClass: new RefreshLoadLayoutPrams(1,this.loadMoreLayoutClass.isVisible,
-            this.loadMoreLayoutClass.imageSrc, this.loadMoreLayoutClass.textValue, 0)
+          refreshLayoutClass: new RefreshLoadLayoutPrams(this.loadMoreLayoutClass.isVisible,
+           this.loadMoreLayoutClass.textValue, 0,this.loadMoreLayoutClass.offsetY)
         })
       }
     }

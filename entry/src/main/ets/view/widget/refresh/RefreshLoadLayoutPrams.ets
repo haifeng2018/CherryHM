@@ -19,11 +19,6 @@ export class RefreshLoadLayoutPrams {
   isVisible: boolean;
 
   /**
-   * Custom refresh load layout imageSrc.
-   */
-  imageSrc: Resource;
-
-  /**
    * Custom refresh load layout textValue.
    */
   textValue: Resource;
@@ -33,13 +28,12 @@ export class RefreshLoadLayoutPrams {
    */
   heightValue: number;
 
-  scale: number;
+  offsetY: number;
 
-  constructor(scale: number,isVisible: boolean, imageSrc: Resource, textValue: Resource, heightValue: number) {
-    this.scale = scale;
+  constructor(isVisible: boolean, textValue: Resource, heightValue: number,offsetY: number) {
     this.isVisible = isVisible;
-    this.imageSrc = imageSrc;
     this.textValue = textValue;
     this.heightValue = heightValue;
+    this.offsetY = offsetY;
   }
 }

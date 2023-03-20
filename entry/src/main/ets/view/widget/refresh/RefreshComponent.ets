@@ -73,23 +73,24 @@ export default struct RefreshComponent {
   }
 
   @Builder LoadingLayout() {
-    RefreshHeader({ refreshLayoutClass: new RefreshLoadLayoutPrams(1,true,
-    $r('app.media.ic_pull_up_load'), $r('app.string.pull_up_load_text'), this.pullDownRefreshHeight) })
+    RefreshHeader({ refreshLayoutClass: new RefreshLoadLayoutPrams(true,
+     $r('app.string.pull_up_load_text'), this.pullDownRefreshHeight,this.offsetY) })
   }
 
   @Builder ContentLayout() {
     Column() {
       RefreshHeader({
-        refreshLayoutClass: new RefreshLoadLayoutPrams(this.getHeaderScale(),this.isVisiblePullDown, this.pullDownRefreshImage,
-        this.pullDownRefreshText, this.pullDownRefreshHeight)
+        refreshLayoutClass: new RefreshLoadLayoutPrams(this.isVisiblePullDown,
+        this.pullDownRefreshText, this.pullDownRefreshHeight,this.offsetY)
       })
+
       if (this.itemLayout !== null) {
         this.itemLayout()
       }
     }
       .width(Constants.MATCH_PARENT)
       .height(Constants.MATCH_PARENT)
-      .offset({ y: `${this.offsetY}px`})
+    .offset({ y: `${vp2px(-this.pullUpLoadHeight) + this.offsetY}px`})
   }
 
   @Builder FailLayout() {

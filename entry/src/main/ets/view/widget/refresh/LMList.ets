@@ -19,11 +19,9 @@ import { RefreshState } from './RefreshState';
 @Component
 export default struct LMList {
   @State pullDownRefreshText: Resource = $r('app.string.pull_down_refresh_text');
-  @State pullDownRefreshImage: Resource = $r('app.media.ic_pull_down_refresh');
   @State pullDownRefreshHeight: number = RefreshConfig.CUSTOM_LAYOUT_HEIGHT;
   @State isVisiblePullDown: boolean = false;
   @State pullUpLoadText: Resource = $r('app.string.pull_up_load_text');
-  @State pullUpLoadImage: Resource = $r('app.media.ic_pull_up_load');
   @State pullUpLoadHeight: number = RefreshConfig.CUSTOM_LAYOUT_HEIGHT;
   @State isVisiblePullUpLoad: boolean = false;
   private startIndex = 0;
@@ -80,18 +78,18 @@ export default struct LMList {
   }
 
   @Builder LoadingLayout() {
-    RefreshHeader({ refreshLayoutClass: new RefreshLoadLayoutPrams(1,true,
-    $r('app.media.ic_pull_up_load'), $r('app.string.pull_up_load_text'), this.pullDownRefreshHeight) })
+    RefreshHeader({ refreshLayoutClass: new RefreshLoadLayoutPrams(true,
+    $r('app.string.pull_up_load_text'), this.pullDownRefreshHeight,this.pullDownRefreshHeight*2 + 66) })
   }
 
   @Builder ListLayout() {
+    Column() {
+      RefreshHeader({
+        refreshLayoutClass: new RefreshLoadLayoutPrams(this.isVisiblePullDown,
+        this.pullDownRefreshText, this.pullDownRefreshHeight,this.offsetY)
+      })
+
       List() {
-        ListItem(){
-          RefreshHeader({
-            refreshLayoutClass: new RefreshLoadLayoutPrams(this.getHeaderScale(),this.isVisiblePullDown, this.pullDownRefreshImage,
-            this.pullDownRefreshText, this.pullDownRefreshHeight)
-          })
-        }
         ForEach(this.datas, item => {
           ListItem() {
             this.itemLayout(item)
@@ -100,8 +98,8 @@ export default struct LMList {
 
         ListItem() {
           LoadMoreLayout({
-            loadMoreLayoutClass: new RefreshLoadLayoutPrams(1,this.isVisiblePullUpLoad, this.pullUpLoadImage,
-            this.pullUpLoadText, this.pullUpLoadHeight)
+            loadMoreLayoutClass: new RefreshLoadLayoutPrams(this.isVisiblePullUpLoad,
+            this.pullUpLoadText, this.pullUpLoadHeight,this.offsetY)
           })
         }
       }
@@ -114,7 +112,8 @@ export default struct LMList {
         this.startIndex = start;
         this.endIndex = end;
       })
-      .offset({ y: `${this.offsetY}px`})
+    }
+    .offset({ y: `${vp2px(-this.pullUpLoadHeight) + this.offsetY}px`})
   }
 
   @Builder FailLayout() {
@@ -125,11 +124,6 @@ export default struct LMList {
       .opacity(0.6)
       .fontSize('18fp')
       .fontColor($r('app.color.color_666666'))
-  }
-
-  getHeaderScale ():number {
-    let scale = this.offsetY / this.pullDownRefreshHeight
-    return scale
   }
 
   /////////////////处理下拉刷新 start//////////////////////
@@ -209,33 +203,28 @@ export default struct LMList {
     switch (state) {
       case RefreshState.DropDown:
         this.pullDownRefreshText = $r('app.string.pull_down_refresh_text');
-        this.pullDownRefreshImage = $r("app.media.ic_pull_down_refresh");
         this.isCanRefresh = false;
         this.isRefreshing = false;
         this.isVisiblePullDown = true;
         break;
       case RefreshState.Release:
         this.pullDownRefreshText = $r('app.string.release_refresh_text');
-        this.pullDownRefreshImage = $r("app.media.ic_pull_up_refresh");
         this.isCanRefresh = true;
         this.isRefreshing = false;
         break;
       case RefreshState.Refreshing:
         this.offsetY = vp2px(this.pullDownRefreshHeight);
         this.pullDownRefreshText = $r('app.string.refreshing_text');
-        this.pullDownRefreshImage = $r("app.media.ic_pull_up_load");
         this.isCanRefresh = true;
         this.isRefreshing = true;
         break;
       case RefreshState.Success:
         this.pullDownRefreshText = $r('app.string.refresh_success_text');
-        this.pullDownRefreshImage = $r("app.media.ic_succeed_refresh");
         this.isCanRefresh = true;
         this.isRefreshing = true;
         break;
       case RefreshState.Fail:
         this.pullDownRefreshText = $r('app.string.refresh_fail_text');
-        this.pullDownRefreshImage = $r("app.media.ic_fail_refresh");
         this.isCanRefresh = true;
         this.isRefreshing = true;
         break;
