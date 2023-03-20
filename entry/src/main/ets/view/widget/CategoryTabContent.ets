@@ -1,3 +1,5 @@
+import RefreshComponent from './refresh/RefreshComponent';
+import { RefreshConfig } from './refresh/RefreshConfig';
 import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
 import { CategoryInfo } from '../../bean/CategoryInfo';
@@ -6,6 +8,7 @@ import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -21,7 +24,9 @@ import HttpRequest from '../../util/HttpRequest';
 export struct CategoryTabContent {
 
   @State datas: Array<CategoryInfo> = [];
-  @State isRefreshing: boolean = false
+
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
+  @Provide(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) listScrollTop : boolean = true;
 
   scroller: Scroller = new Scroller()
 
@@ -34,50 +39,47 @@ export struct CategoryTabContent {
     HttpRequest.setMethod(http.RequestMethod.GET)
     HttpRequest.request({
       onSuccess: (value) => {
+        this.pageState = PageState.Success;
         this.datas = value
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
   build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        Grid(this.scroller) {
-          ForEach(this.datas, (data) => {
-            GridItem() {
-              this.cellLayout(data)
-            }
-          })
-        }
-        .layoutDirection(GridDirection.Column)
-        .columnsTemplate('1fr 1fr')
-        .columnsGap('10vp')
-        .rowsGap('10vp')
-        .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.MATCH_PARENT)
-        .layoutWeight(1)
-        .padding('10vp')
+    RefreshComponent({
+      itemLayout: () => this.itemLayout(),
+      onRefresh: () => {
+        this.sendCategoryRequest()
       }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-          this.sendCategoryRequest()
-        }, 1000)
-        console.log('onRefreshing test')
-      })
-      .width(Constants.MATCH_PARENT)
-      .layoutWeight(1)
-    }
+    })
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
+  }
+
+  @Builder itemLayout() {
+    Grid(this.scroller) {
+      ForEach(this.datas, (data) => {
+        GridItem() {
+          this.cellLayout(data)
+        }
+      })
+    }
+    .layoutDirection(GridDirection.Column)
+    .columnsTemplate('1fr 1fr')
+    .columnsGap('10vp')
+    .rowsGap('10vp')
+    .backgroundColor($r('app.color.color_F9F9F9'))
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
+    .padding('10vp')
+    .onScrollIndex((first: number) => {
+      this.listScrollTop = first === 0
+    })
   }
 
   @Builder cellLayout (info: CategoryInfo) {

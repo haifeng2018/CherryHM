@@ -1,10 +1,13 @@
+import { RefreshConfig } from './refresh/RefreshConfig';
+import RefreshComponent from './refresh/RefreshComponent';
 import { RouterPath } from '../../util/RouterPath';
 import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
 import promptAction from '@ohos.promptAction';
-import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import { PageState } from './refresh/PageState';
+
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
@@ -20,7 +23,9 @@ import HttpRequest from '../../util/HttpRequest';
 export struct RankingTabContent {
   @State url: string = "";
   @State datas: Array<VideoInfo> = [];
-  @State isRefreshing: boolean = false
+
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
+  @Provide(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) listScrollTop : boolean = true;
 
   aboutToAppear() {
     this.sendRankingRequest()
@@ -30,43 +35,42 @@ export struct RankingTabContent {
     HttpRequest.url = this.url
     HttpRequest.request({
       onSuccess: (value) => {
+        this.pageState = PageState.Success;
         this.datas = value.itemList
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
   build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List() {
-          ForEach(this.datas, (data) => {
-            ListItem() {
-              this.cellLayout(data)
-            }
-          })
-        }
-        .backgroundColor($r('app.color.color_F9F9F9'))
-        .width(Constants.MATCH_PARENT)
-        .layoutWeight(1)
+    RefreshComponent({
+      itemLayout: () => this.itemLayout(),
+      onRefresh: () => {
+        this.sendRankingRequest()
       }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-          this.sendRankingRequest()
-        }, 1000)
-        console.log('onRefreshing test')
-      })
-    }
+    })
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
+  }
+
+  @Builder itemLayout () {
+    List() {
+      ForEach(this.datas, (data) => {
+        ListItem() {
+          this.cellLayout(data)
+        }
+      })
+    }
+    // 去掉回弹效果
+    .edgeEffect(EdgeEffect.None)
+    .onScrollIndex((start, end) => {
+      // 监听当前列表首位索引
+      this.listScrollTop = start === 0
+    })
   }
 
   @Builder authorLayout(info: VideoInfo) {

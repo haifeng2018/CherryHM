@@ -11,6 +11,7 @@
 export const RefreshConfig = {
   REFRESH_STATE_TAG: 'refresh_state_tag',
   REFRESH_DATA_TAG: 'refresh_data_tag',
+  REFRESH_LIST_SCROLL_TOP_TAG: 'refresh_list_scroll_top',
 
   DELAY_PULL_DOWN_REFRESH: 50,
   CLOSE_PULL_DOWN_REFRESH_TIME: 150,
