@@ -31,7 +31,7 @@ struct CategoryDetailPage {
         } else {
           this.datas = this.datas.concat(value.itemList);
         }
-        this.nextPageUrl = value.nextPageUrl + DiscoveryApi.AUTH
+        this.nextPageUrl = value.nextPageUrl + DiscoveryApi.CATEGORY_DETAIL_AUTH
       },
       onFail: (errorCode) => {
         this.pageState = PageState.Fail
@@ -65,11 +65,11 @@ struct CategoryDetailPage {
           this.loadMoreData()
         }
       })
+        .layoutWeight(1)
     }
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
-    .align(Alignment.Top)
   }
 
   @Builder titleBar() {

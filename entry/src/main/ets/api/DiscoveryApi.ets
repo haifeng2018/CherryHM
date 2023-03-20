@@ -18,6 +18,6 @@ export class DiscoveryApi {
   static readonly LIGHT_TOPICS = 'http://baobab.kaiyanapp.com/api/v3/lightTopics/internal/'
   static readonly NEWS = 'http://baobab.kaiyanapp.com/api/v7/information/list?vc=6030000&deviceModel=HM'
   static readonly RECOMMEND = 'http://baobab.kaiyanapp.com/api/v7/community/tab/rec'
-  static readonly AUTH = '&udid=d2807c895f0348a180148c9dfa6f2feeac0781b5&deviceModel=hm'
+  static readonly CATEGORY_DETAIL_AUTH = '&udid=d2807c895f0348a180148c9dfa6f2feeac0781b5&deviceModel=hm'
   static readonly NEWS_AUTH = '&vc=6030000&deviceModel=hm'
 }

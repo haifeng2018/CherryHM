@@ -13,7 +13,7 @@ export default struct LoadMoreLayout {
       if (this.loadMoreLayoutClass.isVisible) {
         RefreshHeader({
           refreshLayoutClass: new RefreshLoadLayoutPrams(this.loadMoreLayoutClass.isVisible,
-             this.loadMoreLayoutClass.textValue, this.loadMoreLayoutClass.heightValue,this.loadMoreLayoutClass.offsetY)
+             this.loadMoreLayoutClass.textValue, this.loadMoreLayoutClass.heightValue,this.loadMoreLayoutClass.heightValue*2+66)
         })
       } else {
         RefreshHeader({
