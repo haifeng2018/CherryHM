@@ -1,3 +1,5 @@
+import { RouterPath } from '../../util/RouterPath';
+import router from '@ohos.router';
 import LMList from './refresh/LMList';
 import { RefreshConfig } from './refresh/RefreshConfig';
 import { VideoInfo } from '../../bean/VideoInfo';
@@ -35,7 +37,7 @@ export struct NewsTabContent {
         } else {
           this.datas = this.datas.concat(value.itemList);
         }
-        this.nextPageUrl = value.nextPageUrl
+        this.nextPageUrl = value.nextPageUrl + DiscoveryApi.NEWS_AUTH
       },
       onFail: (errorCode) => {
         this.pageState = PageState.Fail
@@ -129,6 +131,29 @@ export struct NewsTabContent {
     .backgroundColor($r('app.color.white'))
     .borderRadius('10vp')
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.WEB_PAGE,
+        params: {
+          title: this.getTitle(info.data.actionUrl),
+          url: this.getUrl(info.data.actionUrl),
+        },
+      })
+    })
   }
 
+  getTitle(actionUrl: string): string {
+    let title = actionUrl.substring(actionUrl.indexOf('=') + 1,actionUrl.indexOf('&'))
+    let decodeTitle = decodeURIComponent(title)
+    console.error('NewsTabContent','decodeTitle = ' + decodeTitle)
+    return decodeTitle
+  }
+
+  getUrl(actionUrl: string): string {
+    let url = actionUrl.substring(actionUrl.indexOf('url'))
+    let decodeUrl = decodeURIComponent(url)
+
+    console.error('NewsTabContent','decodeUrl = ' + decodeUrl)
+    return decodeUrl
+  }
 }

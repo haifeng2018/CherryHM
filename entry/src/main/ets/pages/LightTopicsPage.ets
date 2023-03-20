@@ -34,10 +34,12 @@ struct LightTopicsPage {
   build() {
     Column(){
       this.titleBar()
-
       Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
         Column(){
           List() {
+            ListItem(){
+              this.headerLayout()
+            }
             ForEach(this.data.itemList, (item) => {
               ListItem() {
                 this.cellLayout(item)
@@ -120,25 +122,132 @@ struct LightTopicsPage {
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 
-  @Builder cellLayout (info: LightTopicsInfo) {
+  @Builder headerLayout () {
     Stack(){
-      Image(info.data.content.data.cover.feed)
+      Image(this.data.headerImage)
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height('256vp')
 
-      Text(info.data.content.data.title)
-        .fontColor($r('app.color.white'))
-        .fontSize('22fp')
-        .padding('10vp')
+      Column(){
+        Text(this.data.brief)
+          .width('90%')
+          .height('80vp')
+          .backgroundColor($r('app.color.white'))
+          .fontColor($r('app.color.color_333333'))
+          .fontSize('22fp')
+          .textAlign(TextAlign.Center)
+          .maxLines(2)
+          .textOverflow({overflow:TextOverflow.Ellipsis})
+          .padding('10vp')
+          .margin({top:'226vp'})
+          .border({ radius:'8vp' })
+          .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
+
+        Text(this.data.text).width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_666666'))
+          .fontSize('18fp')
+          .padding('10vp')
       }
+    }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .sharedTransition(`${info.data.content.data.id}`, {
-      duration: Constants.TRANSITION_ANIMATION_DURATION,
-      curve: Curve.Smooth,
-      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
-    })
+    .alignContent(Alignment.Top)
+  }
+
+  @Builder authorLayout(info: LightTopicsInfo) {
+    Row(){
+      Image(info.data.content.data.author.icon)
+        .width('40vp')
+        .height('40vp')
+        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+
+      Column() {
+        Text(info.data.content.data.author.name)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_333333'))
+          .fontSize('18fp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+
+        Text(info.data.content.data.author.description)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_666666'))
+          .fontSize('12fp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+      }
+      .layoutWeight(1)
+      .padding({left:'10vp'})
+    }
+    .width(Constants.MATCH_PARENT)
+    .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+  }
+
+  @Builder cellLayout (info: LightTopicsInfo) {
+    Column(){
+      this.authorLayout(info)
+      Stack() {
+        Image(info.data.content.data.cover.feed)
+          .objectFit(ImageFit.Cover)
+          .width(Constants.MATCH_PARENT)
+          .height(Constants.MATCH_PARENT)
+          .sharedTransition(`${info.data.content.data.id}`, {
+            duration: Constants.TRANSITION_ANIMATION_DURATION,
+            curve: Curve.Smooth,
+            delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+          })
+
+        Text(info.data.content.data.category)
+          .textAlign(TextAlign.Center)
+          .fontColor($r('app.color.color_333333'))
+          .fontSize('16fp')
+          .backgroundColor($r('app.color.color_4DFFFFFF'))
+          .margin({top:'5vp',right:'5vp'})
+          .padding({top:'5vp',bottom:'5vp',left:'10vp',right:'10vp'})
+          .borderRadius('5vp')
+      }
+      .width(Constants.MATCH_PARENT)
+      .height('256vp')
+      .alignContent(Alignment.TopEnd)
+
+      Text(info.data.content.data.description)
+        .width(Constants.MATCH_PARENT)
+        .textAlign(TextAlign.Start)
+        .fontSize('16fp')
+        .fontColor($r('app.color.color_999999'))
+        .maxLines(2)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .padding('10vp')
+
+      Row() {
+        Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
+        Text(info.data.content.data.consumption.collectionCount.toString())
+          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+
+        Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
+        Text(info.data.content.data.consumption.replyCount.toString())
+          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+
+        Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
+        Text(info.data.content.data.consumption.shareCount.toString())
+          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+      }
+      .width(Constants.MATCH_PARENT)
+      .justifyContent(FlexAlign.End)
+      .padding({left:'10vp',right:'10vp'})
+
+      Text()
+        .width(Constants.MATCH_PARENT)
+        .height('1vp')
+        .margin({top:'10vp'})
+        .backgroundColor($r('app.color.color_80DDDDDD'))
+    }
+    .width(Constants.MATCH_PARENT)
+    .backgroundColor($r('app.color.white'))
+    .alignItems(HorizontalAlign.Start)
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.VIDEO_DETAIL_PAGE,

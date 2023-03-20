@@ -1,3 +1,6 @@
+import { CategoryInfo } from '../bean/CategoryInfo';
+import LMList from '../view/widget/refresh/LMList';
+import { RefreshConfig } from '../view/widget/refresh/RefreshConfig';
 import { RouterPath } from '../util/RouterPath';
 import promptAction from '@ohos.promptAction';
 import { VideoInfo } from '../bean/VideoInfo';
@@ -5,67 +8,68 @@ import { DiscoveryApi } from '../api/DiscoveryApi';
 import router from '@ohos.router';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
+import { PageState } from '../view/widget/refresh/PageState';
 
 @Entry
 @Component
 struct CategoryDetailPage {
-  @State isRefreshing: boolean = false
 
-  @State categoryId: number = router.getParams()?.['categoryId'];
-  @State categoryName: string = router.getParams()?.['categoryName'];
+  @State data: CategoryInfo = router.getParams()?.['data'];
 
-  @State datas: Array<VideoInfo> = [];
+  @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  aboutToAppear() {
-    this.sendCategoryDetailRequest()
-  }
+  @State nextPageUrl: string = DiscoveryApi.CATEGORY_DETAIL + this.data.id
 
   sendCategoryDetailRequest () {
-    HttpRequest.url = DiscoveryApi.CATEGORY_DETAIL + this.categoryId
+    HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
-        this.datas = value.itemList
+        this.pageState = PageState.Success;
+        if (this.nextPageUrl === DiscoveryApi.CATEGORY_DETAIL + this.data.id) {
+          this.datas = value.itemList
+        } else {
+          this.datas = this.datas.concat(value.itemList);
+        }
+        this.nextPageUrl = value.nextPageUrl + DiscoveryApi.AUTH
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
+  aboutToAppear() {
+    this.sendCategoryDetailRequest()
+  }
+
+  refreshData () {
+    this.nextPageUrl = DiscoveryApi.CATEGORY_DETAIL + this.data.id
+    this.sendCategoryDetailRequest()
+  }
+
+  loadMoreData () {
+    this.sendCategoryDetailRequest()
+  }
+
   build() {
-    Column(){
+    Column() {
       this.titleBar()
-
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        List() {
-          ForEach(this.datas, (item) => {
-            ListItem() {
-              this.cellLayout(item)
-            }
-          })
+      LMList({
+        itemLayout: (data) => this.itemLayout(data),
+        onRefresh: () => {
+          this.refreshData()
+        },
+        onLoadMore: () => {
+          this.loadMoreData()
         }
-        .width(Constants.MATCH_PARENT)
-        .height(Constants.MATCH_PARENT)
-      }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-          this.sendCategoryDetailRequest()
-        }, 1000)
-        console.log('onRefreshing test')
-      })
-      .width(Constants.MATCH_PARENT)
-      .height(Constants.MATCH_PARENT)
-
-
     }
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
+    .align(Alignment.Top)
   }
 
   @Builder titleBar() {
@@ -84,7 +88,7 @@ struct CategoryDetailPage {
         step: 20,
         loop: Infinity,
         fromStart: true,
-        src: this.categoryName
+        src: this.data.name
       })
         .width(Constants.MATCH_PARENT)
         .height('56vp')
@@ -114,20 +118,58 @@ struct CategoryDetailPage {
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 
-  @Builder cellLayout (info: VideoInfo) {
-    Stack(){
+  @Builder authorLayout(info: VideoInfo) {
+    Row(){
+      Image(info.data.author.icon)
+        .width('40vp')
+        .height('40vp')
+        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+
+      Column() {
+        Text(info.data.author.name)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_333333'))
+          .fontSize('18fp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+
+        Text(info.data.author.description)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_666666'))
+          .fontSize('12fp')
+          .padding('2vp')
+          .textAlign(TextAlign.Start)
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+      }
+      .layoutWeight(1)
+      .padding({left:'10vp'})
+    }
+    .width(Constants.MATCH_PARENT)
+    .padding({top:'10vp',bottom:'20vp',left:'20vp',right:'20vp'})
+  }
+
+  @Builder itemLayout (info: VideoInfo) {
+    Column(){
       Image(info.data.cover.feed)
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height('256vp')
 
-      Text(info.data.title)
-        .fontColor($r('app.color.white'))
-        .fontSize('22fp')
+      Text(info.data.description)
+        .width(Constants.MATCH_PARENT)
+        .textAlign(TextAlign.Start)
+        .fontSize('16fp')
+        .fontColor($r('app.color.color_999999'))
+        .maxLines(2)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
         .padding('10vp')
-      }
+
+      this.authorLayout(info)
+    }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
+    .alignItems(HorizontalAlign.Start)
     .sharedTransition(`${this.datas.indexOf(info)}${info.data.id}`, {
       duration: Constants.TRANSITION_ANIMATION_DURATION,
       curve: Curve.Smooth,

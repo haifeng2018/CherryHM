@@ -32,6 +32,7 @@ export class VideoCellContentData {
 
   type:string
   dataType:string
+  actionUrl: string;
   text:string
   duration: number
   count: number

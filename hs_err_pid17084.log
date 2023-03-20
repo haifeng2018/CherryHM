@@ -1,0 +1,198 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 534773760 bytes for Failed to commit area from 0x0000000603a00000 to 0x0000000623800000 of length 534773760.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (./src/hotspot/os/windows/os_windows.cpp:3619), pid=17084, tid=16740
+#
+# JRE version:  (11.0.13+7) (build )
+# Java VM: Dynamic Code Evolution 64-Bit Server VM (11.0.13+7-b1751.21, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=utf-8 D:\soft\harmony_sdk\openharmony\9\toolchains\lib\app_packing_tool.jar --mode hap --force true --lib-path D:\victor\github\CherryHM\entry\build\default\intermediates\libs\default --json-path D:\victor\github\CherryHM\entry\build\default\intermediates\res\default\module.json --resources-path D:\victor\github\CherryHM\entry\build\default\intermediates\res\default\resources --index-path D:\victor\github\CherryHM\entry\build\default\intermediates\res\default\resources.index --pack-info-path D:\victor\github\CherryHM\entry\build\default\outputs\default\pack.info --out-path D:\victor\github\CherryHM\entry\build\default\outputs\default\entry-default-unsigned.hap --ets-path D:\victor\github\CherryHM\entry\build\default\intermediates\loader_out\default\ets
+
+Host: 11th Gen Intel(R) Core(TM) i7-11700 @ 2.50GHz, 16 cores, 31G,  Windows 11 , 64 bit Build 22621 (10.0.22621.1344)
+Time: Fri Mar 17 19:22:09 2023 中国标准时间 elapsed time: 0.023979 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000206e6baa800):  JavaThread "Unknown thread" [_thread_in_vm, id=16740, stack(0x0000000c75700000,0x0000000c75800000)]
+
+Stack: [0x0000000c75700000,0x0000000c75800000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x61f82a]
+V  [jvm.dll+0x7a6240]
+V  [jvm.dll+0x7a785d]
+V  [jvm.dll+0x7a7f33]
+V  [jvm.dll+0x250b68]
+V  [jvm.dll+0x61c894]
+V  [jvm.dll+0x6115b5]
+V  [jvm.dll+0x3105ab]
+V  [jvm.dll+0x31051a]
+V  [jvm.dll+0x3103f2]
+V  [jvm.dll+0x315346]
+V  [jvm.dll+0x35ec83]
+V  [jvm.dll+0x35f386]
+V  [jvm.dll+0x35ed83]
+V  [jvm.dll+0x2e9de8]
+V  [jvm.dll+0x2eaf97]
+V  [jvm.dll+0x782fe7]
+V  [jvm.dll+0x7848bc]
+V  [jvm.dll+0x36c1f9]
+V  [jvm.dll+0x766c7e]
+V  [jvm.dll+0x3da7d3]
+V  [jvm.dll+0x3dcd31]
+C  [jli.dll+0x536b]
+C  [ucrtbase.dll+0x29363]
+C  [KERNEL32.DLL+0x126bd]
+C  [ntdll.dll+0x5a9f8]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00000206e4914450, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x00000206e6bc1800 GCTaskThread "GC Thread#0" [stack: 0x0000000c75800000,0x0000000c75900000] [id=17668]
+  0x00000206e6c49800 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000000c75900000,0x0000000c75a00000] [id=4804]
+  0x00000206e6c4a800 ConcurrentGCThread "G1 Conc#0" [stack: 0x0000000c75a00000,0x0000000c75b00000] [id=17248]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffd039ca657]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00000206e6ba61e0] Heap_lock - owner thread: 0x00000206e6baa800
+
+Heap address: 0x0000000603a00000, size: 8134 MB, Compressed Oops mode: Non-zero based: 0x0000000603a00000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (1 events):
+Event: 0.005 Loaded shared library D:\soft\DevEco Studio 3.1.0.100\jbr\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff6c0380000 - 0x00007ff6c038a000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\java.exe
+0x00007ffd76a50000 - 0x00007ffd76c64000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffd76370000 - 0x00007ffd76433000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffd74350000 - 0x00007ffd746ec000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffd73f10000 - 0x00007ffd74021000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffd71640000 - 0x00007ffd71659000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\jli.dll
+0x00007ffd6fe20000 - 0x00007ffd6fe37000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\VCRUNTIME140.dll
+0x00007ffd74860000 - 0x00007ffd74a0d000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffd740a0000 - 0x00007ffd740c6000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffd59040000 - 0x00007ffd592ce000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.608_none_a9444ca7c10bb01d\COMCTL32.dll
+0x00007ffd74ac0000 - 0x00007ffd74ae9000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffd754d0000 - 0x00007ffd75577000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffd74170000 - 0x00007ffd74283000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffd740d0000 - 0x00007ffd7416a000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffd75000000 - 0x00007ffd75031000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffd522b0000 - 0x00007ffd5234d000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\msvcp140.dll
+0x00007ffd036d0000 - 0x00007ffd04256000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\server\jvm.dll
+0x00007ffd76960000 - 0x00007ffd76a0e000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffd74a10000 - 0x00007ffd74ab4000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffd74b50000 - 0x00007ffd74c65000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffd761b0000 - 0x00007ffd761b8000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffd44890000 - 0x00007ffd44899000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffd67ed0000 - 0x00007ffd67f04000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffd6c390000 - 0x00007ffd6c39a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffd766c0000 - 0x00007ffd76731000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffd72fd0000 - 0x00007ffd72fe8000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffd71710000 - 0x00007ffd71721000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\verify.dll
+0x00007ffd34e80000 - 0x00007ffd350ae000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffd74c70000 - 0x00007ffd74ff9000 	C:\WINDOWS\System32\combase.dll
+0x00007ffd76880000 - 0x00007ffd76957000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffd6f320000 - 0x00007ffd6f352000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffd73e90000 - 0x00007ffd73f0b000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffd63380000 - 0x00007ffd633a9000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\java.dll
+0x00007ffd71910000 - 0x00007ffd7191b000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\jimage.dll
+0x00007ffd71660000 - 0x00007ffd71678000 	D:\soft\DevEco Studio 3.1.0.100\jbr\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;D:\soft\DevEco Studio 3.1.0.100\jbr\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.608_none_a9444ca7c10bb01d;D:\soft\DevEco Studio 3.1.0.100\jbr\bin\server
+
+VM Arguments:
+jvm_args: -Dfile.encoding=utf-8 
+java_command: D:\soft\harmony_sdk\openharmony\9\toolchains\lib\app_packing_tool.jar --mode hap --force true --lib-path D:\victor\github\CherryHM\entry\build\default\intermediates\libs\default --json-path D:\victor\github\CherryHM\entry\build\default\intermediates\res\default\module.json --resources-path D:\victor\github\CherryHM\entry\build\default\intermediates\res\default\resources --index-path D:\victor\github\CherryHM\entry\build\default\intermediates\res\default\resources.index --pack-info-path D:\victor\github\CherryHM\entry\build\default\outputs\default\pack.info --out-path D:\victor\github\CherryHM\entry\build\default\outputs\default\entry-default-unsigned.hap --ets-path D:\victor\github\CherryHM\entry\build\default\intermediates\loader_out\default\ets
+java_class_path (initial): D:\soft\harmony_sdk\openharmony\9\toolchains\lib\app_packing_tool.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 13                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 2097152                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 534773760                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 8529117184                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 2097152                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7594288                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122031976                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122031976                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=D:\soft\DevEco Studio 3.1.0.100\jbr
+PATH=D:\soft\nodejs;D:\soft\DevEco Studio 3.1.0.100\jbr\bin;D:\soft\vmare\bin\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\soft\java\jdk-11.0.13\bin;D:\soft\Python310;D:\soft\Python310\Scripts;D:\soft\sdk\platforms;D:\soft\sdk\platform-tools;D:\soft\apache-tomcat-10.0.18\bin;D:\soft\git\Git\cmd;C:\Program Files\dotnet\;D:\soft\ffmpeg-master-latest-win64-gpl-shared\bin;D:\soft\DevEco Studio 3.1.0.100\bin;D:\soft\harmony_sdk\openharmony\9\toolchains;D:\soft\harmony_sdk\hmscore\3.1.0\toolchains;C:\Users\BS-WX\AppData\Local\Microsoft\WindowsApps;C:\Users\BS-WX\AppData\Local\GitHubDesktop\bin;;D:\soft\DevEco Studio 3.1.0.100\bin;
+USERNAME=victor
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 167 Stepping 1, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 11 , 64 bit Build 22621 (10.0.22621.1344)
+OS uptime: 1 days 0:57 hours
+
+CPU:total 16 (initial active 16) (8 cores per cpu, 2 threads per core) family 6 model 167 stepping 1 microcode 0x50, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, evex, sha, fma
+
+Memory: 4k page, system-wide physical 32533M (714M free)
+TotalPageFile size 62929M (AvailPageFile size 460M)
+current process WorkingSet (physical memory assigned to process): 11M, peak: 11M
+current process commit charge ("private bytes"): 71M, peak: 581M
+
+vm_info: Dynamic Code Evolution 64-Bit Server VM (11.0.13+7-b1751.21) for windows-amd64 JRE (11.0.13+7-b1751.21), built on Nov 30 2021 02:17:11 by "" with MS VC++ 14.0 (VS2015)
+
+END.

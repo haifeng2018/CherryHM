@@ -3,13 +3,7 @@ import { RecommendTabContent } from './RecommendTabContent';
 import { TopicsTabContent } from './TopicsTabContent';
 import { NewsTabContent } from './NewsTabContent';
 import { CategoryTabContent } from './CategoryTabContent';
-import { VideoCellData } from '../../bean/VideoCellData';
-import { VideoInfo } from '../../bean/VideoInfo';
-import { DiscoveryApi } from '../../api/DiscoveryApi';
-import promptAction from '@ohos.promptAction';
-import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
-import HttpRequest from '../../util/HttpRequest';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.

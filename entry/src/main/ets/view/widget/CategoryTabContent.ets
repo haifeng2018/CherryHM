@@ -108,8 +108,7 @@ export struct CategoryTabContent {
       router.pushUrl({
         url: RouterPath.CATEGORY_DETAIL_PAGE,
         params: {
-          categoryId: info.id,
-          categoryName: info.name,
+          data: info,
           shareId: `${this.datas.indexOf(info)}${info.id}`
         }
       })
