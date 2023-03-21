@@ -69,11 +69,6 @@ struct LightTopicsPage {
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
-    .sharedTransition(this.shareId, {
-      duration: Constants.TRANSITION_ANIMATION_DURATION,
-      curve: Curve.Smooth,
-      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
-    })
   }
 
   @Builder titleBar() {
@@ -128,6 +123,11 @@ struct LightTopicsPage {
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height('256vp')
+        .sharedTransition(this.shareId, {
+          duration: Constants.TRANSITION_ANIMATION_DURATION,
+          curve: Curve.Smooth,
+          delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+        })
 
       Column(){
         Text(this.data.brief)

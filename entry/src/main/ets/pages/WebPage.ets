@@ -5,16 +5,9 @@ import web_webview from '@ohos.web.webview'
 @Entry
 @Component
 struct WebPage {
-  @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
 
-  @State js: string =
-  "javascript:(function() {document.getElementsByClassName(\"share-bar-container\")[0].style.display=\'none\';" +
-  "document.getElementsByClassName(\"footer-container j-footer-container\")[0].style.display=\'none\';" +
-  "document.getElementsByClassName(\"kyt-promotion-bar-positioner\")[0].style.display=\'none\';" +
-  "})()"
-
-  @State title: string = router.getParams()?.['title'];
-  @State url: string = router.getParams()?.['url'];
+  title: string = router.getParams()?.['title'];
+  url: string = router.getParams()?.['url'];
 
   onPageHide() {
     router.clear()
@@ -22,42 +15,12 @@ struct WebPage {
 
   controller: web_webview.WebviewController = new web_webview.WebviewController()
 
-  testObj = {
-    test: (data1, data2, data3) => {
-      console.log("data1:" + data1)
-      console.log("data2:" + data2)
-      console.log("data3:" + data3)
-      return "AceString"
-    },
-    getElementsByClassName: () => {
-      console.log('toString' + "interface instead.")
-      return null
-    }
-  }
-
-  aboutToAppear() {
-    console.error('WebPage','title = ' + this.title)
-    console.error('WebPage','url = ' + this.url)
-  }
-
   build() {
       Column() {
         this.titleBar()
         Web({ src:this.url, controller:this.controller })
           .width(Constants.MATCH_PARENT)
           .layoutWeight(1)
-          .zoomAccess(true)
-          .imageAccess(true)
-          .onlineImageAccess(true)
-          .javaScriptAccess(true)
-          .mediaPlayGestureAccess(true)
-          .userAgent(this.userAgent)
-          .javaScriptProxy({
-            object: this.testObj,
-            name: "objName",
-            methodList: ["test", "toString"],
-            controller: this.controller,
-          })
       }
       .width(Constants.MATCH_PARENT)
       .height(Constants.MATCH_PARENT)
@@ -65,15 +28,7 @@ struct WebPage {
   }
 
   @Builder titleBar() {
-    Stack(){
-      Text(this.title)
-        .width(Constants.MATCH_PARENT)
-        .height('30vp')
-        .fontSize($r('app.float.fp_24'))
-        .fontColor($r('app.color.color_333333'))
-        .textAlign(TextAlign.Center)
-        .backgroundColor($r('app.color.white'))
-
+    Row(){
       Image($r('app.media.ic_back'))
         .width('30vp')
         .height('30vp')
@@ -82,10 +37,23 @@ struct WebPage {
         .onClick(() =>{
           router.back()
         })
+
+      Text(this.title)
+        .height('56vp')
+        .layoutWeight(1)
+        .fontSize($r('app.float.fp_24'))
+        .fontColor($r('app.color.color_333333'))
+        .fontWeight(500)
+        .textAlign(TextAlign.Center)
+
+      Image($r('app.media.ic_copy_link_grey'))
+        .width('40vp')
+        .height('40vp')
+        .margin({right:'24vp'})
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .alignContent(Alignment.BottomStart)
-    .padding({top:$r('app.float.status_bar_height'),bottom:'5vp'})
+    .padding({top:$r('app.float.status_bar_height')})
+    .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 }
