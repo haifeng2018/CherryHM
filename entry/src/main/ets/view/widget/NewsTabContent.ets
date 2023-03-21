@@ -85,7 +85,7 @@ export struct NewsTabContent {
   @Builder headCell(dailyPagerInfo: VideoInfo) {
     Text(dailyPagerInfo.data.text)
       .width(Constants.MATCH_PARENT)
-      .height('36vp').fontSize('28fp')
+      .height('56vp').fontSize('28fp')
       .textAlign(TextAlign.Center)
       .fontColor($r('app.color.color_666666'))
   }
@@ -97,7 +97,6 @@ export struct NewsTabContent {
           Image(item.poster_image)
             .width(Constants.MATCH_PARENT)
             .height(Constants.MATCH_PARENT)
-            .borderRadius({topLeft:'10vp',bottomLeft:'10vp'})
         })
       }
       .width('128vp')
@@ -129,7 +128,6 @@ export struct NewsTabContent {
     .width(Constants.MATCH_PARENT)
     .height('168vp')
     .backgroundColor($r('app.color.white'))
-    .borderRadius('10vp')
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .onClick(() => {
       router.pushUrl({

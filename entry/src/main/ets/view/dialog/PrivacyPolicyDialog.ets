@@ -71,7 +71,7 @@ export default struct PrivacyPolicyDialog {
             })
           })
       }.width(Constants.MATCH_PARENT)
-      .margin({top:'10vp'})
+      .padding('10vp')
       .justifyContent(FlexAlign.Center)
 
       Divider()
@@ -79,7 +79,6 @@ export default struct PrivacyPolicyDialog {
         .width(Constants.MATCH_PARENT)
         .color($r('app.color.color_666666'))
         .opacity(0.6)
-        .margin({top:'10vp'})
 
       Row() {
         Text($r('app.string.disagree'))
@@ -99,7 +98,7 @@ export default struct PrivacyPolicyDialog {
           })
       }
       .width(Constants.MATCH_PARENT)
-      .height('45vp')
+      .height('60vp')
     }
     .width('92%')
     .borderRadius('10vp')
