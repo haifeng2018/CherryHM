@@ -1,11 +1,14 @@
+import RefreshComponent from '../view/widget/refresh/RefreshComponent';
+import { RefreshConfig } from '../view/widget/refresh/RefreshConfig';
 import { LightTopicsInfo } from '../bean/LightTopicsInfo';
 import { LightTopicsData } from '../bean/LightTopicsData';
-import { RouterPath } from '../util/RouterPath';
+import RouterPath from '../util/RouterPath';
 import promptAction from '@ohos.promptAction';
 import { DiscoveryApi } from '../api/DiscoveryApi';
 import router from '@ohos.router';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
+import { PageState } from '../view/widget/refresh/PageState';
 
 @Entry
 @Component
@@ -15,6 +18,9 @@ struct LightTopicsPage {
   @State isRefreshing: boolean = false
   @State data: LightTopicsData = new LightTopicsData();
 
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
+  @Provide(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) listScrollTop : boolean = true;
+
   aboutToAppear() {
     this.sendLightTopicsRequest()
   }
@@ -23,9 +29,11 @@ struct LightTopicsPage {
     HttpRequest.url = DiscoveryApi.LIGHT_TOPICS + this.topicId
     HttpRequest.request({
       onSuccess: (value) => {
+        this.pageState = PageState.Success;
         this.data = value
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
@@ -34,41 +42,40 @@ struct LightTopicsPage {
   build() {
     Column(){
       this.titleBar()
-      Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-        Column(){
-          List() {
-            ListItem(){
-              this.headerLayout()
-            }
-            ForEach(this.data.itemList, (item) => {
-              ListItem() {
-                this.cellLayout(item)
-              }
-            })
-          }
-          .width(Constants.MATCH_PARENT)
-          .height(Constants.MATCH_PARENT)
-        }
-        .width(Constants.MATCH_PARENT)
-        .height(Constants.MATCH_PARENT)
-      }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        refreshStatus
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
+
+      RefreshComponent({
+        itemLayout: () => this.itemLayout(),
+        onRefresh: () => {
           this.sendLightTopicsRequest()
-        }, 1000)
-        console.log('onRefreshing test')
+        }
       })
       .width(Constants.MATCH_PARENT)
-      .height(Constants.MATCH_PARENT)
+      .layoutWeight(1)
+
     }
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
+  }
+
+  @Builder itemLayout () {
+    List() {
+      ListItem(){
+        this.headerLayout()
+      }
+      ForEach(this.data.itemList, (item) => {
+        ListItem() {
+          this.cellLayout(item)
+        }
+      })
+    }
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
+    // 去掉回弹效果
+    .edgeEffect(EdgeEffect.None)
+    .onScrollIndex((start, end) => {
+      this.listScrollTop = start === 0
+    })
   }
 
   @Builder titleBar() {

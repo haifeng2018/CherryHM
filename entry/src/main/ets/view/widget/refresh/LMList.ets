@@ -35,20 +35,12 @@ export default struct LMList {
   private isLoading: boolean = false;
   private isCanLoadMore = false;
 
-  @Consume(RefreshConfig.REFRESH_DATA_TAG) @Watch('onDataChanged') datas: Array<any>;
-  @Consume(RefreshConfig.REFRESH_STATE_TAG) @Watch('onStateChanged') pageState: number;
+  @Consume(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any>;
+  @Consume(RefreshConfig.REFRESH_STATE_TAG) pageState: number;
 
   private onRefresh: () => void;
   private onLoadMore: () => void;
   @BuilderParam itemLayout: (data) => void;
-
-
-  private onStateChanged() {
-
-  }
-  private onDataChanged() {
-
-  }
 
   build() {
     Column() {

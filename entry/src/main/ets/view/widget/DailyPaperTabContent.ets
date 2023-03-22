@@ -1,6 +1,6 @@
 import LMList from './refresh/LMList';
 import { RefreshConfig } from './refresh/RefreshConfig';
-import { RouterPath } from '../../util/RouterPath';
+import RouterPath from '../../util/RouterPath';
 import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
 import { HomeApi } from '../../api/HomeApi';

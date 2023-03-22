@@ -1,5 +1,5 @@
 import router from '@ohos.router';
-import { RouterPath } from '../../util/RouterPath';
+import RouterPath from '../../util/RouterPath';
 import { VideoInfo } from '../../bean/VideoInfo';
 import { RefreshConfig } from './refresh/RefreshConfig';
 import LMList from './refresh/LMList';

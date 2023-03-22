@@ -9,6 +9,8 @@ struct WebPage {
   title: string = router.getParams()?.['title'];
   url: string = router.getParams()?.['url'];
 
+  @State progress: number = 0;
+
   onPageHide() {
     router.clear()
   }
@@ -18,9 +20,17 @@ struct WebPage {
   build() {
       Column() {
         this.titleBar()
+        Progress({value: this.progress, total: 100})
+          .width(Constants.MATCH_PARENT)
+          .height('2vp')
+          .color($r('app.color.color_accent'))
+          .visibility(this.progress === 100 ? Visibility.None : Visibility.Visible)
         Web({ src:this.url, controller:this.controller })
           .width(Constants.MATCH_PARENT)
           .layoutWeight(1)
+          .onProgressChange(e => {
+            this.progress = e.newProgress;
+          })
       }
       .width(Constants.MATCH_PARENT)
       .height(Constants.MATCH_PARENT)
@@ -50,6 +60,8 @@ struct WebPage {
         .width('40vp')
         .height('40vp')
         .margin({right:'24vp'})
+        .onClick(() => {
+        })
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))

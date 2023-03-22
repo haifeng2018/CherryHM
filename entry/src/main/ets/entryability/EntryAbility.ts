@@ -1,10 +1,10 @@
-import { RouterPath } from '../util/RouterPath';
+import RouterPath from '../util/RouterPath';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    entryPage: string = RouterPath.LAUNCHER_PAGE;
+    entryPage: string = RouterPath.MAIN_PAGE;
 
     onCreate(want, launchParam) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');

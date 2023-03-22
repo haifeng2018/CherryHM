@@ -1,6 +1,6 @@
 import { RefreshConfig } from './refresh/RefreshConfig';
 import RefreshComponent from './refresh/RefreshComponent';
-import { RouterPath } from '../../util/RouterPath';
+import RouterPath from '../../util/RouterPath';
 import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
 import promptAction from '@ohos.promptAction';

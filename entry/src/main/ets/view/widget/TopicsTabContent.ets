@@ -1,11 +1,10 @@
 import LMList from './refresh/LMList';
 import { RefreshConfig } from './refresh/RefreshConfig';
-import { RouterPath } from '../../util/RouterPath';
+import RouterPath from '../../util/RouterPath';
 import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
 import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
-import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
 import { PageState } from './refresh/PageState';

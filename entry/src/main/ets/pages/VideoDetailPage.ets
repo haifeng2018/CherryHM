@@ -1,3 +1,5 @@
+import RefreshComponent from '../view/widget/refresh/RefreshComponent';
+import { RefreshConfig } from '../view/widget/refresh/RefreshConfig';
 import { VideoCellContentData } from '../bean/VideoCellContentData';
 import router from '@ohos.router';
 import { VideoInfo } from '../bean/VideoInfo';
@@ -6,12 +8,14 @@ import promptAction from '@ohos.promptAction';
 import { HomeApi } from '../api/HomeApi';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
+import { PageState } from '../view/widget/refresh/PageState';
 
 @Entry
 @Component
 struct VideoDetailPage {
   @State shareId: string = router.getParams()?.['shareId'];
-  @State isRefreshing: boolean = false
+  @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
+  @Provide(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) listScrollTop : boolean = true;
 
   // 滑动的y偏移量
   private yTotalOffset = 0
@@ -37,158 +41,184 @@ struct VideoDetailPage {
     HttpRequest.url = HomeApi.VIDEO_RELATED + this.data.id
     HttpRequest.request({
       onSuccess: (value) => {
+        this.pageState = PageState.Success;
         this.datas = value.itemList
       },
       onFail: (errorCode) => {
+        this.pageState = PageState.Fail;
         promptAction.showToast({ message: 'errorCode = ' + errorCode});
       }
     })
   }
 
   build() {
-      Stack(){
-        Refresh({ refreshing: $$this.isRefreshing, offset: 56, friction: 66 }) {
-          Scroll(this.scroller) {
-            Column() {
-              Video({
-                src: this.data.playUrl,
-                previewUri: this.data.cover.feed,
-                currentProgressRate: this.curRate,
-                controller: this.videoController
-              }).width(Constants.MATCH_PARENT).aspectRatio(1.77)
-                .autoPlay(this.isAutoPlay)
-                .controls(this.showControls)
-                .onStart(() => {
-                  console.info('onStart')
-                })
-                .onPause(() => {
-                  console.info('onPause')
-                })
-                .onFinish(() => {
-                  console.info('onFinish')
-                })
-                .onError(() => {
-                  console.info('onFinish')
-                })
-                .onPrepared((e) => {
-                  console.info('onPrepared is ' + e.duration)
-                  this.titleBarOpacity = 0
-                })
-                .onSeeking((e) => {
-                  console.info('onSeeking is ' + e.time)
-                })
-                .onSeeked((e) => {
-                  console.info('onSeeked is ' + e.time)
-                })
-                .onUpdate((e) => {
-                  console.info('onUpdate is ' + e.time)
-                })
-                .onClick(() => {
-                  this.videoController.start()
-                })
-
-              Text(this.data.title)
-                .width(Constants.MATCH_PARENT)
-                .fontColor($r('app.color.color_333333'))
-                .fontSize($r('app.float.fp_24'))
-                .padding('10vp')
-
-              Text(this.data.category)
-                .width(Constants.MATCH_PARENT)
-                .fontColor($r('app.color.color_666666'))
-                .fontSize($r('app.float.fp_20'))
-                .padding('10vp')
-
-              Text(this.data.description)
-                .width(Constants.MATCH_PARENT)
-                .fontColor($r('app.color.color_333333'))
-                .fontSize($r('app.float.fp_18'))
-                .maxLines(3)
-                .textOverflow({ overflow: TextOverflow.Ellipsis })
-                .padding('10vp')
-
-              Row(){
-                Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
-                Text(this.data.consumption.collectionCount.toString())
-                  .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
-
-                Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
-                Text(this.data.consumption.replyCount.toString())
-                  .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
-
-                Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
-                Text(this.data.consumption.shareCount.toString())
-                  .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
-              }
-              .width(Constants.MATCH_PARENT)
-              .padding('10vp')
-
-              Divider().color($r('app.color.color_80DDDDDD'))
-              this.headCell(this.data)
-              Divider().color($r('app.color.color_80DDDDDD'))
-
-              //这个地方不能用list容器会和scroll滑动冲突
-              ForEach(this.datas, (item) => {
-                  if (item.type === 'textCard') {
-                    this.textCardCell(item)
-                  } else if (item.type === 'videoSmallCard') {
-                    this.videoSmallCardCell(item)
-                  }
-              })
-            }
-            .width(Constants.MATCH_PARENT)
-          }
-          .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
-          .scrollBar(BarState.Off)  // 滚动条常驻显示
-          .scrollBarColor(Color.Gray)  // 滚动条颜色
-          .scrollBarWidth(30) // 滚动条宽度
-          .edgeEffect(EdgeEffect.None)
-          .onScroll((xOffset: number, yOffset: number) => {
-            console.info(xOffset + ' ' + yOffset)
-            this.yTotalOffset += yOffset
-            const yTotalOffsetVP = px2vp(this.yTotalOffset)
-            // 轮播图高度 350
-            const scale = yTotalOffsetVP / 100
-            this.titleBarOpacity = scale
-            if (scale < 0) {
-              this.titleBarOpacity = 0
-            }
-            if (scale > 1) {
-              this.titleBarOpacity = 1
-            }
-          })
-          .onScrollEdge((side: Edge) => {
-            console.info('To the edge')
-          })
-          .onScrollEnd(() => {
-            console.info('Scroll Stop')
-          })
+    RelativeContainer() {
+      RefreshComponent({
+        itemLayout: () => this.itemLayout(),
+        onRefresh: () => {
+          this.sendVideoRelatedRequest()
         }
-        .onStateChange((refreshStatus: RefreshStatus) => {
-          refreshStatus
-          console.info('Refresh onStatueChange state is ' + refreshStatus)
-        })
-        .onRefreshing(() => {
-          setTimeout(() => {
-            this.isRefreshing = false
-            this.sendVideoRelatedRequest()
-          }, 1000)
-          console.log('onRefreshing test')
-        })
-        .width(Constants.MATCH_PARENT)
-        .height(Constants.MATCH_PARENT)
-
-        this.titleBar()
-      }
+      })
       .width(Constants.MATCH_PARENT)
       .height(Constants.MATCH_PARENT)
-      .backgroundColor($r('app.color.color_F9F9F9'))
-      .alignContent(Alignment.Top)
-      .sharedTransition(this.shareId, {
-        duration: Constants.TRANSITION_ANIMATION_DURATION,
-        curve: Curve.Smooth,
-        delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+      .id('mRefreshContent')
+
+      this.titleBar()
+      this.smallPlay()
+    }
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
+    .backgroundColor($r('app.color.color_F9F9F9'))
+    .sharedTransition(this.shareId, {
+      duration: Constants.TRANSITION_ANIMATION_DURATION,
+      curve: Curve.Smooth,
+      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+    })
+  }
+
+  @Builder itemLayout () {
+    Scroll(this.scroller) {
+      Column() {
+        Video({
+          src: this.data.playUrl,
+          previewUri: this.data.cover.feed,
+          currentProgressRate: this.curRate,
+          controller: this.videoController
+        })
+          .width(Constants.MATCH_PARENT)
+          .height('256vp')
+          .autoPlay(this.isAutoPlay)
+          .controls(this.showControls)
+          .onStart(() => {
+            console.info('onStart')
+          })
+          .onPause(() => {
+            console.info('onPause')
+          })
+          .onFinish(() => {
+            console.info('onFinish')
+          })
+          .onError(() => {
+            console.info('onFinish')
+          })
+          .onPrepared((e) => {
+            console.info('onPrepared is ' + e.duration)
+            this.titleBarOpacity = 0
+            animateTo({ duration: 1000 }, () => {
+            })
+          })
+          .onSeeking((e) => {
+            console.info('onSeeking is ' + e.time)
+          })
+          .onSeeked((e) => {
+            console.info('onSeeked is ' + e.time)
+          })
+          .onUpdate((e) => {
+            console.info('onUpdate is ' + e.time)
+          })
+          .onClick(() => {
+            this.videoController.start()
+          })
+
+        Text(this.data.title)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_333333'))
+          .fontSize($r('app.float.fp_24'))
+          .padding('10vp')
+
+        Text(this.data.category)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_666666'))
+          .fontSize($r('app.float.fp_20'))
+          .padding('10vp')
+
+        Text(this.data.description)
+          .width(Constants.MATCH_PARENT)
+          .fontColor($r('app.color.color_333333'))
+          .fontSize($r('app.float.fp_18'))
+          .maxLines(3)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .padding('10vp')
+
+        Row(){
+          Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
+          Text(this.data.consumption.collectionCount.toString())
+            .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
+
+          Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
+          Text(this.data.consumption.replyCount.toString())
+            .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
+
+          Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
+          Text(this.data.consumption.shareCount.toString())
+            .fontColor($r('app.color.color_999999')).fontSize($r('app.float.fp_16')).margin({left:'5vp'})
+        }
+        .width(Constants.MATCH_PARENT)
+        .padding('10vp')
+
+        Divider().color($r('app.color.color_80DDDDDD'))
+        this.headCell(this.data)
+        Divider().color($r('app.color.color_80DDDDDD'))
+
+        //这个地方不能用list容器会和scroll滑动冲突
+        ForEach(this.datas, (item) => {
+          if (item.type === 'textCard') {
+            this.textCardCell(item)
+          } else if (item.type === 'videoSmallCard') {
+            this.videoSmallCardCell(item)
+          }
+        })
+      }
+      .width(Constants.MATCH_PARENT)
+    }
+    .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
+    .scrollBar(BarState.Off)  // 滚动条常驻显示
+    .scrollBarColor(Color.Gray)  // 滚动条颜色
+    .scrollBarWidth(30) // 滚动条宽度
+    .edgeEffect(EdgeEffect.None)
+    .onScroll((xOffset: number, yOffset: number) => {
+      console.error('onScroll-xOffset =' + xOffset)
+      console.error('onScroll-yOffset =' + yOffset)
+      this.yTotalOffset += yOffset
+      const yTotalOffsetVP = px2vp(this.yTotalOffset)
+      // 轮播图高度 350
+      const scale = yTotalOffsetVP / 100
+      this.titleBarOpacity = scale
+      if (scale < 0) {
+        this.titleBarOpacity = 0
+        this.listScrollTop = true
+      }
+      if (scale > 1) {
+        this.titleBarOpacity = 1
+        this.listScrollTop = false
+      }
+    })
+    .onScrollEdge((side: Edge) => {
+      console.info('To the edge')
+    })
+    .onScrollEnd(() => {
+      console.info('Scroll Stop')
+    })
+  }
+
+  @Builder smallPlay() {
+    if (!this.listScrollTop) {
+      Video({
+        src: this.data.playUrl,
+        currentProgressRate: this.curRate,
+        controller: this.videoController
       })
+      .width('180vp')
+      .height('120vp')
+      .autoPlay(this.isAutoPlay)
+      .controls(this.showControls)
+      .margin({bottom:'100vp'})
+        .alignRules({
+          bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
+          right: {anchor: "__container__", align: HorizontalAlign.End},
+        })
+        .id('mVideo')
+    }
   }
 
   @Builder titleBar() {
@@ -236,6 +266,10 @@ struct VideoDetailPage {
     .padding({top:$r('app.float.status_bar_height')})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .opacity(this.titleBarOpacity)
+    .alignRules({
+      top: {anchor: "__container__", align: VerticalAlign.Top},
+    })
+    .id('mTitleBar')
   }
 
   @Builder textCardCell(info: VideoInfo) {

@@ -1,11 +1,10 @@
 import RefreshComponent from './refresh/RefreshComponent';
 import { RefreshConfig } from './refresh/RefreshConfig';
-import { RouterPath } from '../../util/RouterPath';
+import RouterPath from '../../util/RouterPath';
 import router from '@ohos.router';
 import { CategoryInfo } from '../../bean/CategoryInfo';
 import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
-import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
 import { PageState } from './refresh/PageState';
@@ -36,7 +35,6 @@ export struct CategoryTabContent {
 
   sendCategoryRequest () {
     HttpRequest.url = DiscoveryApi.CATEGORY
-    HttpRequest.setMethod(http.RequestMethod.GET)
     HttpRequest.request({
       onSuccess: (value) => {
         this.pageState = PageState.Success;

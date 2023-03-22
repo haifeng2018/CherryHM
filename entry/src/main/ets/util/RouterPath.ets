@@ -8,7 +8,7 @@
  * Description: 
  * -----------------------------------------------------------------
  */
-export class RouterPath {
+export default class RouterPath {
   static readonly INDEX_PAGE = 'pages/Index';
   static readonly LAUNCHER_PAGE = 'pages/LauncherPage';
   static readonly AD_PAGE = 'pages/AdPage';

@@ -1,4 +1,4 @@
-import { RouterPath } from '../util/RouterPath';
+import RouterPath from '../util/RouterPath';
 import router from '@ohos.router';
 import Logger from '../util/Logger';
 import Constants from '../util/Constants';

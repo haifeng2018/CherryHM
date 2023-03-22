@@ -1,5 +1,5 @@
 import promptAction from '@ohos.promptAction';
-import { RouterPath } from '../util/RouterPath';
+import RouterPath from '../util/RouterPath';
 import Logger from '../util/Logger';
 import preferences from '@ohos.data.preferences';
 import common from '@ohos.app.ability.common';

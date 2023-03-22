@@ -1,7 +1,7 @@
 import { CategoryInfo } from '../bean/CategoryInfo';
 import LMList from '../view/widget/refresh/LMList';
 import { RefreshConfig } from '../view/widget/refresh/RefreshConfig';
-import { RouterPath } from '../util/RouterPath';
+import RouterPath from '../util/RouterPath';
 import promptAction from '@ohos.promptAction';
 import { VideoInfo } from '../bean/VideoInfo';
 import { DiscoveryApi } from '../api/DiscoveryApi';
@@ -66,6 +66,7 @@ struct CategoryDetailPage {
         }
       })
         .layoutWeight(1)
+        .zIndex(0)
     }
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
@@ -115,6 +116,7 @@ struct CategoryDetailPage {
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
     .padding({top:$r('app.float.status_bar_height')})
+    .zIndex(1)
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 
@@ -168,6 +170,7 @@ struct CategoryDetailPage {
       this.authorLayout(info)
     }
     .width(Constants.MATCH_PARENT)
+    .layoutWeight(1)
     .backgroundColor($r('app.color.white'))
     .alignItems(HorizontalAlign.Start)
     .sharedTransition(`${this.datas.indexOf(info)}${info.data.id}`, {

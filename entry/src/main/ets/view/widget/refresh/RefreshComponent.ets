@@ -35,18 +35,11 @@ export default struct RefreshComponent {
   private isLoading: boolean = false;
   private isCanLoadMore = false;
 
-  @Consume(RefreshConfig.REFRESH_STATE_TAG) @Watch('onStateChanged') pageState: number;
-  @Consume(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) @Watch('onDataChanged') listScrollTop: boolean;
+  @Consume(RefreshConfig.REFRESH_STATE_TAG) pageState: number;
+  @Consume(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) listScrollTop: boolean;
 
   private onRefresh: () => void;
   @BuilderParam itemLayout: () => void;
-
-  private onStateChanged() {
-
-  }
-  private onDataChanged() {
-
-  }
 
   build() {
     Column() {
@@ -110,6 +103,7 @@ export default struct RefreshComponent {
 
   /////////////////处理下拉刷新 start//////////////////////
   listTouchEvent(event: TouchEvent,callback) {
+    console.error('onScroll-listTouchEvent-listScrollTop =' + this.listScrollTop)
     //list grid没有滚动到第一个不进入下拉刷新处理
     if (this.listScrollTop) {
       switch (event.type) {

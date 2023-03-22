@@ -1,4 +1,4 @@
-import { RouterPath } from '../util/RouterPath';
+import RouterPath from '../util/RouterPath';
 import router from '@ohos.router';
 import Constants from '../util/Constants';
 import { initializeOnStartup } from '../bean/SplashInfo';

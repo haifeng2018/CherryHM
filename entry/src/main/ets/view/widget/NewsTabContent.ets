@@ -1,4 +1,4 @@
-import { RouterPath } from '../../util/RouterPath';
+import RouterPath from '../../util/RouterPath';
 import router from '@ohos.router';
 import LMList from './refresh/LMList';
 import { RefreshConfig } from './refresh/RefreshConfig';
