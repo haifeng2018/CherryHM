@@ -40,6 +40,7 @@ export struct HomeTabContent {
         TabContent() {
           DailyPaperTabContent()
         }.tabBar(this.TabBuilder(1))
+
       }
       .vertical(false)
       .barWidth(Constants.MATCH_PARENT)

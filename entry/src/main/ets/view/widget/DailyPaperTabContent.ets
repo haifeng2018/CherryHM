@@ -7,6 +7,7 @@ import { HomeApi } from '../../api/HomeApi';
 import promptAction from '@ohos.promptAction';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import DateUtil from '../../util/DateUtil';
 import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
@@ -98,7 +99,7 @@ export struct DailyPaperTabContent {
       Image(info.data.content.data.author.icon)
         .width('40vp')
         .height('40vp')
-        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+        .clip(new Circle({ width: '40vp', height: '40vp' }))
 
       Column() {
         Text(info.data.content.data.author.name)
@@ -119,6 +120,16 @@ export struct DailyPaperTabContent {
       }
       .layoutWeight(1)
       .padding({left:'10vp'})
+
+      Image($r('app.media.ic_play_duration'))
+        .width('15vp')
+        .height('15vp')
+        .objectFit(ImageFit.Contain)
+
+      Text(DateUtil.formatDuration(info.data.content.data.duration))
+        .margin({left:'5vp'})
+        .fontSize('18fp')
+        .fontColor($r('app.color.color_666666'))
     }
     .width(Constants.MATCH_PARENT)
     .padding({top:'10vp',bottom:'20vp',left:'20vp',right:'20vp'})

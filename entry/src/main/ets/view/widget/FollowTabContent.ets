@@ -5,9 +5,9 @@ import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
 import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
-import http from '@ohos.net.http';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import DateUtil from '../../util/DateUtil';
 import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
@@ -80,7 +80,7 @@ export struct FollowTabContent {
       Image(info.data.header.icon)
         .width('40vp')
         .height('40vp')
-        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+        .clip(new Circle({ width: '40vp', height: '40vp' }))
 
       Column() {
         Text(info.data.header.title)
@@ -142,7 +142,7 @@ export struct FollowTabContent {
                 .margin({top:'5vp'})
                 .padding('5vp')
 
-              Text(this.formatReleaseDate(item.data.releaseTime))
+              Text(DateUtil.formatReleaseDate(item.data.releaseTime))
                 .width(Constants.MATCH_PARENT)
                 .textAlign(TextAlign.Start)
                 .fontColor($r('app.color.color_666666'))
@@ -181,25 +181,4 @@ export struct FollowTabContent {
     .alignItems(HorizontalAlign.Start)
   }
 
-  formatReleaseDate(releaseTime: number): string {
-    let releaseDate = new Date(releaseTime)
-
-    let year = releaseDate.getFullYear().toString()
-    let month = releaseDate.getMonth().toString()
-    let day = releaseDate.getDay().toString()
-    let hours = releaseDate.getHours()
-    let mins = releaseDate.getMinutes()
-
-    let hoursStr = hours.toString()
-    if (hours < 10) {
-      hoursStr = "0" + hours
-    }
-
-    let minsStr = hours.toString()
-    if (mins < 10) {
-        minsStr = "0" + mins
-    }
-
-    return year + '/' + month + '/' + day + ' ' + hoursStr + ':' + minsStr
-  }
 }

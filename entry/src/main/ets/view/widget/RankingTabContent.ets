@@ -6,6 +6,7 @@ import { VideoInfo } from '../../bean/VideoInfo';
 import promptAction from '@ohos.promptAction';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import DateUtil from '../../util/DateUtil';
 import { PageState } from './refresh/PageState';
 
 /*
@@ -78,7 +79,8 @@ export struct RankingTabContent {
       Image(info.data.author.icon)
         .width('40vp')
         .height('40vp')
-        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+        .clip(new Circle({ width: '40vp', height: '40vp' }))
+        .border({ width: '2vp',color:$r('app.color.color_80DDDDDD'),radius:'20vp',style:BorderStyle.Solid })
 
       Column() {
         Text(info.data.author.name)
@@ -136,6 +138,17 @@ export struct RankingTabContent {
         .padding('10vp')
 
       Row() {
+        Image($r('app.media.ic_play_duration'))
+          .width('15vp')
+          .height('15vp')
+          .objectFit(ImageFit.Contain)
+
+        Text(DateUtil.formatDuration(info.data.duration))
+          .layoutWeight(1)
+          .margin({left:'5vp',right:'5vp'})
+          .fontSize('18fp')
+          .fontColor($r('app.color.color_666666'))
+
         Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
         Text(info.data.consumption.collectionCount.toString())
           .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})

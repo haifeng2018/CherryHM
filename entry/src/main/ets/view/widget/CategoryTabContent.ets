@@ -87,10 +87,6 @@ export struct CategoryTabContent {
         .width(Constants.MATCH_PARENT)
         .height('198vp')
         .borderRadius('10vp')
-        .overlay(info.name, {
-          align: Alignment.Center,
-          offset: { x: 0, y: 0 }
-        })
 
       Text(info.name)
         .width(Constants.MATCH_PARENT)

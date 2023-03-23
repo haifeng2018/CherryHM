@@ -9,6 +9,7 @@ import { HomeApi } from '../api/HomeApi';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
 import { PageState } from '../view/widget/refresh/PageState';
+import DateUtil from '../util/DateUtil';
 
 @Entry
 @Component
@@ -126,7 +127,7 @@ struct VideoDetailPage {
           .fontSize($r('app.float.fp_24'))
           .padding('10vp')
 
-        Text(this.data.category)
+        Text(`${this.data.category}\t${DateUtil.formatReleaseDate(this.data.releaseTime)}`)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
           .fontSize($r('app.float.fp_20'))
@@ -157,7 +158,7 @@ struct VideoDetailPage {
         .padding('10vp')
 
         Divider().color($r('app.color.color_80DDDDDD'))
-        this.headCell(this.data)
+        this.authorLayout(this.data)
         Divider().color($r('app.color.color_80DDDDDD'))
 
         //这个地方不能用list容器会和scroll滑动冲突
@@ -284,14 +285,14 @@ struct VideoDetailPage {
       .padding('10vp')
   }
 
-  @Builder headCell(info: VideoCellContentData) {
+  @Builder authorLayout(info: VideoCellContentData) {
     if (info.author != null) {
       Row(){
         if (info.author.icon != null) {
           Image(info.author.icon)
             .width('40vp')
             .height('40vp')
-            .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+            .clip(new Circle({ width: '40vp', height: '40vp' }))
         }
 
         Column() {
@@ -313,6 +314,12 @@ struct VideoDetailPage {
         }
         .layoutWeight(1)
         .padding({left:'10vp'})
+
+        Text('+关注')
+          .padding({top:'4vp',bottom:'4vp',left:'10vp',right:'10vp'})
+          .fontColor($r('app.color.color_666666'))
+          .fontSize('18fp')
+          .border({ width: '1vp',color:$r('app.color.color_666666'),radius:'5vp',style:BorderStyle.Solid })
       }
       .width(Constants.MATCH_PARENT)
       .padding('10vp')
@@ -355,9 +362,11 @@ struct VideoDetailPage {
       .height(Constants.MATCH_PARENT)
 
       if (info.data.author != null && info.data.author.icon != null) {
-        Image(info.data.author.icon).width('40vp').height('40vp')
-          .borderRadius('40vp').borderStyle(BorderStyle.Dashed)
+        Image(info.data.author.icon)
+          .width('40vp')
+          .height('40vp')
           .margin({left:'148vp'})
+          .clip(new Circle({ width: '40vp', height: '40vp' }))
       }
     }
     .width(Constants.MATCH_PARENT)
