@@ -51,6 +51,7 @@ struct LightTopicsPage {
       })
       .width(Constants.MATCH_PARENT)
       .layoutWeight(1)
+      .zIndex(0)
 
     }
     .width(Constants.MATCH_PARENT)
@@ -121,6 +122,7 @@ struct LightTopicsPage {
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
     .padding({top:$r('app.float.status_bar_height')})
+    .zIndex(1)
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
   }
 

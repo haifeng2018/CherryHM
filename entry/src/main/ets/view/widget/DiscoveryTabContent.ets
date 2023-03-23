@@ -28,7 +28,7 @@ export struct DiscoveryTabContent {
         .padding('12vp')
         .fontSize(this.currentIndex === index ? '22fp' : '20fp')
         .fontWeight(this.currentIndex === index ? 700 : 500)
-        .fontColor(this.currentIndex == index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
+        .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)
   }
 

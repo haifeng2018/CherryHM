@@ -14,7 +14,7 @@ struct MainPage {
 
   @Builder TabBuilder(index: number) {
     Column() {
-      Image(this.currentIndex == index ? NavList[index].icon_selected : NavList[index].icon)
+      Image(this.currentIndex === index ? NavList[index].icon_selected : NavList[index].icon)
         .width('30vp')
         .height('30vp')
         .objectFit(ImageFit.Contain)
@@ -23,8 +23,8 @@ struct MainPage {
           y:this.currentIndex === index ? 1.1 : 1.0})
       Text(NavList[index].text)
         .margin({top:'4vp'})
-        .fontSize(this.currentIndex == index ? '16fp' : '15fp')
-        .fontColor(this.currentIndex == index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
+        .fontSize(this.currentIndex === index ? '16fp' : '15fp')
+        .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)
   }
 
