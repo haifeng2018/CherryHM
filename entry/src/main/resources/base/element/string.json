@@ -69,6 +69,10 @@
       "value": "首页"
     },
     {
+      "name": "tab_community",
+      "value": "社区"
+    },
+    {
       "name": "tab_discovery",
       "value": "发现"
     },

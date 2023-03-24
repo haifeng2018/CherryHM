@@ -7,6 +7,7 @@ import { DiscoveryApi } from '../../api/DiscoveryApi';
 import promptAction from '@ohos.promptAction';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
+import UrlUtil from '../../util/UrlUtil';
 import { PageState } from './refresh/PageState';
 /*
  * -----------------------------------------------------------------
@@ -133,25 +134,12 @@ export struct NewsTabContent {
       router.pushUrl({
         url: RouterPath.WEB_PAGE,
         params: {
-          title: this.getTitle(info.data.actionUrl),
-          url: this.getUrl(info.data.actionUrl),
+          title: UrlUtil.getTitle(info.data.actionUrl),
+          url: UrlUtil.getUrl(info.data.actionUrl),
         },
       })
     })
   }
 
-  getTitle(actionUrl: string): string {
-    let title = actionUrl.substring(actionUrl.indexOf('=') + 1,actionUrl.indexOf('&'))
-    let decodeTitle = decodeURIComponent(title)
-    console.error('NewsTabContent','decodeTitle = ' + decodeTitle)
-    return decodeTitle
-  }
 
-  getUrl(actionUrl: string): string {
-    let url = actionUrl.substring(actionUrl.indexOf('url'))
-    let decodeUrl = decodeURIComponent(url)
-
-    console.error('NewsTabContent','decodeUrl = ' + decodeUrl)
-    return decodeUrl
-  }
 }

@@ -1,30 +1,30 @@
-import { DiscoveryTabContent } from './DiscoveryTabContent';
-import { DailyPaperTabContent } from './DailyPaperTabContent';
-import { CommunityFollowTabContent } from './CommunityFollowTabContent';
-import router from '@ohos.router';
+import { FollowTabContent } from './FollowTabContent';
+import { RecommendTabContent } from './RecommendTabContent';
+import { TopicsTabContent } from './TopicsTabContent';
+import { NewsTabContent } from './NewsTabContent';
 import Constants from '../../util/Constants';
 /*
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: HomeTabContent
+ * File: CommunityTabContent
  * Author: Victor
  * Date: 2023/2/27 15:10
- * Description: 
+ * Description: 首页-社区
  * -----------------------------------------------------------------
  */
 @Preview
 @Component
-export struct HomeTabContent {
+export struct CommunityTabContent {
   @State currentIndex: number = 0
-
-  private tabTitles = [{ id: 0, name: '发现' },{ id: 1, name: '关注' }, { id: 2, name: '日报' }]
+  private tabTitles = [{ id: 0, name: '关注' }, { id: 1, name: '专题' },
+    { id: 2, name: '资讯' }, { id: 3, name: '推荐' }]
 
   @Builder TabBuilder(index: number) {
     Stack() {
       Text(this.tabTitles[index].name)
         .height(Constants.MATCH_PARENT)
-        .padding({left:'20vp',right:'20vp'})
+        .padding('12vp')
         .fontSize(this.currentIndex === index ? '22fp' : '20fp')
         .fontWeight(this.currentIndex === index ? 700 : 500)
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
@@ -40,53 +40,37 @@ export struct HomeTabContent {
   }
 
   build() {
-    RelativeContainer() {
+    Column() {
       Tabs() {
         TabContent() {
-          DiscoveryTabContent()
+          FollowTabContent()
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          CommunityFollowTabContent()
+          TopicsTabContent()
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          DailyPaperTabContent()
+          NewsTabContent()
         }.tabBar(this.TabBuilder(2))
 
+        TabContent() {
+          RecommendTabContent()
+        }.tabBar(this.TabBuilder(3))
       }
       .vertical(false)
       .barWidth(Constants.MATCH_PARENT)
       .barHeight('56vp')
-      .barMode(BarMode.Scrollable)
+      .barMode(BarMode.Fixed)
       .margin({top:$r('app.float.status_bar_height')})
       .onChange((index: number) => {
         this.currentIndex = index
       })
       .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.white'))
-      .alignRules({
-        top: {anchor: "__container__", align: VerticalAlign.Top},
-        left: {anchor: "__container__", align: HorizontalAlign.Start}
-      }).id('mHomeTab')
-
-      Image($r('app.media.ic_home_search'))
-        .width('40vp')
-        .height('40vp')
-        .margin({top:$r('app.float.status_bar_height'),right:'24vp'})
-        .padding('10vp')
-        .alignRules({
-          top: {anchor: "mHomeTab", align: VerticalAlign.Top},
-          right: {anchor: "mHomeTab", align: HorizontalAlign.End}
-        })
-        .id("mIvSearch")
-        .onClick(() => {
-          router.pushUrl({ url: 'pages/SearchPage' })
-        })
     }
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
   }
-
 }

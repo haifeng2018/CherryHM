@@ -36,14 +36,21 @@ export struct HotTabContent {
   }
 
   @Builder TabBuilder(index: number) {
-    Column() {
+    Stack() {
       Text(this.tabTitles[index].name)
         .height(Constants.MATCH_PARENT)
         .padding('12vp')
         .fontSize(this.currentIndex === index ? '22fp' : '20fp')
         .fontWeight(this.currentIndex === index ? 700 : 500)
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
-    }.justifyContent(FlexAlign.Center)
+
+      Divider()
+        .strokeWidth('5vp')
+        .width('20vp')
+        .color($r('app.color.color_333333'))
+        .opacity(this.currentIndex === index ? 1 : 0)
+
+    }.alignContent(Alignment.Bottom)
   }
 
   build() {

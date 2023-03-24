@@ -1,6 +1,6 @@
 import Constants from '../util/Constants';
 import { HotTabContent } from '../view/widget/HotTabContent';
-import { DiscoveryTabContent } from '../view/widget/DiscoveryTabContent';
+import { CommunityTabContent } from '../view/widget/CommunityTabContent';
 import { TabId } from '../model/HomeTabModel';
 import { MeTabContent } from '../view/widget/MeTabContent';
 import { HomeTabContent } from '../view/widget/HomeTabContent';
@@ -36,8 +36,8 @@ struct MainPage {
         }.tabBar(this.TabBuilder(TabId.HOME))
 
         TabContent() {
-          DiscoveryTabContent()
-        }.tabBar(this.TabBuilder(TabId.DISCOVERY))
+          CommunityTabContent()
+        }.tabBar(this.TabBuilder(TabId.COMMUNITY))
 
         TabContent() {
           HotTabContent()
