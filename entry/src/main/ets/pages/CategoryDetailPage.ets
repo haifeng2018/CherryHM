@@ -174,11 +174,6 @@ struct CategoryDetailPage {
     .layoutWeight(1)
     .backgroundColor($r('app.color.white'))
     .alignItems(HorizontalAlign.Start)
-    .sharedTransition(`${this.datas.indexOf(info)}${info.data.id}`, {
-      duration: Constants.TRANSITION_ANIMATION_DURATION,
-      curve: Curve.Smooth,
-      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
-    })
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.VIDEO_DETAIL_PAGE,

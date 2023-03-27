@@ -1,6 +1,6 @@
-import { DiscoveryTabContent } from './DiscoveryTabContent';
+import { HomeRecommendTabContent } from './HomeRecommendTabContent';
 import { DailyPaperTabContent } from './DailyPaperTabContent';
-import { CommunityFollowTabContent } from './CommunityFollowTabContent';
+import { HomeFollowTabContent } from './HomeFollowTabContent';
 import router from '@ohos.router';
 import Constants from '../../util/Constants';
 /*
@@ -18,7 +18,7 @@ import Constants from '../../util/Constants';
 export struct HomeTabContent {
   @State currentIndex: number = 0
 
-  private tabTitles = [{ id: 0, name: '日报' },{ id: 1, name: '关注' },{ id: 2, name: '发现' }]
+  private tabTitles = [{ id: 0, name: '推荐' },{ id: 1, name: '关注' },{ id: 2, name: '日报' }]
 
   @Builder TabBuilder(index: number) {
     Stack() {
@@ -43,15 +43,15 @@ export struct HomeTabContent {
     RelativeContainer() {
       Tabs() {
         TabContent() {
-          DailyPaperTabContent()
+          HomeRecommendTabContent()
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          CommunityFollowTabContent()
+          HomeFollowTabContent()
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          DiscoveryTabContent()
+          DailyPaperTabContent()
         }.tabBar(this.TabBuilder(2))
       }
       .vertical(false)

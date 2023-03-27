@@ -1,3 +1,5 @@
+import { DiscoveryTabContent } from './DiscoveryTabContent';
+import { CategoryTabContent } from './CategoryTabContent';
 import { FollowTabContent } from './FollowTabContent';
 import { RecommendTabContent } from './RecommendTabContent';
 import { TopicsTabContent } from './TopicsTabContent';
@@ -17,8 +19,8 @@ import Constants from '../../util/Constants';
 @Component
 export struct CommunityTabContent {
   @State currentIndex: number = 0
-  private tabTitles = [{ id: 0, name: '关注' }, { id: 1, name: '专题' },
-    { id: 2, name: '资讯' }, { id: 3, name: '推荐' }]
+  private tabTitles = [{ id: 0, name: '发现' },{ id: 1, name: '推荐' },{ id: 2, name: '关注' },
+    { id: 3, name: '分类' },{ id: 4, name: '专题' }, { id: 5, name: '资讯' }]
 
   @Builder TabBuilder(index: number) {
     Stack() {
@@ -43,20 +45,28 @@ export struct CommunityTabContent {
     Column() {
       Tabs() {
         TabContent() {
-          FollowTabContent()
+          DiscoveryTabContent()
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          TopicsTabContent()
+          RecommendTabContent()
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          NewsTabContent()
+          FollowTabContent()
         }.tabBar(this.TabBuilder(2))
 
         TabContent() {
-          RecommendTabContent()
+          CategoryTabContent()
         }.tabBar(this.TabBuilder(3))
+
+        TabContent() {
+          TopicsTabContent()
+        }.tabBar(this.TabBuilder(4))
+
+        TabContent() {
+          NewsTabContent()
+        }.tabBar(this.TabBuilder(5))
       }
       .vertical(false)
       .barWidth(Constants.MATCH_PARENT)

@@ -13,7 +13,7 @@ import { PageState } from './refresh/PageState';
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: CommunityFollowTabContent
+ * File: HomeFollowTabContent
  * Author: Victor
  * Date: 2023/2/27 15:10
  * Description: 首页-关注
@@ -21,7 +21,7 @@ import { PageState } from './refresh/PageState';
  */
 @Preview
 @Component
-export struct CommunityFollowTabContent {
+export struct HomeFollowTabContent {
   @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
   @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
