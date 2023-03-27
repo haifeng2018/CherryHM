@@ -472,34 +472,39 @@ struct UserPage {
           .textOverflow({ overflow: TextOverflow.Ellipsis })
 
          if (info.data.reply.parentReply != null) {
-           Row() {
-             Image(info.data.reply.parentReply.user.avatar)
-               .width('20vp')
-               .height('20vp')
-               .clip(new Circle({ width: '20vp', height: '20vp' }))
+           Column() {
+             Row() {
+               Image(info.data.reply.parentReply.user.avatar)
+                 .width('20vp')
+                 .height('20vp')
+                 .clip(new Circle({ width: '20vp', height: '20vp' }))
 
-             Text(info.data.reply.parentReply.user.nickname)
+               Text(info.data.reply.parentReply.user.nickname)
+                 .width(Constants.MATCH_PARENT)
+                 .fontColor($r('app.color.color_333333'))
+                 .fontSize('18fp')
+                 .padding('2vp')
+                 .textAlign(TextAlign.Start)
+             }
+             .width(Constants.MATCH_PARENT)
+             .margin('5vp')
+
+             Text(info.data.reply.parentReply.message)
                .width(Constants.MATCH_PARENT)
-               .fontColor($r('app.color.color_333333'))
+               .padding('5vp')
+               .fontColor($r('app.color.color_666666'))
                .fontSize('18fp')
-               .padding('2vp')
                .textAlign(TextAlign.Start)
            }
-           .width(Constants.MATCH_PARENT)
-           .margin('5vp')
-
-           Text(info.data.reply.parentReply.message)
-             .width(Constants.MATCH_PARENT)
-             .padding('5vp')
-             .fontColor($r('app.color.color_666666'))
-             .fontSize('18fp')
-             .textAlign(TextAlign.Start)
-             .maxLines(1)
-             .textOverflow({ overflow: TextOverflow.Ellipsis })
+           .margin({top:'10vp'})
+           .padding('5vp')
+           .borderRadius('10vp')
+           .backgroundColor($r('app.color.color_DDDDDD'))
          }
       }
       .width(Constants.MATCH_PARENT)
       .margin({left:'5vp'})
+      .padding('10vp')
       .layoutWeight(1)
     }
     .alignItems(VerticalAlign.Top)

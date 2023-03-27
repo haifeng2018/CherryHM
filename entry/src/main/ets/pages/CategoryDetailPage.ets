@@ -5,6 +5,7 @@ import RouterPath from '../util/RouterPath';
 import promptAction from '@ohos.promptAction';
 import { VideoInfo } from '../bean/VideoInfo';
 import { CommunityApi } from '../api/CommunityApi';
+import { AuthApi } from '../api/AuthApi';
 import router from '@ohos.router';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
@@ -31,7 +32,7 @@ struct CategoryDetailPage {
         } else {
           this.datas = this.datas.concat(value.itemList);
         }
-        this.nextPageUrl = value.nextPageUrl + CommunityApi.CATEGORY_DETAIL_AUTH
+        this.nextPageUrl = value.nextPageUrl + AuthApi.AUTH
       },
       onFail: (errorCode) => {
         this.pageState = PageState.Fail
