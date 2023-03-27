@@ -18,7 +18,7 @@ import Constants from '../../util/Constants';
 export struct HomeTabContent {
   @State currentIndex: number = 0
 
-  private tabTitles = [{ id: 0, name: '发现' },{ id: 1, name: '关注' }, { id: 2, name: '日报' }]
+  private tabTitles = [{ id: 0, name: '关注' }, { id: 1, name: '日报' },{ id: 2, name: '发现' }]
 
   @Builder TabBuilder(index: number) {
     Stack() {
@@ -43,17 +43,16 @@ export struct HomeTabContent {
     RelativeContainer() {
       Tabs() {
         TabContent() {
-          DiscoveryTabContent()
+          CommunityFollowTabContent()
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          CommunityFollowTabContent()
+          DailyPaperTabContent()
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          DailyPaperTabContent()
+          DiscoveryTabContent()
         }.tabBar(this.TabBuilder(2))
-
       }
       .vertical(false)
       .barWidth(Constants.MATCH_PARENT)

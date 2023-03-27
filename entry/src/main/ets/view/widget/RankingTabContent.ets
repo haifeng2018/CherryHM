@@ -13,7 +13,7 @@ import { PageState } from './refresh/PageState';
  * -----------------------------------------------------------------
  * Copyright (C) 2018-2028, by Victor, All rights reserved.
  * -----------------------------------------------------------------
- * File: WeeklyRankingTabContent
+ * File: RankingTabContent
  * Author: Victor
  * Date: 2023/2/27 15:10
  * Description: 首页-热门-周排行、月排行、总排行
@@ -104,6 +104,14 @@ export struct RankingTabContent {
     }
     .width(Constants.MATCH_PARENT)
     .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.USER_PAGE,
+        params: {
+          userId:info.data.author.id,
+        }
+      })
+    })
   }
 
   @Builder cellLayout (info: VideoInfo) {

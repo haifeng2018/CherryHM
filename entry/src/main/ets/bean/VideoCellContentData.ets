@@ -1,3 +1,4 @@
+import { ReplyInfo } from './ReplyInfo';
 import { BannerInfo } from './BannerInfo';
 import { VideoCellContentInfo } from './VideoCellContentInfo';
 import { VideoCellHeaderInfo } from './VideoCellHeaderInfo';
@@ -28,6 +29,7 @@ export class VideoCellContentData {
   cover: CoverInfo
   author: AuthorInfo
   owner: OwnInfo
+  user: OwnInfo
   consumption: ConsumptionInfo
 
   type:string
@@ -39,9 +41,12 @@ export class VideoCellContentData {
   icon: string
   image: string
   backgroundImage: string
+  dynamicType: string
   header: VideoCellHeaderInfo
   content: VideoCellContentInfo
   itemList:Array<VideoCellContentInfo>
   titleList:Array<string>
   bannerList:Array<BannerInfo>
+  simpleVideo:VideoCellContentData
+  reply:ReplyInfo
 }

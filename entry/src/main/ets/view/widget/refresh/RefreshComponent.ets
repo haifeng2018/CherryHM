@@ -81,8 +81,8 @@ export default struct RefreshComponent {
         this.itemLayout()
       }
     }
-      .width(Constants.MATCH_PARENT)
-      .height(Constants.MATCH_PARENT)
+    .width(Constants.MATCH_PARENT)
+    .height(Constants.MATCH_PARENT)
     .offset({ y: `${vp2px(-this.pullUpLoadHeight) + this.offsetY}px`})
   }
 

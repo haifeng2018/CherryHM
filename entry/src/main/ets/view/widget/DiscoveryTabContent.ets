@@ -5,7 +5,7 @@ import RefreshComponent from './refresh/RefreshComponent';
 import router from '@ohos.router';
 import RouterPath from '../../util/RouterPath';
 import { RefreshConfig } from './refresh/RefreshConfig';
-import { DiscoveryApi } from '../../api/DiscoveryApi';
+import { HomeApi } from '../../api/HomeApi';
 import promptAction from '@ohos.promptAction';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
@@ -36,7 +36,7 @@ export struct DiscoveryTabContent {
   }
 
   sendDiscoveryRequest () {
-    HttpRequest.url = DiscoveryApi.DISCOVERY
+    HttpRequest.url = HomeApi.DISCOVERY
     HttpRequest.request({
       onSuccess: (value) => {
         this.pageState = PageState.Success;
@@ -207,9 +207,6 @@ export struct DiscoveryTabContent {
       .backgroundColor($r('app.color.color_F9F9F9'))
       .width(Constants.MATCH_PARENT)
       .height('110vp')
-      .onScrollIndex((first: number) => {
-        this.listScrollTop = first === 0
-      })
     }
   }
 

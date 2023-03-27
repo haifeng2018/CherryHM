@@ -10,10 +10,11 @@
  */
 
 export class HomeApi {
+  static readonly DISCOVERY = 'http://baobab.kaiyanapp.com/api/v7/index/tab/discovery?udid=d2807c895f0348a180148c9dfa6f2feeac0781b5&vc=6030000&deviceModel=hm'
   static readonly FOLLOW = 'http://baobab.kaiyanapp.com/api/v6/community/tab/follow'
   static readonly DAILY_PAPER = 'http://baobab.kaiyanapp.com/api/v5/index/tab/feed'
-  static readonly TAG = 'http://baobab.kaiyanapp.com/api/v7/tag/tabList'
   static readonly HOT_KEYWORD = 'http://baobab.kaiyanapp.com/api/v3/queries/hot'
-  static readonly VIDEO_RELATED = 'http://baobab.kaiyanapp.com/api/v4/video/related?id='
-  static readonly RECOMMEND = 'http://baobab.kaiyanapp.com/api/v5/index/tab/allRec'
+
+  static readonly TAG = 'http://baobab.kaiyanapp.com/api/v7/tag/tabList'//
+  static readonly RECOMMEND = 'http://baobab.kaiyanapp.com/api/v5/index/tab/allRec'//
 }

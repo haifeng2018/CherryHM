@@ -20,4 +20,5 @@ export default class RouterPath {
   static readonly POSTER_PAGE = 'pages/PosterPage';
   static readonly CATEGORY_DETAIL_PAGE = 'pages/CategoryDetailPage';
   static readonly LIGHT_TOPICS_PAGE = 'pages/LightTopicsPage';
+  static readonly USER_PAGE = 'pages/UserPage';
 }

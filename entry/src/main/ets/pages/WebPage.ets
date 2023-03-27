@@ -11,10 +11,6 @@ struct WebPage {
 
   @State progress: number = 0;
 
-  onPageHide() {
-    router.clear()
-  }
-
   controller: web_webview.WebviewController = new web_webview.WebviewController()
 
   build() {

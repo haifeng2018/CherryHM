@@ -4,7 +4,7 @@ import { RefreshConfig } from '../view/widget/refresh/RefreshConfig';
 import RouterPath from '../util/RouterPath';
 import promptAction from '@ohos.promptAction';
 import { VideoInfo } from '../bean/VideoInfo';
-import { DiscoveryApi } from '../api/DiscoveryApi';
+import { CommunityApi } from '../api/CommunityApi';
 import router from '@ohos.router';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
@@ -19,19 +19,19 @@ struct CategoryDetailPage {
   @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
   @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  @State nextPageUrl: string = DiscoveryApi.CATEGORY_DETAIL + this.data.id
+  @State nextPageUrl: string = CommunityApi.CATEGORY_DETAIL + this.data.id
 
   sendCategoryDetailRequest () {
     HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
         this.pageState = PageState.Success;
-        if (this.nextPageUrl === DiscoveryApi.CATEGORY_DETAIL + this.data.id) {
+        if (this.nextPageUrl === CommunityApi.CATEGORY_DETAIL + this.data.id) {
           this.datas = value.itemList
         } else {
           this.datas = this.datas.concat(value.itemList);
         }
-        this.nextPageUrl = value.nextPageUrl + DiscoveryApi.CATEGORY_DETAIL_AUTH
+        this.nextPageUrl = value.nextPageUrl + CommunityApi.CATEGORY_DETAIL_AUTH
       },
       onFail: (errorCode) => {
         this.pageState = PageState.Fail
@@ -45,7 +45,7 @@ struct CategoryDetailPage {
   }
 
   refreshData () {
-    this.nextPageUrl = DiscoveryApi.CATEGORY_DETAIL + this.data.id
+    this.nextPageUrl = CommunityApi.CATEGORY_DETAIL + this.data.id
     this.sendCategoryDetailRequest()
   }
 

@@ -4,7 +4,7 @@ import { LightTopicsInfo } from '../bean/LightTopicsInfo';
 import { LightTopicsData } from '../bean/LightTopicsData';
 import RouterPath from '../util/RouterPath';
 import promptAction from '@ohos.promptAction';
-import { DiscoveryApi } from '../api/DiscoveryApi';
+import { CommunityApi } from '../api/CommunityApi';
 import router from '@ohos.router';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
@@ -26,7 +26,7 @@ struct LightTopicsPage {
   }
 
   sendLightTopicsRequest () {
-    HttpRequest.url = DiscoveryApi.LIGHT_TOPICS + this.topicId
+    HttpRequest.url = CommunityApi.LIGHT_TOPICS + this.topicId
     HttpRequest.request({
       onSuccess: (value) => {
         this.pageState = PageState.Success;
@@ -193,6 +193,14 @@ struct LightTopicsPage {
     }
     .width(Constants.MATCH_PARENT)
     .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.USER_PAGE,
+        params: {
+          userId:info.data.content.data.author.id,
+        }
+      })
+    })
   }
 
   @Builder cellLayout (info: LightTopicsInfo) {

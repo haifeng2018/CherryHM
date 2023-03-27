@@ -3,7 +3,7 @@ import { RefreshConfig } from './refresh/RefreshConfig';
 import RouterPath from '../../util/RouterPath';
 import router from '@ohos.router';
 import { VideoInfo } from '../../bean/VideoInfo';
-import { DiscoveryApi } from '../../api/DiscoveryApi';
+import { CommunityApi } from '../../api/CommunityApi';
 import promptAction from '@ohos.promptAction';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
@@ -26,14 +26,14 @@ export struct FollowTabContent {
   @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
   @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  @State nextPageUrl: string = DiscoveryApi.FOLLOW
+  @State nextPageUrl: string = CommunityApi.FOLLOW
 
   sendFollowRequest () {
     HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
         this.pageState = PageState.Success;
-        if (this.nextPageUrl === DiscoveryApi.FOLLOW) {
+        if (this.nextPageUrl === CommunityApi.FOLLOW) {
           this.datas = value.itemList
         } else {
           this.datas = this.datas.concat(value.itemList);
@@ -52,7 +52,7 @@ export struct FollowTabContent {
   }
 
   refreshData () {
-    this.nextPageUrl = DiscoveryApi.FOLLOW
+    this.nextPageUrl = CommunityApi.FOLLOW
     this.sendFollowRequest()
   }
 
@@ -104,6 +104,14 @@ export struct FollowTabContent {
     }
     .width(Constants.MATCH_PARENT)
     .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.USER_PAGE,
+        params: {
+          userId:info.data.header.id,
+        }
+      })
+    })
   }
 
   @Builder itemLayout (info: VideoInfo) {

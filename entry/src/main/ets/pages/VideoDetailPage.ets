@@ -1,3 +1,4 @@
+import RouterPath from '../util/RouterPath';
 import RefreshComponent from '../view/widget/refresh/RefreshComponent';
 import { RefreshConfig } from '../view/widget/refresh/RefreshConfig';
 import { VideoCellContentData } from '../bean/VideoCellContentData';
@@ -5,7 +6,7 @@ import router from '@ohos.router';
 import { VideoInfo } from '../bean/VideoInfo';
 import { VideoRelatedInfo } from '../bean/VideoRelatedInfo';
 import promptAction from '@ohos.promptAction';
-import { HomeApi } from '../api/HomeApi';
+import { VideoApi } from '../api/VideoApi';
 import Constants from '../util/Constants';
 import HttpRequest from '../util/HttpRequest';
 import { PageState } from '../view/widget/refresh/PageState';
@@ -39,7 +40,7 @@ struct VideoDetailPage {
   }
 
   sendVideoRelatedRequest () {
-    HttpRequest.url = HomeApi.VIDEO_RELATED + this.data.id
+    HttpRequest.url = VideoApi.VIDEO_RELATED + this.data.id
     HttpRequest.request({
       onSuccess: (value) => {
         this.pageState = PageState.Success;
@@ -323,6 +324,14 @@ struct VideoDetailPage {
       }
       .width(Constants.MATCH_PARENT)
       .padding('10vp')
+      .onClick(() => {
+        router.pushUrl({
+          url: RouterPath.USER_PAGE,
+          params: {
+            userId:info.author.id,
+          }
+        })
+      })
     }
   }
 

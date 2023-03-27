@@ -3,7 +3,7 @@ import router from '@ohos.router';
 import LMList from './refresh/LMList';
 import { RefreshConfig } from './refresh/RefreshConfig';
 import { VideoInfo } from '../../bean/VideoInfo';
-import { DiscoveryApi } from '../../api/DiscoveryApi';
+import { CommunityApi } from '../../api/CommunityApi';
 import promptAction from '@ohos.promptAction';
 import Constants from '../../util/Constants';
 import HttpRequest from '../../util/HttpRequest';
@@ -26,19 +26,19 @@ export struct NewsTabContent {
   @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
   @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
 
-  @State nextPageUrl: string = DiscoveryApi.NEWS
+  @State nextPageUrl: string = CommunityApi.NEWS
 
   sendNewsRequest () {
     HttpRequest.url = this.nextPageUrl
     HttpRequest.request({
       onSuccess: (value) => {
         this.pageState = PageState.Success;
-        if (this.nextPageUrl === DiscoveryApi.NEWS) {
+        if (this.nextPageUrl === CommunityApi.NEWS) {
           this.datas = value.itemList
         } else {
           this.datas = this.datas.concat(value.itemList);
         }
-        this.nextPageUrl = value.nextPageUrl + DiscoveryApi.NEWS_AUTH
+        this.nextPageUrl = value.nextPageUrl + CommunityApi.NEWS_AUTH
       },
       onFail: (errorCode) => {
         this.pageState = PageState.Fail
@@ -52,7 +52,7 @@ export struct NewsTabContent {
   }
 
   refreshData () {
-    this.nextPageUrl = DiscoveryApi.NEWS
+    this.nextPageUrl = CommunityApi.NEWS
     this.sendNewsRequest()
   }
 

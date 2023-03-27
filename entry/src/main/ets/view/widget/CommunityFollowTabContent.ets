@@ -103,6 +103,14 @@ export struct CommunityFollowTabContent {
     }
     .width(Constants.MATCH_PARENT)
     .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.USER_PAGE,
+        params: {
+          userId:info.data.content.data.author.id,
+        }
+      })
+    })
   }
 
   @Builder itemLayout (info: VideoInfo) {
@@ -113,6 +121,20 @@ export struct CommunityFollowTabContent {
           .objectFit(ImageFit.Cover)
           .width(Constants.MATCH_PARENT)
           .height(Constants.MATCH_PARENT)
+          .sharedTransition(`${this.datas.indexOf(info)}${info.data.content.data.id}`, {
+            duration: Constants.TRANSITION_ANIMATION_DURATION,
+            curve: Curve.Smooth,
+            delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+          })
+          .onClick(() => {
+            router.pushUrl({
+              url: RouterPath.VIDEO_DETAIL_PAGE,
+              params: {
+                data:info.data.content.data,
+                shareId: `${this.datas.indexOf(info)}${info.data.content.data.id}`
+              }
+            })
+          })
 
         Text(info.data.content.data.category)
           .textAlign(TextAlign.Center)
@@ -173,19 +195,5 @@ export struct CommunityFollowTabContent {
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
     .alignItems(HorizontalAlign.Start)
-    .sharedTransition(`${this.datas.indexOf(info)}${info.data.content.data.id}`, {
-      duration: Constants.TRANSITION_ANIMATION_DURATION,
-      curve: Curve.Smooth,
-      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
-    })
-    .onClick(() => {
-      router.pushUrl({
-        url: RouterPath.VIDEO_DETAIL_PAGE,
-        params: {
-          data:info.data.content.data,
-          shareId: `${this.datas.indexOf(info)}${info.data.content.data.id}`
-        }
-      })
-    })
   }
 }

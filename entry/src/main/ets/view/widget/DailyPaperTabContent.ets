@@ -133,6 +133,14 @@ export struct DailyPaperTabContent {
     }
     .width(Constants.MATCH_PARENT)
     .padding({top:'10vp',bottom:'20vp',left:'20vp',right:'20vp'})
+    .onClick(() => {
+      router.pushUrl({
+        url: RouterPath.USER_PAGE,
+        params: {
+          userId:info.data.content.data.author.id,
+        }
+      })
+    })
   }
 
   @Builder contentCell (info: VideoInfo) {
