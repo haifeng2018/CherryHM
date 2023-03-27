@@ -85,6 +85,9 @@ export struct DiscoveryTabContent {
       }
       .padding({left:'10vp',right:'10vp'})
     }
+    .onScroll((xOffset: number, yOffset: number) => {
+      this.listScrollTop = yOffset <= 0
+    })
   }
 
   @Builder bannerLayout(info: VideoInfo) {
