@@ -1,26 +1,36 @@
-# Introduction：
-这是一款鸿蒙版本短视频应用，项目中的 API 均来自开眼视频，纯属学习交流使用，不得用于商业用途！
+# 特别声明：
+本项目中的 API 均来自开眼视频，纯属学习交流使用，不得用于商业用途！
 
-# Screenshot：
-![image](https://s2.loli.net/2023/03/08/5obYDlgkL2Gyt1V.png)
-![image](https://s2.loli.net/2023/03/15/PYqnS5c9iy4V2lw.png)
-![image](https://s2.loli.net/2023/03/15/2e57BurdPDZf1Yw.png)
-![image](https://s2.loli.net/2023/03/15/M6mrucyDBizs4hl.png)
-![image](https://s2.loli.net/2023/03/15/pMWItl9P2SCQAXV.png)
-![image](https://s2.loli.net/2023/03/15/RgdGaLK1EBZwDlz.png)
-![image](https://s2.loli.net/2023/03/15/SJ1nlOovDxfRzTq.png)
+# 项目介绍：
+这是一款基于鸿蒙API9采用ArkTs语言开发的功能完整的短视频应用，本项目适用鸿蒙开发初学者。
+在项目中你能学到鸿蒙基础组件、容器组件、媒体组件、自定义弹窗、网络请求、下拉刷新、加载更多等组件已经页面转场动画的使用。
+本项目会持续更新，敬请关注。有任何问题可以随时联系开发者，欢迎star || fork
+
+# 项目截图：
+![image](https://s2.loli.net/2023/03/28/XmI9AJShr4jCPFH.png)
+![image](https://s2.loli.net/2023/03/28/DLCdjYHTAkGcl19.png)
+![image](https://s2.loli.net/2023/03/28/Am8B3LqMvVb9H6R.png)
+![image](https://s2.loli.net/2023/03/28/bQAqz51OvucaPt9.png)
+![image](https://s2.loli.net/2023/03/28/KRp9gIye2qQawjm.png)
+![image](https://s2.loli.net/2023/03/28/GbaqfCmtEO28KzH.png)
+![image](https://s2.loli.net/2023/03/28/D3kN7Cazu4bFxJI.png)
+![image](https://s2.loli.net/2023/03/28/eCMlSYZRXJz16tw.png)
+![image](https://s2.loli.net/2023/03/28/Vg61vxmPU4QJobk.png)
+![image](https://s2.loli.net/2023/03/28/6Tu5o7PUHD9byBr.png)
+![image](https://s2.loli.net/2023/03/28/y2boPprj3ISGB4T.png)
+![image](https://s2.loli.net/2023/03/28/QtVS6wubhD9ed8B.png)
+![image](https://s2.loli.net/2023/03/28/c8KRX6HerBMLtf4.png)
+![image](https://s2.loli.net/2023/03/28/AfxkFhvXd8WtSGm.png)
+![image](https://s2.loli.net/2023/03/28/TUkMQj9ovJWatuq.png)
 ![image](https://s2.loli.net/2023/03/15/8O1hxGuX5fWdZeq.png)
-![image](https://s2.loli.net/2023/03/15/DTWdyCcBgf26quj.png)
-![image](https://s2.loli.net/2023/03/15/docEFDCtj9IiU5p.png)
 ![image](https://s2.loli.net/2023/03/15/WyxPSD9UcNtCJfI.png)
-![image](https://s2.loli.net/2023/03/15/c4wzgWDA6Fq31dK.png)
-![image](https://s2.loli.net/2023/03/15/xPfBorMV38IbdSy.png)
-![image](https://s2.loli.net/2023/03/15/hJv3wLr2tgWxyU9.png)
 ![image](https://s2.loli.net/2023/03/15/moNYyHVC8bvBdqj.png)
 ![image](https://s2.loli.net/2023/03/15/MY2kQXAJcvFrqL9.png)
-![image](https://s2.loli.net/2023/03/15/3NiWvKAnsbBm9yQ.png)
+![image](https://s2.loli.net/2023/03/28/3kNJHpeuQEvb7Id.png)
+![image](https://s2.loli.net/2023/03/28/qWVwGPbMEaB9u7v.png)
+![image](https://s2.loli.net/2023/03/28/jHuRK6rFTgt4Y7D.png)
 
-# Focus on developers：
+# 联系开发者：
 - Gmail： victor423099@gmail.com
 - Sina Weibo
 - ![image](https://s2.loli.net/2023/03/08/OYLFCSr4h2NnIk3.jpg)
