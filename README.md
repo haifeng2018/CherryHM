@@ -5,6 +5,9 @@
 这是一款基于鸿蒙API9采用ArkTs语言开发的功能完整的短视频应用，本项目适用鸿蒙开发初学者。
 在项目中你能学到鸿蒙基础组件、容器组件、媒体组件、自定义弹窗、网络请求、下拉刷新、加载更多等组件已经页面转场动画的使用。
 本项目会持续更新，敬请关注。有任何问题可以随时联系开发者，欢迎star || fork
+- 项目地址：
+ - github:https://github.com/haifeng2018/CherryHM
+ - gitee:https://gitee.com/victor1990/CherryHM
 
 # 项目截图：
 ![image](https://s2.loli.net/2023/03/28/XmI9AJShr4jCPFH.png)
@@ -31,7 +34,10 @@
 ![image](https://s2.loli.net/2023/03/28/jHuRK6rFTgt4Y7D.png)
 
 # 联系开发者：
-- Gmail： victor423099@gmail.com
+- github: https://github.com/Victor2018
+- github: https://github.com/haifeng2018
+- gitee: https://gitee.com/victor1990
+- Gmail: victor423099@gmail.com
 - Sina Weibo
 - ![image](https://s2.loli.net/2023/03/08/OYLFCSr4h2NnIk3.jpg)
 

@@ -138,13 +138,15 @@ export struct HomeRecommendTabContent {
 
           Text(item.data.content.data.title)
             .width(Constants.MATCH_PARENT)
+            .margin({bottom:'56vp',right:'20vp'})
             .padding('10vp')
-            .fontSize('22fp')
-            .textAlign(TextAlign.Center)
+            .fontSize('36fp')
+            .textAlign(TextAlign.End)
             .fontColor($r('app.color.white'))
         }
         .width(Constants.MATCH_PARENT)
         .height(Constants.MATCH_PARENT)
+        .alignContent(Alignment.BottomEnd)
         .sharedTransition(`${this.datas.indexOf(info)}${item.data.content.data.id}`, {
           duration: Constants.TRANSITION_ANIMATION_DURATION,
           curve: Curve.Smooth,
