@@ -11,7 +11,7 @@
 
 # 项目截图：
 ![image](https://s2.loli.net/2023/03/28/XmI9AJShr4jCPFH.png)
-![image](https://s2.loli.net/2023/03/28/DLCdjYHTAkGcl19.png)
+![image](https://s2.loli.net/2023/03/28/g7VCG6YW29XErxF.png)
 ![image](https://s2.loli.net/2023/03/28/Am8B3LqMvVb9H6R.png)
 ![image](https://s2.loli.net/2023/03/28/bQAqz51OvucaPt9.png)
 ![image](https://s2.loli.net/2023/03/28/KRp9gIye2qQawjm.png)
