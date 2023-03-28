@@ -5,152 +5,192 @@
       "value": "0vp"
     },
     {
-      "name": "launcher_logo_size",
-      "value": "119vp"
-    },
-    {
-      "name": "launcher_life_text_width",
-      "value": "105vp"
-    },
-    {
-      "name": "launcher_life_text_height",
-      "value": "35vp"
-    },
-    {
-      "name": "launcher_text_title_size",
-      "value": "26fp"
-    },
-    {
-      "name": "launcher_text_introduce_size",
-      "value": "16fp"
-    },
-    {
-      "name": "launcher_text_opacity",
-      "value": "0.6"
-    },
-    {
-      "name": "advertising_text_opacity",
-      "value": "0.4"
-    },
-    {
-      "name": "advertising_image_width",
-      "value": "54vp"
-    },
-    {
-      "name": "advertising_image_height",
-      "value": "54vp"
-    },
-    {
-      "name": "advertising_text_font_size",
-      "value": "12fp"
-    },
-    {
-      "name": "advertising_text_introduce_size",
-      "value": "16fp"
-    },
-    {
-      "name": "advertising_text_title_size",
-      "value": "26fp"
-    },
-    {
-      "name": "advertising_text_border_width",
-      "value": "1"
-    },
-    {
-      "name": "advertising_text_padding_top",
-      "value": "8vp"
-    },
-    {
-      "name": "advertising_text_padding_bottom",
-      "value": "8vp"
-    },
-    {
-      "name": "advertising_text_padding_left",
-      "value": "12vp"
-    },
-    {
-      "name": "advertising_text_padding_right",
-      "value": "12vp"
-    },
-    {
-      "name": "advertising_text_radius",
-      "value": "18vp"
-    },
-    {
-      "name": "dialog_blank_height",
-      "value": "32vp"
-    },
-    {
-      "name": "dialog_blank_width",
+      "name": "vp_1",
       "value": "1vp"
     },
     {
-      "name": "dialog_common_text_size",
-      "value": "18fp"
+      "name": "vp_2",
+      "value": "2vp"
     },
     {
-      "name": "dialog_text_privacy_size",
-      "value": "20fp"
+      "name": "vp_4",
+      "value": "4vp"
     },
     {
-      "name": "dialog_fancy_text_size",
-      "value": "16fp"
+      "name": "vp_5",
+      "value": "5vp"
     },
     {
-      "name": "dialog_text_privacy_bottom",
+      "name": "vp_6",
+      "value": "6vp"
+    },
+    {
+      "name": "vp_8",
+      "value": "8vp"
+    },
+    {
+      "name": "vp_10",
+      "value": "10vp"
+    },
+    {
+      "name": "vp_12",
       "value": "12vp"
     },
     {
-      "name": "dialog_text_privacy_top",
+      "name": "vp_13",
+      "value": "13vp"
+    },
+    {
+      "name": "vp_14",
+      "value": "14vp"
+    },
+    {
+      "name": "vp_15",
+      "value": "15vp"
+    },
+    {
+      "name": "vp_18",
+      "value": "18vp"
+    },
+    {
+      "name": "vp_20",
+      "value": "20vp"
+    },
+    {
+      "name": "vp_24",
       "value": "24vp"
     },
     {
-      "name": "dialog_text_declaration_bottom",
-      "value": "24"
+      "name": "vp_26",
+      "value": "26vp"
     },
     {
-      "name": "dialog_text_opacity",
-      "value": "0.6"
+      "name": "vp_28",
+      "value": "28vp"
     },
     {
-      "name": "privacy_text_title_size",
-      "value": "20fp"
-    },
-    {
-      "name": "privacy_back_text_size",
-      "value": "20fp"
-    },
-    {
-      "name": "privacy_text_margin_top",
-      "value": "10"
-    },
-    {
-      "name": "privacy_text_margin_bottom",
-      "value": "10"
-    },
-    {
-      "name": "privacy_bottom_text_margin",
-      "value": "12"
-    },
-    {
-      "name": "privacy_text_content_left",
-      "value": "24"
-    },
-    {
-      "name": "privacy_text_content_right",
-      "value": "24"
-    },
-    {
-      "name": "home_page_text_size",
+      "name": "vp_30",
       "value": "30vp"
     },
     {
-      "name": "advertising_title_text_margin_top",
-      "value": "30vp"
+      "name": "vp_36",
+      "value": "36vp"
     },
     {
-      "name": "advertising_title_text_margin_left",
+      "name": "vp_40",
+      "value": "40vp"
+    },
+    {
+      "name": "vp_50",
+      "value": "50vp"
+    },
+    {
+      "name": "vp_56",
+      "value": "56vp"
+    },
+    {
+      "name": "vp_60",
+      "value": "60vp"
+    },
+    {
+      "name": "vp_70",
+      "value": "70vp"
+    },
+    {
+      "name": "vp_80",
+      "value": "80vp"
+    },
+    {
+      "name": "vp_88",
+      "value": "88vp"
+    },
+    {
+      "name": "vp_90",
+      "value": "90vp"
+    },
+    {
+      "name": "vp_100",
+      "value": "100vp"
+    },
+    {
+      "name": "vp_110",
+      "value": "110vp"
+    },
+    {
+      "name": "vp_118",
+      "value": "118vp"
+    },
+    {
+      "name": "vp_120",
+      "value": "120vp"
+    },
+    {
+      "name": "vp_128",
+      "value": "128vp"
+    },
+    {
+      "name": "vp_148",
+      "value": "148vp"
+    },
+    {
+      "name": "vp_160",
+      "value": "160vp"
+    },
+    {
+      "name": "vp_168",
+      "value": "168vp"
+    },
+    {
+      "name": "vp_180",
+      "value": "180vp"
+    },
+    {
+      "name": "vp_188",
+      "value": "188vp"
+    },
+    {
+      "name": "vp_198",
+      "value": "198vp"
+    },
+    {
+      "name": "vp_200",
+      "value": "200vp"
+    },
+    {
+      "name": "vp_220",
+      "value": "220vp"
+    },
+    {
+      "name": "vp_226",
+      "value": "226vp"
+    },
+    {
+      "name": "vp_256",
+      "value": "256vp"
+    },
+    {
+      "name": "vp_260",
       "value": "260vp"
+    },
+    {
+      "name": "vp_320",
+      "value": "320vp"
+    },
+    {
+      "name": "vp_328",
+      "value": "328vp"
+    },
+    {
+      "name": "vp_520",
+      "value": "520vp"
+    },
+    {
+      "name": "fp_12",
+      "value": "12fp"
+    },
+    {
+      "name": "fp_14",
+      "value": "14fp"
     },
     {
       "name": "fp_16",
@@ -175,6 +215,10 @@
     {
       "name": "fp_28",
       "value": "28fp"
+    },
+    {
+      "name": "fp_36",
+      "value": "36fp"
     }
   ]
 }

@@ -13,8 +13,8 @@ import { PageState } from '../view/widget/refresh/PageState';
 @Entry
 @Component
 struct LightTopicsPage {
-  @State shareId: string = router.getParams()?.['shareId'];
-  @State topicId: number = router.getParams()?.['topicId'];
+  @State shareId: string = router.getParams()?.[Constants.SHARE_ID];
+  @State topicId: number = router.getParams()?.[Constants.TOPIC_ID];
   @State isRefreshing: boolean = false
   @State data: LightTopicsData = new LightTopicsData();
 
@@ -82,10 +82,10 @@ struct LightTopicsPage {
   @Builder titleBar() {
     Row(){
       Image($r('app.media.ic_back'))
-        .width('30vp')
-        .height('30vp')
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .objectFit(ImageFit.Contain)
-        .margin({left:'14vp'})
+        .margin({left:$r('app.float.vp_14')})
         .onClick(() =>{
           router.back()
         })
@@ -98,7 +98,7 @@ struct LightTopicsPage {
         src: this.data.brief
       })
         .width(Constants.MATCH_PARENT)
-        .height('56vp')
+        .height($r('app.float.vp_56'))
         .layoutWeight(1)
         .fontSize($r('app.float.fp_24'))
         .fontColor($r('app.color.color_333333'))
@@ -114,10 +114,10 @@ struct LightTopicsPage {
         })
 
       Image($r('app.media.ic_share'))
-        .width('30vp')
-        .height('30vp')
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .align(Alignment.End)
-        .margin({right:'24vp'})
+        .margin({right:$r('app.float.vp_24')})
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
@@ -131,7 +131,7 @@ struct LightTopicsPage {
       Image(this.data.headerImage)
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
-        .height('256vp')
+        .height($r('app.float.vp_256'))
         .sharedTransition(this.shareId, {
           duration: Constants.TRANSITION_ANIMATION_DURATION,
           curve: Curve.Smooth,
@@ -141,22 +141,22 @@ struct LightTopicsPage {
       Column(){
         Text(this.data.brief)
           .width('90%')
-          .height('80vp')
+          .height($r('app.float.vp_80'))
           .backgroundColor($r('app.color.white'))
           .fontColor($r('app.color.color_333333'))
-          .fontSize('22fp')
+          .fontSize($r('app.float.fp_22'))
           .textAlign(TextAlign.Center)
           .maxLines(2)
           .textOverflow({overflow:TextOverflow.Ellipsis})
-          .padding('10vp')
-          .margin({top:'226vp'})
-          .border({ radius:'8vp' })
+          .padding($r('app.float.vp_10'))
+          .margin({top:$r('app.float.vp_226')})
+          .border({ radius:$r('app.float.vp_8') })
           .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
 
         Text(this.data.text).width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('18fp')
-          .padding('10vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_10'))
       }
     }
     .width(Constants.MATCH_PARENT)
@@ -167,32 +167,37 @@ struct LightTopicsPage {
   @Builder authorLayout(info: LightTopicsInfo) {
     Row(){
       Image(info.data.content.data.author.icon)
-        .width('40vp')
-        .height('40vp')
-        .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
+        .width($r('app.float.vp_40'))
+        .height($r('app.float.vp_40'))
+        .border({
+          width: $r('app.float.vp_2'),color:$r('app.color.white'),
+          radius:$r('app.float.vp_20'),style:BorderStyle.Solid })
 
       Column() {
         Text(info.data.content.data.author.name)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('18fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
 
         Text(info.data.content.data.author.description)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('12fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_12'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
       .layoutWeight(1)
-      .padding({left:'10vp'})
+      .padding({left:$r('app.float.vp_10')})
     }
     .width(Constants.MATCH_PARENT)
-    .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+    .padding({
+      top:$r('app.float.vp_10'),bottom:$r('app.float.vp_10'),
+      left:$r('app.float.vp_20'),right:$r('app.float.vp_20')
+    })
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.USER_PAGE,
@@ -220,46 +225,70 @@ struct LightTopicsPage {
         Text(info.data.content.data.category)
           .textAlign(TextAlign.Center)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('16fp')
+          .fontSize($r('app.float.fp_16'))
           .backgroundColor($r('app.color.color_4DFFFFFF'))
-          .margin({top:'5vp',right:'5vp'})
-          .padding({top:'5vp',bottom:'5vp',left:'10vp',right:'10vp'})
-          .borderRadius('5vp')
+          .margin({top:$r('app.float.vp_5'),right:$r('app.float.vp_5')})
+          .padding({
+            top:$r('app.float.vp_5'),bottom:$r('app.float.vp_5'),
+            left:$r('app.float.vp_10'),right:$r('app.float.vp_10')
+          })
+          .borderRadius($r('app.float.vp_5'))
       }
       .width(Constants.MATCH_PARENT)
-      .height('256vp')
+      .height($r('app.float.vp_256'))
       .alignContent(Alignment.TopEnd)
 
       Text(info.data.content.data.description)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
-        .fontSize('16fp')
+        .fontSize($r('app.float.fp_16'))
         .fontColor($r('app.color.color_999999'))
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .padding('10vp')
+        .padding($r('app.float.vp_10'))
 
       Row() {
-        Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
+        Image($r('app.media.ic_video_likes'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+
         Text(info.data.content.data.consumption.collectionCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
 
-        Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
+        Image($r('app.media.ic_video_comment'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+          .margin({left:$r('app.float.vp_30')
+          })
+
         Text(info.data.content.data.consumption.replyCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
 
-        Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
+        Image($r('app.media.ic_video_share'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+          .margin({left:$r('app.float.vp_30')})
+
         Text(info.data.content.data.consumption.shareCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
       }
       .width(Constants.MATCH_PARENT)
       .justifyContent(FlexAlign.End)
-      .padding({left:'10vp',right:'10vp'})
+      .padding({
+        left:$r('app.float.vp_10'),
+        right:$r('app.float.vp_10')
+      })
 
       Text()
         .width(Constants.MATCH_PARENT)
-        .height('1vp')
-        .margin({top:'10vp'})
+        .height($r('app.float.vp_1'))
+        .margin({top:$r('app.float.vp_10')})
         .backgroundColor($r('app.color.color_80DDDDDD'))
     }
     .width(Constants.MATCH_PARENT)

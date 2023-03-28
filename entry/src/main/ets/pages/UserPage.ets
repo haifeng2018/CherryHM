@@ -16,14 +16,13 @@ import { PageState } from '../view/widget/refresh/PageState';
 @Component
 struct UserPage {
 
-  userId: string = router.getParams()?.['userId'];
+  userId: string = router.getParams()?.[Constants.USER_ID];
 
   @State data: UserPageData = null;
   @State datas: Array<any> = [];
   @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
   @Provide(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) listScrollTop : boolean = true;
 
-  private tabTitles = [{ id: 0, name: '首页' }, { id: 1, name: '作品' }, { id: 2, name: '动态' }]
   @State currentIndex: number = 0
 
   aboutToAppear() {
@@ -99,27 +98,31 @@ struct UserPage {
     Stack() {
       Image(this.getHeadUrl())
         .width(Constants.MATCH_PARENT)
-        .height('200vp')
+        .height($r('app.float.vp_200'))
         .blur(98)
 
       Column() {
         Row() {
           Image(this.data.pgcInfo.icon)
-            .width('80vp')
-            .height('80vp')
+            .width($r('app.float.vp_80'))
+            .height($r('app.float.vp_80'))
             .clip(new Circle({ width: '80vp', height: '80vp' }))
-            .border({ width: '2vp',color:$r('app.color.color_80DDDDDD'),radius:'40vp',style:BorderStyle.Solid })
+            .border({
+              width: $r('app.float.vp_2'),
+              color:$r('app.color.color_80DDDDDD'),
+              radius:$r('app.float.vp_40'),
+              style:BorderStyle.Solid })
 
           Text(this.data.pgcInfo.description)
             .layoutWeight(1)
-            .margin({top:'40vp',left:'10vp',right:'10vp'})
+            .margin({top:$r('app.float.vp_40'),left:$r('app.float.vp_10'),right:$r('app.float.vp_10')})
             .fontColor($r('app.color.color_666666'))
-            .fontSize('22fp')
+            .fontSize($r('app.float.fp_22'))
             .textAlign(TextAlign.Start)
             .maxLines(2)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
         }
-        .padding({left:'30vp'})
+        .padding({left:$r('app.float.vp_30')})
         .alignItems(VerticalAlign.Top)
 
         Row() {
@@ -127,36 +130,36 @@ struct UserPage {
             .height(Constants.MATCH_PARENT)
             .layoutWeight(1)
             .fontColor($r('app.color.color_333333'))
-            .fontSize('18fp')
+            .fontSize($r('app.float.fp_18'))
             .textAlign(TextAlign.Center)
 
           Text(`分享：${this.data.pgcInfo.shareCount}`)
             .height(Constants.MATCH_PARENT)
             .layoutWeight(1)
             .fontColor($r('app.color.color_333333'))
-            .fontSize('18fp')
+            .fontSize($r('app.float.fp_18'))
             .textAlign(TextAlign.Center)
 
           Text(`收藏：${this.data.pgcInfo.collectCount}`)
             .height(Constants.MATCH_PARENT)
             .layoutWeight(1)
             .fontColor($r('app.color.color_333333'))
-            .fontSize('18fp')
+            .fontSize($r('app.float.fp_18'))
             .textAlign(TextAlign.Center)
         }
         .width(Constants.MATCH_PARENT)
-        .height('50vp')
+        .height($r('app.float.vp_50'))
 
         Text(this.data.pgcInfo.brief)
           .width(Constants.MATCH_PARENT)
-          .padding('10vp')
+          .padding($r('app.float.vp_10'))
           .fontColor($r('app.color.color_333333'))
-          .fontSize('18fp')
+          .fontSize($r('app.float.fp_18'))
           .textAlign(TextAlign.Start)
 
       }
       .width(Constants.MATCH_PARENT)
-      .margin({top:'160vp'})
+      .margin({top:$r('app.float.vp_160')})
     }
     .width(Constants.MATCH_PARENT)
     .alignContent(Alignment.Top)
@@ -181,26 +184,7 @@ struct UserPage {
       })
     }
     .width(Constants.MATCH_PARENT)
-    .padding('10vp')
-  }
-
-  @Builder TabBuilder(index: number) {
-    Stack() {
-      Text(this.tabTitles[index].name)
-        .height(Constants.MATCH_PARENT)
-        .padding('12vp')
-        .fontSize(this.currentIndex === index ? '22fp' : '20fp')
-        .fontWeight(this.currentIndex === index ? 700 : 500)
-        .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
-
-      Divider()
-        .strokeWidth('5vp')
-        .width('20vp')
-        .color($r('app.color.color_333333'))
-        .opacity(this.currentIndex === index ? 1 : 0)
-
-    }
-    .alignContent(Alignment.Bottom)
+    .padding($r('app.float.vp_10'))
   }
 
   @Builder horizontalScrollCardCell(info: VideoInfo) {
@@ -210,13 +194,13 @@ struct UserPage {
         ListItem() {
           this.horizontalScrollCardItem(data)
         }
-        .width('320vp')
+        .width($r('app.float.vp_320'))
       })
     }
     .listDirection(Axis.Horizontal)
     .backgroundColor($r('app.color.color_F9F9F9'))
     .width(Constants.MATCH_PARENT)
-    .height('168vp')
+    .height($r('app.float.vp_168'))
   }
 
   @Builder horizontalScrollCardItem(data: VideoCellContentInfo) {
@@ -225,18 +209,18 @@ struct UserPage {
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height(Constants.MATCH_PARENT)
-        .borderRadius('10vp')
+        .borderRadius($r('app.float.vp_10'))
 
       Text(data.data.title)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Center)
-        .fontSize('18fp')
+        .fontSize($r('app.float.fp_18'))
         .fontColor($r('app.color.white'))
 
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
+    .borderRadius({bottomLeft:$r('app.float.vp_10'),bottomRight:$r('app.float.vp_10')})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .onClick(() => {
       router.pushUrl({
@@ -252,7 +236,8 @@ struct UserPage {
   @Builder headCell(title: string) {
     Text(title)
       .width(Constants.MATCH_PARENT)
-      .height('56vp').fontSize('22fp')
+      .height($r('app.float.vp_56'))
+      .fontSize($r('app.float.fp_22'))
       .textAlign(TextAlign.Start)
       .fontColor($r('app.color.color_666666'))
   }
@@ -261,9 +246,9 @@ struct UserPage {
     Stack(){
       Row() {
         Image(info.data.cover.detail)
-          .width('168vp')
+          .width($r('app.float.vp_168'))
           .height(Constants.MATCH_PARENT)
-          .borderRadius({topLeft:'10vp',bottomLeft:'10vp'})
+          .borderRadius({topLeft:$r('app.float.vp_10'),bottomLeft:$r('app.float.vp_10')})
 
         Column() {
           Text(info.data.category)
@@ -271,18 +256,18 @@ struct UserPage {
             .layoutWeight(1)
             .textAlign(TextAlign.End)
             .fontColor($r('app.color.color_666666'))
-            .fontSize('18fp')
-            .padding({ right:'10vp' })
+            .fontSize($r('app.float.fp_18'))
+            .padding({ right:$r('app.float.vp_10') })
 
           Text(info.data.title)
             .width(Constants.MATCH_PARENT)
             .layoutWeight(1)
             .textAlign(TextAlign.Start)
             .fontColor($r('app.color.color_333333'))
-            .fontSize('16fp')
+            .fontSize($r('app.float.fp_16'))
             .maxLines(2)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .padding({ bottom:'10vp',left:'30vp',right: '10vp' })
+            .padding({ bottom:$r('app.float.vp_10'),left:$r('app.float.vp_30'),right: $r('app.float.vp_10') })
             .align(Alignment.Bottom)
 
         }
@@ -295,17 +280,17 @@ struct UserPage {
 
       if (info.data.author != null && info.data.author.icon != null) {
         Image(info.data.author.icon)
-          .width('40vp')
-          .height('40vp')
-          .margin({left:'148vp'})
+          .width($r('app.float.vp_40'))
+          .height($r('app.float.vp_40'))
+          .margin({left:$r('app.float.vp_148')})
           .clip(new Circle({ width: '40vp', height: '40vp' }))
       }
     }
     .width(Constants.MATCH_PARENT)
-    .height('118vp')
-    .margin({top:'5vp',bottom:'5vp'})
+    .height($r('app.float.vp_118'))
+    .margin({top:$r('app.float.vp_5'),bottom:$r('app.float.vp_5')})
     .backgroundColor($r('app.color.white'))
-    .borderRadius('10vp')
+    .borderRadius($r('app.float.vp_10'))
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .alignContent(Alignment.Start)
     .onClick(() => {
@@ -326,7 +311,7 @@ struct UserPage {
           Image(item.data.cover.feed)
             .width(Constants.MATCH_PARENT)
             .height(Constants.MATCH_PARENT)
-            .borderRadius('10vp')
+            .borderRadius($r('app.float.vp_10'))
             .onClick(() => {
               router.pushUrl({
                 url: RouterPath.VIDEO_DETAIL_PAGE,
@@ -339,7 +324,7 @@ struct UserPage {
         })
       }
       .width(Constants.MATCH_PARENT)
-      .height('198vp')
+      .height($r('app.float.vp_198'))
       .cachedCount(info.data.itemList.length)
       .index(0)
       .autoPlay(info.data.itemList.length > 1)
@@ -361,25 +346,25 @@ struct UserPage {
   @Builder briefCardCell(info: VideoInfo) {
     Row() {
       Image(info.data.icon)
-        .width('60vp')
-        .height('60vp')
+        .width($r('app.float.vp_60'))
+        .height($r('app.float.vp_60'))
         .clip(new Circle({ width: '60vp', height: '60vp' }))
 
       Column() {
         Text(info.data.title)
           .width(Constants.MATCH_PARENT)
-          .margin({ left: '10vp' })
+          .margin({ left: $r('app.float.vp_10') })
           .fontColor($r('app.color.color_333333'))
-          .fontSize('20fp')
-          .padding('2vp')
+          .fontSize($r('app.float.vp_20'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
 
         Text(info.data.description)
           .width(Constants.MATCH_PARENT)
-          .margin({ left: '10vp' })
+          .margin({ left: $r('app.float.vp_10') })
           .fontColor($r('app.color.color_666666'))
-          .fontSize('18fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -387,17 +372,25 @@ struct UserPage {
       .layoutWeight(1)
 
       Text('+关注')
-        .margin({ left: '5vp' })
-        .padding({ top: '4vp', bottom: '4vp', left: '10vp', right: '10vp' })
+        .margin({ left: $r('app.float.vp_5') })
+        .padding({
+          top: $r('app.float.vp_4'),
+          bottom: $r('app.float.vp_4'),
+          left: $r('app.float.vp_10'),
+          right: $r('app.float.vp_10') })
         .fontColor($r('app.color.color_666666'))
-        .fontSize('18fp')
-        .border({ width: '1vp', color: $r('app.color.color_666666'), radius: '5vp', style: BorderStyle.Solid })
+        .fontSize($r('app.float.fp_18'))
+        .border({
+          width: $r('app.float.vp_1'),
+          color: $r('app.color.color_666666'),
+          radius: $r('app.float.vp_5'),
+          style: BorderStyle.Solid })
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .margin({ top: '5vp', bottom: '5vp' })
-    .padding('10vp')
-    .borderRadius('10vp')
+    .margin({ top: $r('app.float.vp_5'), bottom: $r('app.float.vp_5') })
+    .padding($r('app.float.vp_10'))
+    .borderRadius($r('app.float.vp_10'))
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .onClick(() => {
       router.pushUrl({
@@ -413,52 +406,57 @@ struct UserPage {
   @Builder authorLayout(info: VideoInfo) {
     Row(){
       Image(info.data.header.icon)
-        .width('40vp')
-        .height('40vp')
+        .width($r('app.float.vp_40'))
+        .height($r('app.float.vp_40'))
         .clip(new Circle({ width: '40vp', height: '40vp' }))
 
       Column() {
         Text(info.data.header.title)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('18fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
 
         Text(info.data.header.description)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('12fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_12'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
       .layoutWeight(1)
-      .padding({left:'10vp'})
+      .padding({left:$r('app.float.vp_10')})
     }
     .width(Constants.MATCH_PARENT)
-    .padding({top:'10vp',bottom:'20vp',left:'20vp',right:'20vp'})
+    .padding({
+      top:$r('app.float.vp_10'),
+      bottom:$r('app.float.vp_20'),
+      left:$r('app.float.vp_20'),
+      right:$r('app.float.vp_20')
+    })
   }
 
   @Builder dynamicInfoCardCell (info: VideoInfo) {
     Row() {
       Image(info.data.user.avatar)
-        .width('30vp')
-        .height('30vp')
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .clip(new Circle({ width: '30vp', height: '30vp' }))
 
       Column() {
         Row() {
           Text(info.data.user.nickname)
             .fontColor($r('app.color.color_333333'))
-            .fontSize('18fp')
+            .fontSize($r('app.float.fp_18'))
             .textAlign(TextAlign.Start)
 
           Text(info.data.text)
             .layoutWeight(1)
             .fontColor($r('app.color.color_666666'))
-            .fontSize('18fp')
+            .fontSize($r('app.float.fp_18'))
             .textAlign(TextAlign.Start)
             .maxLines(1)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -467,7 +465,7 @@ struct UserPage {
         Text(info.data.reply.message)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('18fp')
+          .fontSize($r('app.float.fp_18'))
           .textAlign(TextAlign.Start)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
 
@@ -475,36 +473,36 @@ struct UserPage {
            Column() {
              Row() {
                Image(info.data.reply.parentReply.user.avatar)
-                 .width('20vp')
-                 .height('20vp')
+                 .width($r('app.float.vp_20'))
+                 .height($r('app.float.vp_20'))
                  .clip(new Circle({ width: '20vp', height: '20vp' }))
 
                Text(info.data.reply.parentReply.user.nickname)
                  .width(Constants.MATCH_PARENT)
                  .fontColor($r('app.color.color_333333'))
-                 .fontSize('18fp')
-                 .padding('2vp')
+                 .fontSize($r('app.float.fp_18'))
+                 .padding($r('app.float.vp_2'))
                  .textAlign(TextAlign.Start)
              }
              .width(Constants.MATCH_PARENT)
-             .margin('5vp')
+             .margin($r('app.float.vp_5'))
 
              Text(info.data.reply.parentReply.message)
                .width(Constants.MATCH_PARENT)
-               .padding('5vp')
+               .padding($r('app.float.vp_5'))
                .fontColor($r('app.color.color_666666'))
-               .fontSize('18fp')
+               .fontSize($r('app.float.fp_18'))
                .textAlign(TextAlign.Start)
            }
-           .margin({top:'10vp'})
-           .padding('5vp')
-           .borderRadius('10vp')
+           .margin({top:$r('app.float.vp_10')})
+           .padding($r('app.float.vp_5'))
+           .borderRadius($r('app.float.vp_10'))
            .backgroundColor($r('app.color.color_DDDDDD'))
          }
       }
       .width(Constants.MATCH_PARENT)
-      .margin({left:'5vp'})
-      .padding('10vp')
+      .margin({left:$r('app.float.vp_5')})
+      .padding($r('app.float.vp_10'))
       .layoutWeight(1)
     }
     .alignItems(VerticalAlign.Top)
@@ -530,10 +528,10 @@ struct UserPage {
     if (this.data != null && this.data.pgcInfo != null) {
       Row(){
         Image($r('app.media.ic_back'))
-          .width('30vp')
-          .height('30vp')
+          .width($r('app.float.vp_30'))
+          .height($r('app.float.vp_30'))
           .objectFit(ImageFit.Contain)
-          .margin({left:'14vp'})
+          .margin({left:$r('app.float.vp_14')})
           .onClick(() =>{
             router.back()
           })
@@ -546,7 +544,7 @@ struct UserPage {
           src: this.data.pgcInfo.name
         })
           .width(Constants.MATCH_PARENT)
-          .height('56vp')
+          .height($r('app.float.vp_56'))
           .layoutWeight(1)
           .fontSize($r('app.float.fp_24'))
           .fontColor($r('app.color.color_333333'))
@@ -562,10 +560,10 @@ struct UserPage {
           })
 
         Image($r('app.media.ic_share'))
-          .width('30vp')
-          .height('30vp')
+          .width($r('app.float.vp_30'))
+          .height($r('app.float.vp_30'))
           .align(Alignment.End)
-          .margin({right:'24vp'})
+          .margin({right:$r('app.float.vp_24')})
       }
       .width(Constants.MATCH_PARENT)
       .backgroundColor($r('app.color.white'))
@@ -573,7 +571,6 @@ struct UserPage {
       .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
       .zIndex(1)
     }
-
   }
 
 }

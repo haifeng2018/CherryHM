@@ -78,32 +78,37 @@ export struct HomeRecommendTabContent {
   @Builder authorLayout(author: AuthorInfo) {
     Row(){
       Image(author.icon)
-        .width('40vp')
-        .height('40vp')
+        .width($r('app.float.vp_40'))
+        .height($r('app.float.vp_40'))
         .clip(new Circle({ width: '40vp', height: '40vp' }))
 
       Column() {
         Text(author.name)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('18fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
 
         Text(author.description)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('12fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_12'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
       .layoutWeight(1)
-      .padding({left:'10vp'})
+      .padding({left:$r('app.float.vp_10')})
     }
     .width(Constants.MATCH_PARENT)
-    .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+    .padding({
+      top:$r('app.float.vp_10'),
+      bottom:$r('app.float.vp_10'),
+      left:$r('app.float.vp_20'),
+      right:$r('app.float.vp_10')
+    })
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.USER_PAGE,
@@ -138,9 +143,9 @@ export struct HomeRecommendTabContent {
 
           Text(item.data.content.data.title)
             .width(Constants.MATCH_PARENT)
-            .margin({bottom:'56vp',right:'20vp'})
-            .padding('10vp')
-            .fontSize('36fp')
+            .margin({bottom:$r('app.float.vp_56'),right:$r('app.float.vp_20')})
+            .padding($r('app.float.vp_10'))
+            .fontSize($r('app.float.fp_36'))
             .textAlign(TextAlign.End)
             .fontColor($r('app.color.white'))
         }
@@ -164,7 +169,7 @@ export struct HomeRecommendTabContent {
       })
     }
     .width(Constants.MATCH_PARENT)
-    .height('520vp')
+    .height($r('app.float.vp_520'))
     .index(0)
     .autoPlay(info.data.itemList.length > 1)
     .interval(3000)
@@ -182,8 +187,9 @@ export struct HomeRecommendTabContent {
   @Builder headCell(title: string) {
     Text(title)
       .width(Constants.MATCH_PARENT)
-      .height('56vp').fontSize('28fp')
-      .padding({left:'10vp'})
+      .height($r('app.float.vp_56'))
+      .fontSize($r('app.float.fp_28'))
+      .padding({left:$r('app.float.vp_10')})
       .textAlign(TextAlign.Start)
       .fontColor($r('app.color.color_666666'))
   }
@@ -214,57 +220,88 @@ export struct HomeRecommendTabContent {
         Text(info.data.content.data.category)
           .textAlign(TextAlign.Center)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('16fp')
+          .fontSize($r('app.float.fp_16'))
           .backgroundColor($r('app.color.color_4DFFFFFF'))
-          .margin({top:'5vp',right:'5vp'})
-          .padding({top:'5vp',bottom:'5vp',left:'10vp',right:'10vp'})
-          .borderRadius('5vp')
+          .margin({
+            top:$r('app.float.vp_5'),
+            right:$r('app.float.vp_5')
+          })
+          .padding({
+            top:$r('app.float.vp_5'),
+            bottom:$r('app.float.vp_5'),
+            left:$r('app.float.vp_10'),
+            right:$r('app.float.vp_10')
+          })
+          .borderRadius($r('app.float.vp_5'))
       }
       .width(Constants.MATCH_PARENT)
-      .height('256vp')
+      .height($r('app.float.vp_256'))
       .alignContent(Alignment.TopEnd)
 
       Text(info.data.content.data.description)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
-        .fontSize('16fp')
+        .fontSize($r('app.float.fp_16'))
         .fontColor($r('app.color.color_999999'))
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .padding('10vp')
+        .padding($r('app.float.vp_10'))
 
       Row() {
         Image($r('app.media.ic_play_duration'))
-          .width('15vp')
-          .height('15vp')
+          .width($r('app.float.vp_15'))
+          .height($r('app.float.vp_15'))
           .objectFit(ImageFit.Contain)
 
         Text(DateUtil.formatDuration(info.data.content.data.duration))
           .layoutWeight(1)
-          .margin({left:'5vp',right:'5vp'})
-          .fontSize('18fp')
+          .margin({
+            left:$r('app.float.vp_5'),
+            right:$r('app.float.vp_5')
+          })
+          .fontSize($r('app.float.fp_18'))
           .fontColor($r('app.color.color_666666'))
 
-        Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
+        Image($r('app.media.ic_video_likes'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+
         Text(info.data.content.data.consumption.collectionCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
 
-        Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
+        Image($r('app.media.ic_video_comment'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+          .margin({left:$r('app.float.vp_30')})
+
         Text(info.data.content.data.consumption.replyCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
 
-        Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
+        Image($r('app.media.ic_video_share'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+          .margin({left:$r('app.float.vp_30')})
+
         Text(info.data.content.data.consumption.shareCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
       }
       .width(Constants.MATCH_PARENT)
       .justifyContent(FlexAlign.End)
-      .padding({left:'10vp',right:'10vp'})
+      .padding({
+        left:$r('app.float.vp_10'),
+        right:$r('app.float.vp_10')
+      })
 
       Text()
         .width(Constants.MATCH_PARENT)
-        .height('1vp')
-        .margin({top:'10vp'})
+        .height($r('app.float.vp_1'))
+        .margin({top:$r('app.float.vp_10')})
         .backgroundColor($r('app.color.color_80DDDDDD'))
     }
     .width(Constants.MATCH_PARENT)
@@ -298,57 +335,89 @@ export struct HomeRecommendTabContent {
         Text(info.data.category)
           .textAlign(TextAlign.Center)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('16fp')
+          .fontSize($r('app.float.fp_16'))
           .backgroundColor($r('app.color.color_4DFFFFFF'))
-          .margin({top:'5vp',right:'5vp'})
-          .padding({top:'5vp',bottom:'5vp',left:'10vp',right:'10vp'})
-          .borderRadius('5vp')
+          .margin({
+            top:$r('app.float.vp_5'),
+            right:$r('app.float.vp_5')
+          })
+          .padding({
+            top:$r('app.float.vp_5'),
+            bottom:$r('app.float.vp_5'),
+            left:$r('app.float.vp_10'),
+            right:$r('app.float.vp_10')
+          })
+          .borderRadius($r('app.float.vp_5'))
       }
       .width(Constants.MATCH_PARENT)
-      .height('256vp')
+      .height($r('app.float.vp_256'))
       .alignContent(Alignment.TopEnd)
 
       Text(info.data.description)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
-        .fontSize('16fp')
+        .fontSize($r('app.float.fp_16'))
         .fontColor($r('app.color.color_999999'))
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .padding('10vp')
+        .padding($r('app.float.vp_10'))
 
       Row() {
         Image($r('app.media.ic_play_duration'))
-          .width('15vp')
-          .height('15vp')
+          .width($r('app.float.vp_15'))
+          .height($r('app.float.vp_15'))
           .objectFit(ImageFit.Contain)
 
         Text(DateUtil.formatDuration(info.data.duration))
           .layoutWeight(1)
-          .margin({left:'5vp',right:'5vp'})
-          .fontSize('18fp')
+          .margin({
+            left:$r('app.float.vp_5'),
+            right:$r('app.float.vp_5')
+          })
+          .fontSize($r('app.float.fp_18'))
           .fontColor($r('app.color.color_666666'))
 
-        Image($r('app.media.ic_video_likes')).width('20vp').height('20vp')
+        Image($r('app.media.ic_video_likes'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+
         Text(info.data.consumption.collectionCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
 
-        Image($r('app.media.ic_video_comment')).width('20vp').height('20vp').margin({left:'30vp'})
+        Image($r('app.media.ic_video_comment'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+          .margin({left:$r('app.float.vp_30')})
+
         Text(info.data.consumption.replyCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
 
-        Image($r('app.media.ic_video_share')).width('20vp').height('20vp').margin({left:'30vp'})
+        Image($r('app.media.ic_video_share'))
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_10'))
+          .margin({left:$r('app.float.vp_30')
+          })
+
         Text(info.data.consumption.shareCount.toString())
-          .fontColor($r('app.color.color_999999')).fontSize('16fp').margin({left:'5vp'})
+          .fontColor($r('app.color.color_999999'))
+          .fontSize($r('app.float.fp_16'))
+          .margin({left:$r('app.float.vp_5')})
       }
       .width(Constants.MATCH_PARENT)
       .justifyContent(FlexAlign.End)
-      .padding({left:'10vp',right:'10vp'})
+      .padding({
+        left:$r('app.float.vp_10'),
+        right:$r('app.float.vp_10')
+      })
 
       Text()
         .width(Constants.MATCH_PARENT)
-        .height('1vp')
-        .margin({top:'10vp'})
+        .height($r('app.float.vp_1'))
+        .margin({top:$r('app.float.vp_10')})
         .backgroundColor($r('app.color.color_80DDDDDD'))
     }
     .width(Constants.MATCH_PARENT)

@@ -110,11 +110,11 @@ export default struct LMList {
 
   @Builder FailLayout() {
     Image($r('app.media.none'))
-      .height('120vp')
-      .width('120vp')
+      .height($r('app.float.vp_120'))
+      .width($r('app.float.vp_120'))
     Text($r('app.string.page_none_msg'))
       .opacity(0.6)
-      .fontSize('18fp')
+      .fontSize($r('app.float.fp_18'))
       .fontColor($r('app.color.color_666666'))
   }
 

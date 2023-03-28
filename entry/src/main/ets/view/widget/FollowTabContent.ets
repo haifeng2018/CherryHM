@@ -78,32 +78,37 @@ export struct FollowTabContent {
   @Builder headCell(info: VideoInfo) {
     Row(){
       Image(info.data.header.icon)
-        .width('40vp')
-        .height('40vp')
+        .width($r('app.float.vp_40'))
+        .height($r('app.float.vp_40'))
         .clip(new Circle({ width: '40vp', height: '40vp' }))
 
       Column() {
         Text(info.data.header.title)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('18fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
 
         Text(info.data.header.description)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('12fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_12'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
       .layoutWeight(1)
-      .padding({left:'10vp'})
+      .padding({left:$r('app.float.vp_10')})
     }
     .width(Constants.MATCH_PARENT)
-    .padding({top:'10vp',bottom:'10vp',left:'20vp',right:'20vp'})
+    .padding({
+      top:$r('app.float.vp_10'),
+      bottom:$r('app.float.vp_10'),
+      left:$r('app.float.vp_20'),
+      right:$r('app.float.vp_20')
+    })
     .onClick(() => {
       router.pushUrl({
         url: RouterPath.USER_PAGE,
@@ -125,39 +130,47 @@ export struct FollowTabContent {
                 Image(item.data.cover.feed)
                   .width(Constants.MATCH_PARENT)
                   .height(Constants.MATCH_PARENT)
-                  .borderRadius('10vp')
+                  .borderRadius($r('app.float.vp_10'))
 
                 Text(item.data.category)
                   .textAlign(TextAlign.Center)
                   .fontColor($r('app.color.color_333333'))
-                  .fontSize('16fp')
+                  .fontSize($r('app.float.fp_16'))
                   .backgroundColor($r('app.color.color_4DFFFFFF'))
-                  .margin({top:'5vp',right:'5vp'})
-                  .padding({top:'5vp',bottom:'5vp',left:'10vp',right:'10vp'})
-                  .borderRadius('5vp')
+                  .margin({
+                    top:$r('app.float.vp_5'),
+                    right:$r('app.float.vp_5')
+                  })
+                  .padding({
+                    top:$r('app.float.vp_5'),
+                    bottom:$r('app.float.vp_5'),
+                    left:$r('app.float.vp_10'),
+                    right:$r('app.float.vp_10')
+                  })
+                  .borderRadius($r('app.float.vp_5'))
               }
               .width(Constants.MATCH_PARENT)
-              .height('198vp')
+              .height($r('app.float.vp_198'))
               .alignContent(Alignment.TopEnd)
 
               Text(item.data.title)
                 .width(Constants.MATCH_PARENT)
                 .textAlign(TextAlign.Start)
                 .fontColor($r('app.color.color_333333'))
-                .fontSize('16fp')
+                .fontSize($r('app.float.fp_16'))
                 .maxLines(1)
                 .textOverflow({overflow: TextOverflow.Ellipsis})
-                .margin({top:'5vp'})
-                .padding('5vp')
+                .margin({top:$r('app.float.vp_5')})
+                .padding($r('app.float.vp_5'))
 
               Text(DateUtil.formatReleaseDate(item.data.releaseTime))
                 .width(Constants.MATCH_PARENT)
                 .textAlign(TextAlign.Start)
                 .fontColor($r('app.color.color_666666'))
-                .fontSize('18fp')
-                .padding('5vp')
+                .fontSize($r('app.float.fp_18'))
+                .padding($r('app.float.vp_5'))
             }
-            .width('328vp')
+            .width($r('app.float.vp_328'))
           }
           .sharedTransition(`${info.data.itemList.indexOf(item)}${item.data.id}`, {
             duration: Constants.TRANSITION_ANIMATION_DURATION,
@@ -176,12 +189,12 @@ export struct FollowTabContent {
         })
       }
       .listDirection(Axis.Horizontal)
-      .padding({left:'20vp'})
+      .padding({left:$r('app.float.vp_20')})
 
       Text()
         .width(Constants.MATCH_PARENT)
-        .height('1vp')
-        .margin({top:'5vp'})
+        .height($r('app.float.vp_1'))
+        .margin({top:$r('app.float.vp_5')})
         .backgroundColor($r('app.color.color_80DDDDDD'))
     }
     .width(Constants.MATCH_PARENT)

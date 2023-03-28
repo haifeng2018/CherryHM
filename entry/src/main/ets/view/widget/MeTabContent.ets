@@ -16,116 +16,133 @@ export struct MeTabContent {
   build() {
     Stack() {
       Column() {
+
         Image($r('app.media.img_me_header_cover'))
           .width(Constants.MATCH_PARENT)
-          .height('188vp')
+          .height($r('app.float.vp_188'))
+
         Column() {
           Row(){
             Text('Cherry')
               .fontColor($r('app.color.color_333333'))
-              .fontSize('22fp')
+              .fontSize($r('app.float.fp_22'))
+
             Image($r('app.media.ic_me_edit_black'))
-              .width('40vp')
-              .height('40vp')
+              .width($r('app.float.vp_40'))
+              .height($r('app.float.vp_40'))
           }
           .width(Constants.MATCH_PARENT)
-          .margin({top:'60vp',left:'24vp'})
+          .margin({top:$r('app.float.vp_60'),left:$r('app.float.vp_24')})
 
           Row(){
             Text('0')
               .fontColor($r('app.color.color_333333'))
-              .fontSize('12fp')
+              .fontSize($r('app.float.fp_12'))
 
-            Text('粉丝')
+            Text($r('app.string.follower'))
               .fontColor($r('app.color.color_666666'))
-              .fontSize('12fp')
-              .margin({left:'5vp'})
+              .fontSize($r('app.float.fp_12'))
+              .margin({left:$r('app.float.vp_5')})
 
             Text('0')
               .fontColor($r('app.color.color_333333'))
-              .fontSize('12fp')
-              .margin({left:'30vp'})
+              .fontSize($r('app.float.fp_12'))
+              .margin({left:$r('app.float.vp_30')})
 
-            Text('关注')
+            Text($r('app.string.follow'))
               .fontColor($r('app.color.color_666666'))
-              .fontSize('12fp')
-              .margin({left:'5vp'})
+              .fontSize($r('app.float.fp_12'))
+              .margin({left:$r('app.float.vp_50')})
 
             Text('0')
               .fontColor($r('app.color.color_333333'))
-              .fontSize('12fp')
-              .margin({left:'30vp'})
+              .fontSize($r('app.float.fp_12'))
+              .margin({left:$r('app.float.vp_30')})
 
-            Text('徽章')
+            Text($r('app.string.badge'))
               .fontColor($r('app.color.color_666666'))
-              .fontSize('12fp')
-              .margin({left:'5vp'})
+              .fontSize($r('app.float.fp_12'))
+              .margin({left:$r('app.float.vp_5')})
           }
           .width(Constants.MATCH_PARENT)
-          .margin({top:'20vp',left:'24vp'})
+          .margin({top:$r('app.float.vp_20'),left:$r('app.float.vp_24')})
 
-          Text('IP属地：广东')
+          Text($r('app.string.ip_addr'))
             .fontColor($r('app.color.color_666666'))
-            .fontSize('12fp')
+            .fontSize($r('app.float.fp_12'))
             .width(Constants.MATCH_PARENT)
-            .margin({left:'24vp',top:'36vp'})
+            .margin({
+              left:$r('app.float.vp_24'),
+              top:$r('app.float.vp_36')
+            })
 
           Row() {
-            Text('缓存')
+
+            Text($r('app.string.cache'))
               .height(Constants.MATCH_PARENT)
               .layoutWeight(1)
-              .fontSize('12fp')
+              .fontSize($r('app.float.fp_12'))
               .fontColor($r('app.color.color_666666'))
               .textAlign(TextAlign.Center)
+
             Divider().vertical(true).height(Constants.MATCH_PARENT).color($r('app.color.color_666666'))
-            Text('收藏')
+
+            Text($r('app.string.collection'))
               .height(Constants.MATCH_PARENT)
               .layoutWeight(1)
-              .fontSize('12fp')
+              .fontSize($r('app.float.fp_12'))
               .fontColor($r('app.color.color_666666'))
               .textAlign(TextAlign.Center)
+
             Divider().vertical(true).height(Constants.MATCH_PARENT).color($r('app.color.color_666666'))
-            Text('观看记录')
+
+            Text($r('app.string.watch_history'))
               .height(Constants.MATCH_PARENT)
               .layoutWeight(1)
-              .fontSize('12fp')
+              .fontSize($r('app.float.fp_12'))
               .fontColor($r('app.color.color_666666'))
               .textAlign(TextAlign.Center)
           }
           .width(Constants.MATCH_PARENT)
-          .height('20vp')
-          .margin({top:'30vp'})
+          .height($r('app.float.vp_20'))
+          .margin({top:$r('app.float.vp_30')})
 
           Image($r('app.media.img_me_no_video'))
-            .width('110vp')
-            .height('110vp')
-            .margin({top:'60vp'})
+            .width($r('app.float.vp_110'))
+            .height($r('app.float.vp_110'))
+            .margin({top:$r('app.float.vp_60')})
 
-          Text('暂无作品')
+          Text($r('app.string.no_video'))
             .fontColor($r('app.color.color_666666'))
-            .fontSize('18fp')
-            .margin({top:'10vp'})
+            .fontSize($r('app.float.fp_18'))
+            .margin({top:$r('app.float.vp_10')})
         }
         .width(Constants.MATCH_PARENT)
         .layoutWeight(1)
       }
 
       Image($r('app.media.default_img'))
-        .width('80vp')
-        .height('80vp')
+        .width($r('app.float.vp_80'))
+        .height($r('app.float.vp_80'))
         .objectFit(ImageFit.Cover)
-        .margin({'top':'148vp',left:'24vp'})
+        .margin({'top':$r('app.float.vp_148'),left:$r('app.float.vp_24')})
         .clip(new Circle({ width: '80vp', height: '80vp' }))
-        .border({ width: '2vp',color:$r('app.color.white'),radius:'40vp',style:BorderStyle.Solid })
+        .border({
+          width: $r('app.float.vp_2'),
+          color:$r('app.color.white'),
+          radius:$r('app.float.vp_40'),
+          style:BorderStyle.Solid
+        })
 
       Row(){
         Blank()
+
         Image($r('app.media.ic_me_setting'))
-          .width('56vp')
-          .height('56vp')
-          .padding('5vp')
+          .width($r('app.float.vp_56'))
+          .height($r('app.float.vp_56'))
+          .padding($r('app.float.vp_5'))
       }
-      .padding({top:'36vp',right:'19vp'})
+      .padding({top:$r('app.float.vp_36'),right:$r('app.float.vp_20')})
       .width(Constants.MATCH_PARENT)
 
     }

@@ -91,6 +91,10 @@
     {
       "name": "color_4DFFFFFF",
       "value": "#4DFFFFFF"
+    },
+    {
+      "name": "color_B3000000",
+      "value": "#B3000000"
     }
   ]
 }

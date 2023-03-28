@@ -49,3 +49,5 @@ export const NavList: NavItem[] = [
     id: TabId.ME
   },
 ]
+
+export const homePageTabTitles = [{ id: 0, name: '推荐' },{ id: 1, name: '关注' },{ id: 2, name: '日报' }]

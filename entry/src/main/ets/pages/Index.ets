@@ -2,7 +2,7 @@ import Constants from '../util/Constants';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World6'
+  @State message: string = 'Hello World'
 
   build() {
     Row() {

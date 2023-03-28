@@ -24,4 +24,6 @@ export class OwnInfo {
   releaseDate: number
   cover: string
   actionUrl: string
+  country: string
+  city: string
 }

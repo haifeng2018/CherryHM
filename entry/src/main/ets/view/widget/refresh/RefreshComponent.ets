@@ -19,11 +19,9 @@ import { RefreshState } from './RefreshState';
 @Component
 export default struct RefreshComponent {
   @State pullDownRefreshText: Resource = $r('app.string.pull_down_refresh_text');
-  @State pullDownRefreshImage: Resource = $r('app.media.ic_pull_down_refresh');
   @State pullDownRefreshHeight: number = RefreshConfig.CUSTOM_LAYOUT_HEIGHT;
   @State isVisiblePullDown: boolean = false;
   @State pullUpLoadText: Resource = $r('app.string.pull_up_load_text');
-  @State pullUpLoadImage: Resource = $r('app.media.ic_pull_up_load');
   @State pullUpLoadHeight: number = RefreshConfig.CUSTOM_LAYOUT_HEIGHT;
   @State isVisiblePullUpLoad: boolean = false;
   @State offsetY: number = 0;
@@ -88,11 +86,11 @@ export default struct RefreshComponent {
 
   @Builder FailLayout() {
     Image($r('app.media.none'))
-      .height('120vp')
-      .width('120vp')
+      .height($r('app.float.vp_120'))
+      .width($r('app.float.vp_120'))
     Text($r('app.string.page_none_msg'))
       .opacity(0.6)
-      .fontSize('18fp')
+      .fontSize($r('app.float.fp_18'))
       .fontColor($r('app.color.color_666666'))
   }
 
@@ -174,33 +172,28 @@ export default struct RefreshComponent {
     switch (state) {
       case RefreshState.DropDown:
         this.pullDownRefreshText = $r('app.string.pull_down_refresh_text');
-        this.pullDownRefreshImage = $r("app.media.ic_pull_down_refresh");
         this.isCanRefresh = false;
         this.isRefreshing = false;
         this.isVisiblePullDown = true;
         break;
       case RefreshState.Release:
         this.pullDownRefreshText = $r('app.string.release_refresh_text');
-        this.pullDownRefreshImage = $r("app.media.ic_pull_up_refresh");
         this.isCanRefresh = true;
         this.isRefreshing = false;
         break;
       case RefreshState.Refreshing:
         this.offsetY = vp2px(this.pullDownRefreshHeight);
         this.pullDownRefreshText = $r('app.string.refreshing_text');
-        this.pullDownRefreshImage = $r("app.media.ic_pull_up_load");
         this.isCanRefresh = true;
         this.isRefreshing = true;
         break;
       case RefreshState.Success:
         this.pullDownRefreshText = $r('app.string.refresh_success_text');
-        this.pullDownRefreshImage = $r("app.media.ic_succeed_refresh");
         this.isCanRefresh = true;
         this.isRefreshing = true;
         break;
       case RefreshState.Fail:
         this.pullDownRefreshText = $r('app.string.refresh_fail_text');
-        this.pullDownRefreshImage = $r("app.media.ic_fail_refresh");
         this.isCanRefresh = true;
         this.isRefreshing = true;
         break;

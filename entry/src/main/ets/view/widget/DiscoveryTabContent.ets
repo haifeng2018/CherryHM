@@ -83,7 +83,7 @@ export struct DiscoveryTabContent {
           }
         })
       }
-      .padding({left:'10vp',right:'10vp'})
+      .padding({left:$r('app.float.vp_10'),right:$r('app.float.vp_10')})
     }
     .onScroll((xOffset: number, yOffset: number) => {
       this.listScrollTop = yOffset <= 0
@@ -96,7 +96,7 @@ export struct DiscoveryTabContent {
         Image(item.data.image)
           .width(Constants.MATCH_PARENT)
           .height(Constants.MATCH_PARENT)
-          .borderRadius('10vp')
+          .borderRadius($r('app.float.vp_10'))
           .onClick(() => {
             router.pushUrl({
               url: RouterPath.WEB_PAGE,
@@ -109,7 +109,7 @@ export struct DiscoveryTabContent {
       })
     }
     .width(Constants.MATCH_PARENT)
-    .height('198vp')
+    .height($r('app.float.vp_198'))
     .cachedCount(info.data.itemList.length)
     .index(0)
     .autoPlay(info.data.itemList.length > 1)
@@ -128,7 +128,8 @@ export struct DiscoveryTabContent {
   @Builder headCell(title: string) {
     Text(title)
       .width(Constants.MATCH_PARENT)
-      .height('56vp').fontSize('28fp')
+      .height($r('app.float.vp_56'))
+      .fontSize($r('app.float.fp_28'))
       .textAlign(TextAlign.Start)
       .fontColor($r('app.color.color_666666'))
   }
@@ -141,17 +142,17 @@ export struct DiscoveryTabContent {
           GridItem() {
             this.categoryCellLayout(data)
           }
-          .width('110vp')
-          .height('90vp')
+          .width($r('app.float.vp_110'))
+          .height($r('app.float.vp_90'))
         })
       }
       .layoutDirection(GridDirection.Row)
       .rowsTemplate('1fr 1fr')
-      .columnsGap('10vp')
-      .rowsGap('10vp')
+      .columnsGap($r('app.float.vp_10'))
+      .rowsGap($r('app.float.vp_10'))
       .backgroundColor($r('app.color.color_F9F9F9'))
       .width(Constants.MATCH_PARENT)
-      .height('220vp')
+      .height($r('app.float.vp_220'))
       .onScrollIndex((first: number) => {
         this.listScrollTop = first === 0
       })
@@ -164,19 +165,19 @@ export struct DiscoveryTabContent {
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height(Constants.MATCH_PARENT)
-        .borderRadius('10vp')
+        .borderRadius($r('app.float.vp_10'))
 
       Text(info.data.title)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Center)
-        .fontSize('22fp')
+        .fontSize($r('app.float.fp_22'))
         .fontColor($r('app.color.white'))
 
     }
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .borderRadius('10vp')
+    .borderRadius($r('app.float.vp_10'))
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .sharedTransition(`${info.data.dataType}${info.data.id}`, {
       duration: Constants.TRANSITION_ANIMATION_DURATION,
@@ -203,13 +204,13 @@ export struct DiscoveryTabContent {
           ListItem() {
             this.topicCellLayout(data)
           }
-          .width('168vp')
+          .width($r('app.float.vp_168'))
         })
       }
       .listDirection(Axis.Horizontal)
       .backgroundColor($r('app.color.color_F9F9F9'))
       .width(Constants.MATCH_PARENT)
-      .height('110vp')
+      .height($r('app.float.vp_110'))
     }
   }
 
@@ -219,18 +220,18 @@ export struct DiscoveryTabContent {
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
         .height(Constants.MATCH_PARENT)
-        .borderRadius('10vp')
+        .borderRadius($r('app.float.vp_10'))
 
       Text(data.data.title)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Center)
-        .fontSize('18fp')
+        .fontSize($r('app.float.fp_18'))
         .fontColor($r('app.color.white'))
 
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
+    .borderRadius({bottomLeft:$r('app.float.vp_10'),bottomRight:$r('app.float.vp_10')})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .onClick(() => {
       router.pushUrl({
@@ -247,9 +248,9 @@ export struct DiscoveryTabContent {
     Stack(){
       Row() {
         Image(info.data.cover.detail)
-          .width('168vp')
+          .width($r('app.float.vp_168'))
           .height(Constants.MATCH_PARENT)
-          .borderRadius({topLeft:'10vp',bottomLeft:'10vp'})
+          .borderRadius({topLeft:$r('app.float.vp_10'),bottomLeft:$r('app.float.vp_10')})
 
         Column() {
           Text(info.data.category)
@@ -257,18 +258,22 @@ export struct DiscoveryTabContent {
             .layoutWeight(1)
             .textAlign(TextAlign.End)
             .fontColor($r('app.color.color_666666'))
-            .fontSize('18fp')
-            .padding({ right:'10vp' })
+            .fontSize($r('app.float.fp_18'))
+            .padding({ right:$r('app.float.vp_10') })
 
           Text(info.data.title)
             .width(Constants.MATCH_PARENT)
             .layoutWeight(1)
             .textAlign(TextAlign.Start)
             .fontColor($r('app.color.color_333333'))
-            .fontSize('16fp')
+            .fontSize($r('app.float.fp_16'))
             .maxLines(2)
             .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .padding({ bottom:'10vp',left:'30vp',right: '10vp' })
+            .padding({
+              bottom:$r('app.float.vp_10'),
+              left:$r('app.float.vp_30'),
+              right: $r('app.float.vp_10')
+            })
             .align(Alignment.Bottom)
 
         }
@@ -281,17 +286,17 @@ export struct DiscoveryTabContent {
 
       if (info.data.author != null && info.data.author.icon != null) {
         Image(info.data.author.icon)
-          .width('40vp')
-          .height('40vp')
-          .margin({left:'148vp'})
+          .width($r('app.float.vp_40'))
+          .height($r('app.float.vp_40'))
+          .margin({left:$r('app.float.vp_148')})
           .clip(new Circle({ width: '40vp', height: '40vp' }))
       }
     }
     .width(Constants.MATCH_PARENT)
-    .height('118vp')
-    .margin({top:'5vp',bottom:'5vp'})
+    .height($r('app.float.vp_118'))
+    .margin({top:$r('app.float.vp_5'),bottom:$r('app.float.vp_5')})
     .backgroundColor($r('app.color.white'))
-    .borderRadius('10vp')
+    .borderRadius($r('app.float.vp_10'))
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .alignContent(Alignment.Start)
     .onClick(() => {
@@ -308,43 +313,53 @@ export struct DiscoveryTabContent {
   @Builder briefCardCell(info: VideoInfo) {
     Row(){
       Image(info.data.icon)
-        .width('60vp')
-        .height('60vp')
+        .width($r('app.float.vp_60'))
+        .height($r('app.float.vp_60'))
         .clip(new Circle({ width: '60vp', height: '60vp' }))
 
       Column() {
         Text(info.data.title)
           .width(Constants.MATCH_PARENT)
-          .margin({left:'10vp'})
+          .margin({left:$r('app.float.vp_10')})
           .fontColor($r('app.color.color_333333'))
-          .fontSize('20fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_20'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
 
         Text(info.data.description)
           .width(Constants.MATCH_PARENT)
-          .margin({left:'10vp'})
+          .margin({left:$r('app.float.vp_10')})
           .fontColor($r('app.color.color_666666'))
-          .fontSize('18fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
       .layoutWeight(1)
 
-      Text('+关注')
-        .margin({left:'5vp'})
-        .padding({top:'4vp',bottom:'4vp',left:'10vp',right:'10vp'})
+      Text($r('app.string.add_follow'))
+        .margin({left:$r('app.float.vp_5')})
+        .padding({
+          top:$r('app.float.vp_4'),
+          bottom:$r('app.float.vp_4'),
+          left:$r('app.float.vp_10'),
+          right:$r('app.float.vp_10')
+        })
         .fontColor($r('app.color.color_666666'))
-        .fontSize('18fp')
-        .border({ width: '1vp',color:$r('app.color.color_666666'),radius:'5vp',style:BorderStyle.Solid })
+        .fontSize($r('app.float.fp_18'))
+        .border({
+          width: $r('app.float.vp_2'),
+          color:$r('app.color.color_666666'),
+          radius:$r('app.float.vp_5'),
+          style:BorderStyle.Solid
+        })
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .margin({top:'5vp',bottom:'5vp'})
-    .padding('10vp')
-    .borderRadius('10vp')
+    .margin({top:$r('app.float.vp_5'),bottom:$r('app.float.vp_5')})
+    .padding($r('app.float.vp_10'))
+    .borderRadius($r('app.float.vp_10'))
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .onClick(() => {
       router.pushUrl({
@@ -361,7 +376,6 @@ export struct DiscoveryTabContent {
     let data = new CategoryInfo()
     data.id = info.data.id
     data.name = info.data.title?.replace('#','')
-
     return data
   }
 }

@@ -21,27 +21,27 @@ export default struct PrivacyPolicyDialog {
 
   build() {
     Column() {
-      Text($r('app.string.MainAbility_kind_tip'))
+      Text($r('app.string.kind_tip'))
         .width(Constants.MATCH_PARENT)
         .fontColor($r('app.color.color_333333'))
-        .fontSize($r('app.float.dialog_text_privacy_size'))
+        .fontSize($r('app.float.fp_20'))
         .textAlign(TextAlign.Center)
         .fontWeight(1)
         .margin({
-          top: $r('app.float.dialog_text_privacy_top'),
-          bottom: $r('app.float.dialog_text_privacy_bottom')
+          top: $r('app.float.vp_24'),
+          bottom: $r('app.float.vp_12')
         })
 
       Text($r('app.string.privacy_policy_content'))
-        .fontSize($r('app.float.dialog_common_text_size'))
-        .lineHeight('28vp')
+        .fontSize($r('app.float.fp_18'))
+        .lineHeight($r('app.float.vp_28'))
         .width(Constants.MATCH_PARENT)
-      .padding({left:'24vp',right:'24vp'})
+      .padding({left:$r('app.float.vp_24'),right:$r('app.float.vp_24')})
 
       Row(){
         Text($r('app.string.user_services_agreement'))
           .fontColor($r('app.color.color_0091FF'))
-          .fontSize($r('app.float.dialog_common_text_size'))
+          .fontSize($r('app.float.fp_18'))
           .onClick(() => {
             this.controller.close();
             router.pushUrl({
@@ -55,11 +55,11 @@ export default struct PrivacyPolicyDialog {
 
         Text($r('app.string.and'))
           .fontColor($r('app.color.color_333333'))
-          .fontSize($r('app.float.dialog_common_text_size'))
+          .fontSize($r('app.float.fp_18'))
 
         Text($r('app.string.privacy_policy'))
           .fontColor($r('app.color.color_0091FF'))
-          .fontSize($r('app.float.dialog_common_text_size'))
+          .fontSize($r('app.float.fp_18'))
           .onClick(() => {
             this.controller.close();
             router.pushUrl({
@@ -71,7 +71,7 @@ export default struct PrivacyPolicyDialog {
             })
           })
       }.width(Constants.MATCH_PARENT)
-      .padding('10vp')
+      .padding($r('app.float.vp_10'))
       .justifyContent(FlexAlign.Center)
 
       Divider()
@@ -88,7 +88,9 @@ export default struct PrivacyPolicyDialog {
             this.controller.close();
             this.cancel();
           })
+
         Divider().vertical(true).height(Constants.MATCH_PARENT).opacity(0.6).color($r('app.color.color_666666'))
+
         Text($r('app.string.agree'))
           .fancy()
           .fontColor($r("app.color.color_0091FF"))
@@ -98,10 +100,10 @@ export default struct PrivacyPolicyDialog {
           })
       }
       .width(Constants.MATCH_PARENT)
-      .height('60vp')
+      .height($r('app.float.vp_60'))
     }
     .width('92%')
-    .borderRadius('10vp')
+    .borderRadius($r('app.float.vp_10'))
     .backgroundColor(Color.White)
   }
 }
@@ -110,7 +112,7 @@ export default struct PrivacyPolicyDialog {
 @Extend(Text) function fancy () {
   .height(Constants.MATCH_PARENT)
   .layoutWeight(1)
-  .fontSize($r("app.float.dialog_fancy_text_size"))
+  .fontSize($r("app.float.fp_16"))
   .textAlign(TextAlign.Center)
   .fontWeight(FontWeight.Medium)
 }

@@ -49,7 +49,6 @@ struct LauncherPage {
   }
 
   onDismiss() {
-    promptAction.showToast({ message: 'onDismiss 666'});
     // Exit the application.
     this.getDataPreferences().then((preferences: preferences.Preferences) => {
       preferences.get(Constants.PREFERENCES_KEY_PRIVACY, true).then((value: preferences.ValueType) => {

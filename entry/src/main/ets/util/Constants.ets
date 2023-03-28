@@ -11,6 +11,13 @@
 
 export default class Constants {
 
+  static readonly DATA = 'data';
+  static readonly TITLE = 'title';
+  static readonly URL = 'url';
+  static readonly SHARE_ID = 'shareId';
+  static readonly TOPIC_ID = 'topicId';
+  static readonly USER_ID = 'userId';
+
   /**
    * Preference saved key.
    */

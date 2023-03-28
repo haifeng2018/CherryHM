@@ -21,7 +21,7 @@
       "value": "开眼"
     },
     {
-      "name": "MainAbility_kind_tip",
+      "name": "kind_tip",
       "value": "温馨提示"
     },
     {
@@ -55,14 +55,6 @@
     {
       "name": "enter_app",
       "value": "进入APP"
-    },
-    {
-      "name": "WebAbility_desc",
-      "value": "description"
-    },
-    {
-      "name": "WebAbility_label",
-      "value": "开眼"
     },
     {
       "name": "tab_home",
@@ -135,6 +127,78 @@
     {
       "name": "prompt_message",
       "value": "没有更多数据了"
+    },
+    {
+      "name": "advertising_text_title",
+      "value": "跳过广告 %ds"
+    },
+    {
+      "name": "video",
+      "value": "视频"
+    },
+    {
+      "name": "picture",
+      "value": "图片"
+    },
+    {
+      "name": "no_video",
+      "value": "暂无作品"
+    },
+    {
+      "name": "watch_history",
+      "value": "观看记录"
+    },
+    {
+      "name": "collection",
+      "value": "收藏"
+    },
+    {
+      "name": "cache",
+      "value": "缓存"
+    },
+    {
+      "name": "follow",
+      "value": "关注"
+    },
+    {
+      "name": "follower",
+      "value": "粉丝"
+    },
+    {
+      "name": "badge",
+      "value": "徽章"
+    },
+    {
+      "name": "ip_addr",
+      "value": "IP属地：广东"
+    },
+    {
+      "name": "add_follow",
+      "value": "+关注"
+    },
+    {
+      "name": "loading",
+      "value": "加载中..."
+    },
+    {
+      "name": "recommend_search",
+      "value": "推荐搜索"
+    },
+    {
+      "name": "clear",
+      "value": "清空"
+    },
+    {
+      "name": "search_history",
+      "value": "搜索历史"
+    },
+    {
+      "name": "private_chat",
+      "value": "私信"
+    },
+    {
+      "name": "public_at",
+      "value": "发布于\\t"
     }
   ]
 }

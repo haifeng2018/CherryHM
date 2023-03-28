@@ -1,3 +1,5 @@
+import { searchHistory } from '../model/SearchPageModel';
+import { hotSearchKeys } from '../model/SearchPageModel';
 import { VideoInfo } from '../bean/VideoInfo';
 import router from '@ohos.router';
 import { HomeApi } from '../api/HomeApi';
@@ -20,16 +22,9 @@ import HttpRequest from '../util/HttpRequest';
 @Entry
 @Component
 struct SearchPage {
-  private listSearch = [
-    '你真的不跟我年前的自己说点什么？', '用一个好故事描述生活的不可思议',
-    '每部电影都是一部记录片', '用镜头拉近世界与你的距离',
-    '发现世界的奇妙和辽阔'
-  ]
-
   @State result: string = ''
   @State hotKeyWord: Array<string> = [];
   @State datas: Array<VideoInfo> = [];
-  @State private historyArr: string[] = ["剧情", "综艺", "创意", "影视", "旅行", "记录", "音乐", "科技", "时尚"]
   @State isRefreshing: boolean = false
 
   scroller: Scroller = new Scroller()
@@ -72,82 +67,82 @@ struct SearchPage {
     Row(){
       Stack() {
         Image($r('app.media.ic_search'))
-          .width('20vp')
-          .height('20vp')
-          .margin({left:'10vp'})
+          .width($r('app.float.vp_20'))
+          .height($r('app.float.vp_20'))
+          .margin({left:$r('app.float.vp_10')})
 
         Swiper() {
-          ForEach(this.listSearch, item => {
+          ForEach(hotSearchKeys, item => {
             Text(item)
               .width(Constants.MATCH_PARENT)
-              .height('40vp')
-              .fontSize('16fp')
+              .height($r('app.float.vp_40'))
+              .fontSize($r('app.float.fp_16'))
               .fontColor($r('app.color.color_666666'))
               .maxLines(1)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
-              .padding({ left: '28vp',right:'28vp' })
+              .padding({ left: $r('app.float.vp_28'),right:$r('app.float.vp_28') })
           }, item => item)
         }
         .vertical(true)
         .autoPlay(true)
         .indicator(false)
         .interval(3000)
-        .margin({left:'10vp'})
+        .margin({left:$r('app.float.vp_10')})
       }
       .alignContent(Alignment.Start)
       .layoutWeight(1)
       .backgroundColor($r('app.color.color_F9F9F9'))
-      .borderRadius('20vp')
-      .margin({left: '24vp',right:'10vp'})
+      .borderRadius($r('app.float.vp_20'))
+      .margin({left: $r('app.float.vp_24'),right:$r('app.float.vp_10')})
 
-      Text('取消')
+      Text($r('app.string.cancel'))
         .fontSize($r('app.float.fp_20'))
         .fontColor($r('app.color.color_333333'))
         .align(Alignment.End)
-        .padding({left:'10vp',right:'24vp'})
+        .padding({left:$r('app.float.vp_10'),right:$r('app.float.vp_24')})
         .onClick(() => {
           router.back()
         })
     }
     .width(Constants.MATCH_PARENT)
-    .height('56vp')
+    .height($r('app.float.vp_56'))
   }
 
   @Builder searchHistory() {
     Row() {
-      Text('搜索历史')
+      Text($r('app.string.search_history'))
         .fontColor($r('app.color.color_333333'))
-        .fontSize('14fp')
-        .padding('10vp')
+        .fontSize($r('app.float.fp_14'))
+        .padding($r('app.float.vp_10'))
 
       Blank()
 
-      Text('清空')
+      Text($r('app.string.clear'))
         .fontColor($r('app.color.color_333333'))
-        .fontSize('14fp')
-        .padding('10vp')
+        .fontSize($r('app.float.fp_14'))
+        .padding($r('app.float.vp_10'))
         .onClick((event: ClickEvent) => {
-          this.historyArr.splice(0, this.historyArr.length)
-          this.historyArr.length = 0
+          searchHistory.splice(0, searchHistory.length)
+          searchHistory.length = 0
         })
     }
     .width(Constants.MATCH_PARENT)
-    .margin({top:'10vp'})
-    .padding({left:'14vp',right:'14vp'})
+    .margin({top:$r('app.float.vp_10')})
+    .padding({left:$r('app.float.vp_14'),right:$r('app.float.vp_14')})
 
     Flex({ justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap }) {
-      if (this.historyArr.length > 0) {
-        ForEach(this.historyArr,
+      if (searchHistory.length > 0) {
+        ForEach(searchHistory,
           (item: string) => {
             Text(item)
-              .height('26vp')
-              .fontSize('12fp')
+              .height($r('app.float.vp_26'))
+              .fontSize($r('app.float.fp_12'))
               .borderStyle(BorderStyle.Solid)
-              .borderWidth('1vp')
+              .borderWidth($r('app.float.vp_1'))
               .borderColor($r('app.color.color_DDDDDD'))
-              .borderRadius('13vp')
-              .padding({  left: '10vp', right: '10vp' })
-              .margin({ top: '10vp', right: '10vp' })
+              .borderRadius($r('app.float.vp_13'))
+              .padding({  left: $r('app.float.vp_10'), right: $r('app.float.vp_10') })
+              .margin({ top: $r('app.float.vp_10'), right: $r('app.float.vp_10') })
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .maxLines(2)
               .onClick(() => this.searchAction())
@@ -156,31 +151,31 @@ struct SearchPage {
         )
       }
     }
-    .margin({ left: '24vp', right: '24vp' })
+    .margin({ left: $r('app.float.vp_24'), right: $r('app.float.vp_24') })
   }
 
   @Builder recommendSearch() {
-    Text('推荐搜索')
+    Text($r('app.string.recommend_search'))
       .width(Constants.MATCH_PARENT)
       .fontColor($r('app.color.color_333333'))
       .textAlign(TextAlign.Start)
-      .fontSize('14fp')
-      .padding({left:'24vp'})
-      .margin({top:'20vp'})
+      .fontSize($r('app.float.vp_14'))
+      .padding({left:$r('app.float.vp_24')})
+      .margin({top:$r('app.float.vp_20')})
 
     Flex({ justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap }) {
       if (this.hotKeyWord.length > 0) {
         ForEach(this.hotKeyWord,
           (item: string) => {
             Text(item)
-              .height('26vp')
-              .fontSize('12fp')
+              .height($r('app.float.vp_26'))
+              .fontSize($r('app.float.fp_12'))
               .borderStyle(BorderStyle.Solid)
-              .borderWidth('1vp')
+              .borderWidth($r('app.float.vp_1'))
               .borderColor($r('app.color.color_DDDDDD'))
-              .borderRadius('13vp')
-              .padding({  left: '10vp', right: '10vp' })
-              .margin({ top: '10vp', right: '10vp' })
+              .borderRadius($r('app.float.vp_13'))
+              .padding({  left: $r('app.float.vp_10'), right: $r('app.float.vp_10') })
+              .margin({ top: $r('app.float.vp_10'), right: $r('app.float.vp_10') })
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .maxLines(2)
               .onClick(() => this.searchAction())
@@ -189,7 +184,7 @@ struct SearchPage {
         )
       }
     }
-    .margin({ left: '24vp',top:'10vp', right: '24vp' })
+    .margin({ left: $r('app.float.vp_24'),top:$r('app.float.vp_10'), right: $r('app.float.vp_10') })
   }
 
   @Builder searchResult() {
@@ -202,28 +197,31 @@ struct SearchPage {
                 .objectFit(ImageFit.Cover)
                 .width(Constants.MATCH_PARENT)
                 .layoutWeight(1)
-                .borderRadius({topLeft:'10vp',topRight:'10vp'})
+                .borderRadius({
+                  topLeft:$r('app.float.vp_10'),
+                  topRight:$r('app.float.vp_10')
+                })
               Text(categoryInfo.description)
-                .fontSize('18fp')
+                .fontSize($r('app.float.fp_18'))
                 .fontColor($r('app.color.color_333333'))
-                .padding('10vp')
+                .padding($r('app.float.vp_10'))
             }
             .width(Constants.MATCH_PARENT)
-            .height("256vp")
+            .height($r('app.float.vp_256'))
             .backgroundColor($r('app.color.white'))
-            .borderRadius('10vp')
+            .borderRadius($r('app.float.vp_10'))
             .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
           }
         })
       }
       .layoutDirection(GridDirection.Column)
       .columnsTemplate('1fr 1fr')
-      .columnsGap('10vp')
-      .rowsGap('10vp')
+      .columnsGap($r('app.float.vp_10'))
+      .rowsGap($r('app.float.vp_10'))
       .backgroundColor($r('app.color.color_F9F9F9'))
       .width(Constants.MATCH_PARENT)
       .layoutWeight(1)
-      .padding('10vp')
+      .padding($r('app.float.vp_10'))
     }
     .onStateChange((refreshStatus: RefreshStatus) => {
       refreshStatus

@@ -78,7 +78,7 @@ export struct TopicsTabContent {
     Image(info.data.image)
       .objectFit(ImageFit.Cover)
       .width(Constants.MATCH_PARENT)
-      .height('256vp')
+      .height($r('app.float.vp_256'))
       .sharedTransition(`${this.datas.indexOf(info)}${info.data.id}`, {
         duration: Constants.TRANSITION_ANIMATION_DURATION,
         curve: Curve.Smooth,

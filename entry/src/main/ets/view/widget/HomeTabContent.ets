@@ -1,3 +1,4 @@
+import { homePageTabTitles } from '../../model/HomeTabModel';
 import { HomeRecommendTabContent } from './HomeRecommendTabContent';
 import { DailyPaperTabContent } from './DailyPaperTabContent';
 import { HomeFollowTabContent } from './HomeFollowTabContent';
@@ -18,21 +19,19 @@ import Constants from '../../util/Constants';
 export struct HomeTabContent {
   @State currentIndex: number = 0
 
-  private tabTitles = [{ id: 0, name: '推荐' },{ id: 1, name: '关注' },{ id: 2, name: '日报' }]
-
   @Builder TabBuilder(index: number) {
     Stack() {
-      Text(this.tabTitles[index].name)
+      Text(homePageTabTitles[index].name)
         .height(Constants.MATCH_PARENT)
-        .padding({left:'20vp',right:'20vp'})
-        .fontSize(this.currentIndex === index ? '22fp' : '20fp')
+        .padding({left:$r('app.float.vp_20'),right:$r('app.float.vp_20')})
+        .fontSize(this.currentIndex === index ? $r('app.float.fp_22') : $r('app.float.fp_20'))
         .fontWeight(this.currentIndex === index ? 700 : 500)
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
 
       Divider()
         .strokeWidth('5vp')
-        .width('20vp')
-        .margin({bottom:'5vp'})
+        .width($r('app.float.vp_20'))
+        .margin({bottom:$r('app.float.vp_5')})
         .color($r('app.color.color_333333'))
         .opacity(this.currentIndex === index ? 1 : 0)
 
@@ -56,7 +55,7 @@ export struct HomeTabContent {
       }
       .vertical(false)
       .barWidth(Constants.MATCH_PARENT)
-      .barHeight('56vp')
+      .barHeight($r('app.float.vp_56'))
       .barMode(BarMode.Scrollable)
       .margin({top:$r('app.float.status_bar_height')})
       .onChange((index: number) => {
@@ -70,10 +69,10 @@ export struct HomeTabContent {
       }).id('mHomeTab')
 
       Image($r('app.media.ic_home_search'))
-        .width('40vp')
-        .height('40vp')
-        .margin({top:$r('app.float.status_bar_height'),right:'24vp'})
-        .padding('10vp')
+        .width($r('app.float.vp_40'))
+        .height($r('app.float.vp_40'))
+        .margin({top:$r('app.float.status_bar_height'),right:$r('app.float.vp_24')})
+        .padding($r('app.float.vp_10'))
         .alignRules({
           top: {anchor: "mHomeTab", align: VerticalAlign.Top},
           right: {anchor: "mHomeTab", align: HorizontalAlign.End}
@@ -87,5 +86,4 @@ export struct HomeTabContent {
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
   }
-
 }

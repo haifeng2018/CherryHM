@@ -11,8 +11,8 @@ export default struct RefreshHeader {
   build() {
     Row() {
       LoadingProgress()
-        .width('50vp')
-        .height('50vp')
+        .width($r('app.float.vp_50'))
+        .height($r('app.float.vp_50'))
 
       Text(this.refreshLayoutClass.textValue)
         .fontColor($r('app.color.color_666666'))

@@ -6,8 +6,8 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebPage {
 
-  title: string = router.getParams()?.['title'];
-  url: string = router.getParams()?.['url'];
+  title: string = router.getParams()?.[Constants.TITLE];
+  url: string = router.getParams()?.[Constants.URL];
 
   @State progress: number = 0;
 
@@ -18,7 +18,7 @@ struct WebPage {
         this.titleBar()
         Progress({value: this.progress, total: 100})
           .width(Constants.MATCH_PARENT)
-          .height('2vp')
+          .height($r('app.float.vp_2'))
           .color($r('app.color.color_accent'))
           .visibility(this.progress === 100 ? Visibility.None : Visibility.Visible)
         Web({ src:this.url, controller:this.controller })
@@ -36,16 +36,16 @@ struct WebPage {
   @Builder titleBar() {
     Row(){
       Image($r('app.media.ic_back'))
-        .width('30vp')
-        .height('30vp')
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .objectFit(ImageFit.Contain)
-        .margin({left:'14vp'})
+        .margin({left:$r('app.float.vp_14')})
         .onClick(() =>{
           router.back()
         })
 
       Text(this.title)
-        .height('56vp')
+        .height($r('app.float.vp_56'))
         .layoutWeight(1)
         .fontSize($r('app.float.fp_24'))
         .fontColor($r('app.color.color_333333'))
@@ -53,9 +53,9 @@ struct WebPage {
         .textAlign(TextAlign.Center)
 
       Image($r('app.media.ic_copy_link_grey'))
-        .width('40vp')
-        .height('40vp')
-        .margin({right:'24vp'})
+        .width($r('app.float.vp_40'))
+        .height($r('app.float.vp_40'))
+        .margin({right:$r('app.float.vp_24')})
         .onClick(() => {
         })
     }

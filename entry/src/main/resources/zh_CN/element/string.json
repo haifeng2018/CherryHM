@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "模块描述"
+      "value": "module description"
     },
     {
       "name": "EntryAbility_desc",
@@ -13,52 +13,192 @@
       "value": "开眼"
     },
     {
-      "name": "healthy_life_text",
-      "value": "健康生活"
+      "name": "LauncherAbility_desc",
+      "value": "description"
     },
     {
-      "name": "healthy_life_introduce",
-      "value": "健康总有新玩法"
+      "name": "LauncherAbility_label",
+      "value": "开眼"
+    },
+    {
+      "name": "kind_tip",
+      "value": "温馨提示"
+    },
+    {
+      "name": "user_services_agreement_content",
+      "value": "《用户协议》"
+    },
+    {
+      "name": "privacy_policy_content",
+      "value": "为了上传头像，我们会申请系统文件存储权限、相机拍摄、相册访问、设备信息、日志等权限，您也可以查看"
+    },
+    {
+      "name": "user_services_agreement",
+      "value": "《用户协议》"
+    },
+    {
+      "name": "and",
+      "value": "和"
+    },
+    {
+      "name": "privacy_policy",
+      "value": "《隐私协议》"
+    },
+    {
+      "name": "disagree",
+      "value": "不同意"
+    },
+    {
+      "name": "agree",
+      "value": "同意"
+    },
+    {
+      "name": "enter_app",
+      "value": "进入APP"
+    },
+    {
+      "name": "tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "tab_community",
+      "value": "社区"
+    },
+    {
+      "name": "tab_discovery",
+      "value": "发现"
+    },
+    {
+      "name": "tab_hot",
+      "value": "热门"
+    },
+    {
+      "name": "tab_me",
+      "value": "我的"
+    },
+    {
+      "name": "share",
+      "value": "分享"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "refresh_default_header_hint",
+      "value": "下拉刷新"
+    },
+    {
+      "name": "refresh_default_header_load",
+      "value": "松开刷新"
+    },
+    {
+      "name": "refresh_default_header_loading",
+      "value": "正在刷新..."
+    },
+    {
+      "name": "pull_up_load_text",
+      "value": "加载中..."
+    },
+    {
+      "name": "pull_down_refresh_text",
+      "value": "下拉刷新"
+    },
+    {
+      "name": "release_refresh_text",
+      "value": "松开刷新"
+    },
+    {
+      "name": "refreshing_text",
+      "value": "正在刷新"
+    },
+    {
+      "name": "refresh_success_text",
+      "value": "刷新成功"
+    },
+    {
+      "name": "refresh_fail_text",
+      "value": "刷新失败"
+    },
+    {
+      "name": "page_none_msg",
+      "value": "网络加载失败"
+    },
+    {
+      "name": "prompt_message",
+      "value": "没有更多数据了"
     },
     {
       "name": "advertising_text_title",
       "value": "跳过广告 %ds"
     },
     {
-      "name": "dialog_text_title",
-      "value": "欢迎使用我的应用"
+      "name": "video",
+      "value": "视频"
     },
     {
-      "name": "dialog_text_privacy_content",
-      "value": "我们充分尊重用户的隐私权，并按照法律要求和业界成熟的安全标准，为您的个人信息提供相应的安全保护措施。"
+      "name": "picture",
+      "value": "图片"
     },
     {
-      "name": "dialog_text_privacy_statement",
-      "value": "隐私协议保护声明"
+      "name": "no_video",
+      "value": "暂无作品"
     },
     {
-      "name": "dialog_text_declaration_prompt",
-      "value": "（以下简称为“本声明”）以便您了解我们如何搜集、使用、披露、保护、存储及传输您的个人数据。请您仔细阅读本声明。如您有任何疑问，请告知我们。"
+      "name": "watch_history",
+      "value": "观看记录"
     },
     {
-      "name": "dialog_button_disagree",
-      "value": "不同意"
+      "name": "collection",
+      "value": "收藏"
     },
     {
-      "name": "dialog_button_agree",
-      "value": "同 意"
+      "name": "cache",
+      "value": "缓存"
     },
     {
-      "name": "privacy_text_title",
-      "value": "隐私政策"
+      "name": "follow",
+      "value": "关注"
     },
     {
-      "name": "privacy_text_content",
-      "value": "本声明的重要组成部分，服务如何处理您的个人信息，您如何行使您的数据主体权利，相关的数据控制者以及如何联系该数据控制者等基本情况，由该隐私通知进行阐述。若隐私通知与本声明之间存在不一致，以该隐私通知为准，隐私通知中未约定的，以本声明为准。"
+      "name": "follower",
+      "value": "粉丝"
     },
     {
-      "name": "privacy_back",
-      "value": "返回"
+      "name": "badge",
+      "value": "徽章"
+    },
+    {
+      "name": "ip_addr",
+      "value": "IP属地：广东"
+    },
+    {
+      "name": "add_follow",
+      "value": "+关注"
+    },
+    {
+      "name": "loading",
+      "value": "加载中..."
+    },
+    {
+      "name": "recommend_search",
+      "value": "推荐搜索"
+    },
+    {
+      "name": "clear",
+      "value": "清空"
+    },
+    {
+      "name": "search_history",
+      "value": "搜索历史"
+    },
+    {
+      "name": "private_chat",
+      "value": "私信"
+    },
+    {
+      "name": "public_at",
+      "value": "发布于\\t"
     }
   ]
 }

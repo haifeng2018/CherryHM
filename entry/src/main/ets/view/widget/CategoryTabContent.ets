@@ -22,7 +22,7 @@ import { PageState } from './refresh/PageState';
 @Component
 export struct CategoryTabContent {
 
-  @State datas: Array<CategoryInfo> = [];
+  @State datas: Array<any> = [];
 
   @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
   @Provide(RefreshConfig.REFRESH_LIST_SCROLL_TOP_TAG) listScrollTop : boolean = true;
@@ -69,12 +69,12 @@ export struct CategoryTabContent {
     }
     .layoutDirection(GridDirection.Column)
     .columnsTemplate('1fr 1fr')
-    .columnsGap('10vp')
-    .rowsGap('10vp')
+    .columnsGap($r('app.float.vp_10'))
+    .rowsGap($r('app.float.vp_10'))
     .backgroundColor($r('app.color.color_F9F9F9'))
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
-    .padding('10vp')
+    .padding($r('app.float.vp_10'))
     .onScrollIndex((first: number) => {
       this.listScrollTop = first === 0
     })
@@ -85,19 +85,19 @@ export struct CategoryTabContent {
       Image(info.bgPicture)
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
-        .height('198vp')
-        .borderRadius('10vp')
+        .height($r('app.float.vp_198'))
+        .borderRadius($r('app.float.vp_10'))
 
       Text(info.name)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Center)
-        .fontSize('28fp')
+        .fontSize($r('app.float.fp_28'))
         .fontColor($r('app.color.white'))
 
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
-    .borderRadius({bottomLeft:'10vp',bottomRight:'10vp'})
+    .borderRadius({bottomLeft:$r('app.float.vp_10'),bottomRight:$r('app.float.vp_10')})
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .sharedTransition(`${this.datas.indexOf(info)}${info.id}`, {
       duration: Constants.TRANSITION_ANIMATION_DURATION,

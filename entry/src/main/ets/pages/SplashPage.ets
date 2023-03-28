@@ -59,7 +59,7 @@ struct SplashPage {
         .visibility(this.enterAppBtnVisible ? Visibility.Visible : Visibility.Hidden)
         .align(Alignment.Center)
         .width('50%')
-        .margin({bottom:'88vp'})
+        .margin({bottom:$r('app.float.vp_88')})
         .opacity(this.enterAppBtnOpacity)
         .animation({
           duration: 1000, // 动画时长

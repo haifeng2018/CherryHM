@@ -1,3 +1,4 @@
+import { communityPageTabTitles } from '../../model/CommunityTabModel';
 import { DiscoveryTabContent } from './DiscoveryTabContent';
 import { CategoryTabContent } from './CategoryTabContent';
 import { FollowTabContent } from './FollowTabContent';
@@ -19,22 +20,20 @@ import Constants from '../../util/Constants';
 @Component
 export struct CommunityTabContent {
   @State currentIndex: number = 0
-  private tabTitles = [{ id: 0, name: '发现' },{ id: 1, name: '推荐' },{ id: 2, name: '关注' },
-    { id: 3, name: '分类' },{ id: 4, name: '专题' }, { id: 5, name: '资讯' }]
 
   @Builder TabBuilder(index: number) {
     Stack() {
-      Text(this.tabTitles[index].name)
+      Text(communityPageTabTitles[index].name)
         .height(Constants.MATCH_PARENT)
         .padding('12vp')
-        .fontSize(this.currentIndex === index ? '22fp' : '20fp')
+        .fontSize(this.currentIndex === index ? $r('app.float.fp_22') : $r('app.float.fp_20'))
         .fontWeight(this.currentIndex === index ? 700 : 500)
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
 
       Divider()
         .strokeWidth('5vp')
-        .width('20vp')
-        .margin({bottom:'5vp'})
+        .width($r('app.float.vp_20'))
+        .margin({bottom:$r('app.float.vp_5')})
         .color($r('app.color.color_333333'))
         .opacity(this.currentIndex === index ? 1 : 0)
 

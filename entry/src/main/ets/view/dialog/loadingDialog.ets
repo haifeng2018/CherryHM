@@ -1,14 +1,14 @@
 @CustomDialog
 export struct LoadingDialog {
-  private hint = '加载中...'
+  private hint = $r('app.string.loading')
   controller: CustomDialogController
   @State angle: number = 0
 
   build() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Image($r("app.media.ic_loading"))
-        .width(50)
-        .height(50)
+        .width($r('app.float.vp_50'))
+        .height($r('app.float.vp_50'))
         .rotate({
           x: 0,
           y: 0,
@@ -26,10 +26,10 @@ export struct LoadingDialog {
         })
 
       Text(this.hint)
-        .fontSize(14)
+        .fontSize($r('app.float.fp_16'))
         .fontColor(Color.White)
     }.width(100).height(100)
-    .backgroundColor('#b3000000')
+    .backgroundColor($r('app.color.color_B3000000'))
     .borderRadius(10)
   }
 }

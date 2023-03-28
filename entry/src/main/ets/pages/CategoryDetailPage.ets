@@ -15,7 +15,7 @@ import { PageState } from '../view/widget/refresh/PageState';
 @Component
 struct CategoryDetailPage {
 
-  @State data: CategoryInfo = router.getParams()?.['data'];
+  @State data: CategoryInfo = router.getParams()?.[Constants.DATA];
 
   @Provide(RefreshConfig.REFRESH_DATA_TAG) datas: Array<any> = [];
   @Provide(RefreshConfig.REFRESH_STATE_TAG) pageState: number = PageState.Loading;
@@ -77,10 +77,10 @@ struct CategoryDetailPage {
   @Builder titleBar() {
     Row(){
       Image($r('app.media.ic_back'))
-        .width('30vp')
-        .height('30vp')
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .objectFit(ImageFit.Contain)
-        .margin({left:'14vp'})
+        .margin({left:$r('app.float.vp_14')})
         .onClick(() =>{
           router.back()
         })
@@ -93,7 +93,7 @@ struct CategoryDetailPage {
         src: this.data.name
       })
         .width(Constants.MATCH_PARENT)
-        .height('56vp')
+        .height($r('app.float.vp_56'))
         .layoutWeight(1)
         .fontSize($r('app.float.fp_24'))
         .fontColor($r('app.color.color_333333'))
@@ -109,10 +109,10 @@ struct CategoryDetailPage {
         })
 
       Image($r('app.media.ic_share'))
-        .width('30vp')
-        .height('30vp')
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .align(Alignment.End)
-        .margin({right:'24vp'})
+        .margin({right:$r('app.float.vp_24')})
     }
     .width(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.white'))
@@ -124,32 +124,35 @@ struct CategoryDetailPage {
   @Builder authorLayout(info: VideoInfo) {
     Row(){
       Image(info.data.author.icon)
-        .width('40vp')
-        .height('40vp')
+        .width($r('app.float.vp_40'))
+        .height($r('app.float.vp_40'))
         .border({ width: '2vp',color:$r('app.color.white'),radius:'20vp',style:BorderStyle.Solid })
 
       Column() {
         Text(info.data.author.name)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_333333'))
-          .fontSize('18fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_18'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
 
         Text(info.data.author.description)
           .width(Constants.MATCH_PARENT)
           .fontColor($r('app.color.color_666666'))
-          .fontSize('12fp')
-          .padding('2vp')
+          .fontSize($r('app.float.fp_12'))
+          .padding($r('app.float.vp_2'))
           .textAlign(TextAlign.Start)
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
       .layoutWeight(1)
-      .padding({left:'10vp'})
+      .padding({left:$r('app.float.vp_10')})
     }
     .width(Constants.MATCH_PARENT)
-    .padding({top:'10vp',bottom:'20vp',left:'20vp',right:'20vp'})
+    .padding({
+      top:$r('app.float.vp_10'),bottom:$r('app.float.vp_20'),
+      left:$r('app.float.vp_20'),right:$r('app.float.vp_20')
+    })
   }
 
   @Builder itemLayout (info: VideoInfo) {
@@ -157,16 +160,16 @@ struct CategoryDetailPage {
       Image(info.data.cover.feed)
         .objectFit(ImageFit.Cover)
         .width(Constants.MATCH_PARENT)
-        .height('256vp')
+        .height($r('app.float.vp_256'))
 
       Text(info.data.description)
         .width(Constants.MATCH_PARENT)
         .textAlign(TextAlign.Start)
-        .fontSize('16fp')
+        .fontSize($r('app.float.fp_16'))
         .fontColor($r('app.color.color_999999'))
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .padding('10vp')
+        .padding($r('app.float.vp_10'))
 
       this.authorLayout(info)
     }

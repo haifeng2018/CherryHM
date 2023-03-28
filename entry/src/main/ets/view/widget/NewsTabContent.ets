@@ -86,7 +86,8 @@ export struct NewsTabContent {
   @Builder headCell(dailyPagerInfo: VideoInfo) {
     Text(dailyPagerInfo.data.text)
       .width(Constants.MATCH_PARENT)
-      .height('56vp').fontSize('28fp')
+      .height($r('app.float.vp_56'))
+      .fontSize($r('app.float.fp_28'))
       .textAlign(TextAlign.Center)
       .fontColor($r('app.color.color_666666'))
   }
@@ -100,7 +101,7 @@ export struct NewsTabContent {
             .height(Constants.MATCH_PARENT)
         })
       }
-      .width('128vp')
+      .width($r('app.float.vp_128'))
       .height(Constants.MATCH_PARENT)
       .cachedCount(info.data.bannerList.length)
       .index(0)
@@ -120,14 +121,17 @@ export struct NewsTabContent {
         .height(Constants.MATCH_PARENT)
         .layoutWeight(1)
         .textAlign(TextAlign.Start)
-        .fontSize('16fp')
+        .fontSize($r('app.float.fp_16'))
         .fontColor($r('app.color.color_999999'))
-        .lineHeight('28vp')
+        .lineHeight($r('app.float.vp_28'))
         .maxLines(5)
-        .margin({left:'10vp',right:'10vp'})
+        .margin({
+          left:$r('app.float.vp_10'),
+          right:$r('app.float.vp_10')
+        })
     }
     .width(Constants.MATCH_PARENT)
-    .height('168vp')
+    .height($r('app.float.vp_168'))
     .backgroundColor($r('app.color.white'))
     .shadow({ radius: 10, color: $r('app.color.color_1400001E'), offsetX: 10, offsetY: 20 })
     .onClick(() => {
@@ -140,6 +144,4 @@ export struct NewsTabContent {
       })
     })
   }
-
-
 }

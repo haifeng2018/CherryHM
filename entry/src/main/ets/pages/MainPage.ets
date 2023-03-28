@@ -8,22 +8,21 @@ import { NavList } from '../model/HomeTabModel';
 @Entry
 @Component
 struct MainPage {
-  @State fontColor: string = 'rgba(0, 0, 0, 0.4)'
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder TabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? NavList[index].icon_selected : NavList[index].icon)
-        .width('30vp')
-        .height('30vp')
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .objectFit(ImageFit.Contain)
         .opacity(this.currentIndex === index ? 1 : 0.4)
         .scale({x:this.currentIndex === index ? 1.1 : 1.0,
           y:this.currentIndex === index ? 1.1 : 1.0})
       Text(NavList[index].text)
-        .margin({top:'4vp'})
-        .fontSize(this.currentIndex === index ? '16fp' : '15fp')
+        .margin({top:$r('app.float.vp_4')})
+        .fontSize(this.currentIndex === index ? $r('app.float.fp_18') : $r('app.float.fp_16'))
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)
   }
@@ -49,7 +48,7 @@ struct MainPage {
       }
       .vertical(false)
       .barWidth(Constants.MATCH_PARENT)
-      .barHeight('80vp')
+      .barHeight($r('app.float.vp_80'))
       .onChange((index: number) => {
         this.currentIndex = index
       })

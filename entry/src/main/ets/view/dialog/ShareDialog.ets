@@ -22,17 +22,19 @@ export default struct ShareDialog {
     Column() {
       Text($r('app.string.share'))
         .width(Constants.MATCH_PARENT)
-        .height('50vp')
+        .height($r('app.float.vp_50'))
         .fontColor($r('app.color.color_333333'))
-        .fontSize('22fp')
+        .fontSize($r('app.float.fp_22'))
         .textAlign(TextAlign.Center)
 
       Text(this.title)
         .width(Constants.MATCH_PARENT)
-        .fontSize('18fp')
+        .fontSize($r('app.float.fp_18'))
         .textAlign(TextAlign.Center)
 
-      Divider().color($r('app.color.color_666666')).opacity(0.6).margin({top:'10vp'})
+      Divider().color($r('app.color.color_666666'))
+        .opacity(0.6)
+        .margin({top:$r('app.float.vp_10')})
 
       Row(){
         Image($r('app.media.ic_action_share_wechat_grey'))
@@ -57,17 +59,17 @@ export default struct ShareDialog {
 
       }
       .width(Constants.MATCH_PARENT)
-      .height('70vp')
+      .height($r('app.float.vp_70'))
       .justifyContent(FlexAlign.Center)
-      .padding({left:'24vp',right:'24vp'})
+      .padding({left:$r('app.float.vp_24'),right:$r('app.float.vp_24')})
 
       Divider().color($r('app.color.color_666666')).opacity(0.6)
 
       Text($r('app.string.cancel'))
         .width(Constants.MATCH_PARENT)
-        .height('50vp')
+        .height($r('app.float.vp_50'))
         .fontColor($r('app.color.color_666666'))
-        .fontSize('22fp')
+        .fontSize($r('app.float.fp_22'))
         .textAlign(TextAlign.Center)
         .onClick(() => {
           this.controller.close()
@@ -76,7 +78,7 @@ export default struct ShareDialog {
       Divider().color($r('app.color.color_666666')).opacity(0.6)
     }
     .width(Constants.MATCH_PARENT)
-    .borderRadius({ topLeft:'10vp',topRight:'10vp' })
+    .borderRadius({ topLeft:$r('app.float.vp_10'),topRight:$r('app.float.vp_10') })
     .backgroundColor(Color.White)
   }
 
@@ -88,8 +90,8 @@ export default struct ShareDialog {
 
 // Common text styles.
 @Extend(Image) function shareStyle () {
-    .height('60vp')
+    .height($r('app.float.vp_60'))
     .layoutWeight(1)
     .objectFit(ImageFit.Contain)
-    .padding('5vp')
+    .padding($r('app.float.vp_5'))
 }
