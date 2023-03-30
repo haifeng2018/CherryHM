@@ -48,6 +48,36 @@ export default class Constants {
   static readonly TRANSITION_ANIMATION_DURATION: number = 500;
   static readonly SHARE_ITEM_ANIMATION_DELAY = 100;
 
+  /**
+   * the divide of single and double
+   */
+  static readonly COMMON_NUM_DOUBLE: number = 10;
+
+  /**
+   * the minute of one hour
+   */
+  static readonly COMMON_NUM_MINUTE: number = 60;
+
+  /**
+   * video net address
+   */
+  static readonly ZERO_STR: string = '0';
+
+  /**
+   * time split
+   */
+  static readonly SPLIT: string = ':';
+
+  /**
+   * init time of string
+   */
+  static readonly START_TIME: string = '00:00';
+
+  /**
+   * toast duration
+   */
+  static readonly COMMON_NUM_DURATION: number = 5000;
+
   static readonly USER_SERVICES_AGREEMENT: string = 'https://github.com/haifeng2018/CherryHM';
   static readonly PRIVACY_POLICY: string = 'https://gitee.com/victor1990/CherryHM';
 

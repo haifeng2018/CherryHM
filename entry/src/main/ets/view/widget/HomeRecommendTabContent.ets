@@ -326,7 +326,7 @@ export struct HomeRecommendTabContent {
             router.pushUrl({
               url: RouterPath.VIDEO_DETAIL_PAGE,
               params: {
-                data:info.data.content.data,
+                data:info.data,
                 shareId: `${this.datas.indexOf(info)}${info.data.id}`
               }
             })

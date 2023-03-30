@@ -16,5 +16,5 @@ export class HomeApi {
   static readonly HOT_KEYWORD = 'http://baobab.kaiyanapp.com/api/v3/queries/hot'
 
   static readonly TAG = 'http://baobab.kaiyanapp.com/api/v7/tag/tabList'//
-  static readonly RECOMMEND = 'http://baobab.kaiyanapp.com/api/v5/index/tab/allRec'//
+  static readonly RECOMMEND = 'http://baobab.kaiyanapp.com/api/v5/index/tab/allRec'
 }

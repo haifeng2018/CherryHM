@@ -1,3 +1,5 @@
+import { iconOnclick } from '../model/VideoControll';
+import { Player } from '../view/widget/player/Player';
 import RouterPath from '../util/RouterPath';
 import RefreshComponent from '../view/widget/refresh/RefreshComponent';
 import { RefreshConfig } from '../view/widget/refresh/RefreshConfig';
@@ -29,13 +31,21 @@ struct VideoDetailPage {
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = true
   @State showControls: boolean = false
-  videoController: VideoController = new VideoController()
+  controller: VideoController = new VideoController()
+
+  @Provide isPlay: boolean = false;
+  @Provide isOpacity: boolean = false;
+  @Provide isLoading: boolean = true;
+  @Provide progressVal: number = 0;
+  @Provide flag: boolean = false;
+  @Provide playUrl: string = this.data.playUrl;
 
   private scroller: Scroller = new Scroller()
 
   @State datas: Array<VideoRelatedInfo> = [];
 
   aboutToAppear() {
+    this.playUrl = this.data.playUrl;
     this.sendVideoRelatedRequest()
   }
 
@@ -81,46 +91,11 @@ struct VideoDetailPage {
   @Builder itemLayout () {
     Scroll(this.scroller) {
       Column() {
-        Video({
-          src: this.data.playUrl,
-          previewUri: this.data.cover.feed,
-          currentProgressRate: this.curRate,
-          controller: this.videoController
-        })
-          .width(Constants.MATCH_PARENT)
-          .height($r('app.float.vp_256'))
-          .autoPlay(this.isAutoPlay)
-          .controls(this.showControls)
-          .onStart(() => {
-            console.info('onStart')
+        Stack() {
+          Player({
+            controller: this.controller
           })
-          .onPause(() => {
-            console.info('onPause')
-          })
-          .onFinish(() => {
-            console.info('onFinish')
-          })
-          .onError(() => {
-            console.info('onFinish')
-          })
-          .onPrepared((e) => {
-            console.info('onPrepared is ' + e.duration)
-            this.titleBarOpacity = 0
-            animateTo({ duration: 1000 }, () => {
-            })
-          })
-          .onSeeking((e) => {
-            console.info('onSeeking is ' + e.time)
-          })
-          .onSeeked((e) => {
-            console.info('onSeeked is ' + e.time)
-          })
-          .onUpdate((e) => {
-            console.info('onUpdate is ' + e.time)
-          })
-          .onClick(() => {
-            this.videoController.start()
-          })
+        }
 
         Text(this.data.title)
           .width(Constants.MATCH_PARENT)
@@ -225,7 +200,7 @@ struct VideoDetailPage {
       Video({
         src: this.data.playUrl,
         currentProgressRate: this.curRate,
-        controller: this.videoController
+        controller: this.controller
       })
       .width($r('app.float.vp_180'))
       .height($r('app.float.vp_120'))
@@ -417,6 +392,7 @@ struct VideoDetailPage {
     .margin({top:$r('app.float.vp_5'),bottom:$r('app.float.vp_5')})
     .onClick(() => {
       this.data = info.data
+      this.playUrl = info.data.playUrl
       this.sendVideoRelatedRequest()
     })
   }
