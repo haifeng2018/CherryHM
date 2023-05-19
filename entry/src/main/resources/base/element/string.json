@@ -199,6 +199,14 @@
     {
       "name": "public_at",
       "value": "发布于\\t"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
     }
   ]
 }

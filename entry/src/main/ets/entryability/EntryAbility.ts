@@ -2,12 +2,54 @@ import RouterPath from '../util/RouterPath';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
+import formInfo from '@ohos.app.form.formInfo';
+import formBindingData from '@ohos.app.form.formBindingData';
+import formProvider from '@ohos.app.form.formProvider';
 
 export default class EntryAbility extends UIAbility {
     entryPage: string = RouterPath.LAUNCHER_PAGE;
 
     onCreate(want, launchParam) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+        if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
+            let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
+            let message = JSON.parse(want.parameters.params).detail;
+            console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
+            let formData = {
+                'mini_title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'content': '去你想去的地方，发现世界的美', // 和卡片布局中对应
+                'poster': 'http://img.kaiyanapp.com/50dab5468ecd2dbe5eb99dab5d608a0a.jpeg?imageMogr2/quality/60/format/jpg', // 和卡片布局中对应
+            };
+            let formMsg = formBindingData.createFormBindingData(formData)
+            formProvider.updateForm(curFormId, formMsg).then((data) => {
+                console.info('updateForm success.' + JSON.stringify(data));
+            }).catch((error) => {
+                console.error('updateForm failed:' + JSON.stringify(error));
+            })
+        }
+    }
+
+    // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
+    onNewWant(want, launchParam) {
+        console.info('onNewWant Want:' + JSON.stringify(want));
+        if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
+            let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
+            let message = JSON.parse(want.parameters.params).detail;
+            console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
+            let formData = {
+                'mini_title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'content': '去你想去的地方，发现世界的美', // 和卡片布局中对应
+                'poster': 'http://img.kaiyanapp.com/50dab5468ecd2dbe5eb99dab5d608a0a.jpeg?imageMogr2/quality/60/format/jpg', // 和卡片布局中对应
+            };
+            let formMsg = formBindingData.createFormBindingData(formData)
+            formProvider.updateForm(curFormId, formMsg).then((data) => {
+                console.info('updateForm success.' + JSON.stringify(data));
+            }).catch((error) => {
+                console.error('updateForm failed:' + JSON.stringify(error));
+            })
+        }
     }
 
     onDestroy() {
