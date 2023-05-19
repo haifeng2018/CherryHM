@@ -91,11 +91,9 @@ struct VideoDetailPage {
   @Builder itemLayout () {
     Scroll(this.scroller) {
       Column() {
-        Stack() {
-          Player({
-            controller: this.controller
-          })
-        }
+        Player({
+          controller: this.controller
+        })
 
         Text(this.data.title)
           .width(Constants.MATCH_PARENT)
