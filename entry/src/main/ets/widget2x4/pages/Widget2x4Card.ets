@@ -1,6 +1,6 @@
 @Entry
 @Component
-struct WidgetCard {
+struct Widget2x4Card {
   /*
    * The action type.
    */
@@ -26,7 +26,7 @@ struct WidgetCard {
   /*
    * The max line.
    */
-  readonly MAX_LINES: number = 1;
+  readonly MAX_LINES: number = 2;
 
   /*
    * The with percentage setting.
@@ -41,8 +41,7 @@ struct WidgetCard {
   /*
    * Image height percentage setting.
    */
-  readonly IMAGE_HEIGHT_PERCENT: string = '64%';
-  @State mini: boolean = false;
+  readonly IMAGE_WEIGHT_PERCENT: string = '36%';
 
   @LocalStorageProp('mini_title') miniTitle: string = '旅行';
   @LocalStorageProp('title') title: string = '旅行';
@@ -51,36 +50,17 @@ struct WidgetCard {
 
   build() {
     Row() {
+      Image(this.poster)
+        .width(this.IMAGE_WEIGHT_PERCENT)
+        .height(this.FULL_HEIGHT_PERCENT)
+        .objectFit(ImageFit.Cover)
+        .borderRadius($r('app.float.vp_10'))
+
       Column() {
-        if (this.mini) {
-          Column() {
-            Text(this.miniTitle)
-              .fontSize($r('app.float.mini_title_font_size'))
-              .fontColor($r('app.color.mini_text_font_color'))
-              .margin({
-                left: $r('app.float.mini_title_margin'),
-                bottom: $r('app.float.mini_title_margin')
-              })
-          }
-          .width(this.FULL_WIDTH_PERCENT)
-          .alignItems(HorizontalAlign.End)
-          .backgroundImageSize(ImageSize.Cover)
-          .backgroundImage(this.poster, ImageRepeat.NoRepeat)
-          .displayPriority(this.MINI_DISPLAY_PRIORITY)
-        }
-
-        Image(this.poster)
-          .width(this.FULL_WIDTH_PERCENT)
-          .height(this.IMAGE_HEIGHT_PERCENT)
-          .objectFit(ImageFit.Cover)
-          .borderRadius($r('app.float.vp_10'))
-
-        Blank()
-
         Row() {
           Text(this.title)
             .layoutWeight(1)
-            .fontSize($r('app.float.normal_title_font_size'))
+            .fontSize($r('app.float.fp_28'))
             .maxLines(1)
             .textOverflow({overflow:TextOverflow.Ellipsis})
           Image($r("app.media.ic_widget_refresh"))
@@ -95,16 +75,20 @@ struct WidgetCard {
                 }
               });
             })
-        }.width(this.FULL_WIDTH_PERCENT)
+        }.width(this.FULL_WIDTH_PERCENT).layoutWeight(1)
 
         Text(this.content)
+          .width(this.FULL_WIDTH_PERCENT)
+          .layoutWeight(1)
           .maxLines(this.MAX_LINES)
-          .fontSize($r('app.float.normal_content_font_size'))
+          .textAlign(TextAlign.Start)
+          .fontSize($r('app.float.fp_16'))
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
-      .width(this.FULL_WIDTH_PERCENT)
+      .layoutWeight(1)
       .height(this.FULL_HEIGHT_PERCENT)
-      .alignItems(HorizontalAlign.Start)
+      .margin({left:$r("app.float.vp_20")})
+      .justifyContent(FlexAlign.Center)
       .backgroundColor($r('app.color.white'))
     }
     .height(this.FULL_HEIGHT_PERCENT)

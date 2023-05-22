@@ -16,9 +16,9 @@ export default class EntryAbility extends UIAbility {
             let message = JSON.parse(want.parameters.params).detail;
             console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
             let formData = {
-                'mini_title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
-                'title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
-                'content': '去你想去的地方，发现世界的美', // 和卡片布局中对应
+                'mini_title': '3格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'title': '3格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'content': '3去你想去的地方，发现世界的美', // 和卡片布局中对应
                 'poster': 'http://img.kaiyanapp.com/50dab5468ecd2dbe5eb99dab5d608a0a.jpeg?imageMogr2/quality/60/format/jpg', // 和卡片布局中对应
             };
             let formMsg = formBindingData.createFormBindingData(formData)
@@ -27,6 +27,19 @@ export default class EntryAbility extends UIAbility {
             }).catch((error) => {
                 console.error('updateForm failed:' + JSON.stringify(error));
             })
+            try {
+                // 设置过5分钟后更新卡片内容
+                formProvider.setFormNextRefreshTime(curFormId, 5, (err, data) => {
+                    if (err) {
+                        console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+                        return;
+                    } else {
+                        console.info('Succeeded in setFormNextRefreshTimeing.');
+                    }
+                });
+            } catch (err) {
+                console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+            }
         }
     }
 
@@ -38,9 +51,9 @@ export default class EntryAbility extends UIAbility {
             let message = JSON.parse(want.parameters.params).detail;
             console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
             let formData = {
-                'mini_title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
-                'title': '格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
-                'content': '去你想去的地方，发现世界的美', // 和卡片布局中对应
+                'mini_title': '4格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'title': '4格鲁吉亚旅行记录，穿越上帝遗忘的后花园', // 和卡片布局中对应
+                'content': '4去你想去的地方，发现世界的美', // 和卡片布局中对应
                 'poster': 'http://img.kaiyanapp.com/50dab5468ecd2dbe5eb99dab5d608a0a.jpeg?imageMogr2/quality/60/format/jpg', // 和卡片布局中对应
             };
             let formMsg = formBindingData.createFormBindingData(formData)

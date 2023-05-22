@@ -80,6 +80,24 @@ export struct CategoryTabContent {
     })
   }
 
+  @Builder itemLayout2() {
+    GridRow({
+      columns: 2,
+      gutter: { x: $r('app.float.vp_10'), y: $r('app.float.vp_10') },
+      breakpoints: { value: ["320vp", "520vp", "840vp", "1080vp"],
+        reference: BreakpointsReference.WindowSize },
+      direction: GridRowDirection.Row
+    }) {
+      ForEach(this.datas, (data) => {
+        GridCol({ span: { xs: 1, sm: 1, md: 3, lg: 4 } }) {
+          this.cellLayout(data)
+        }
+      })
+    }.width(Constants.MATCH_PARENT).height(Constants.MATCH_PARENT)
+    .onBreakpointChange((breakpoint) => {
+    })
+  }
+
   @Builder cellLayout (info: CategoryInfo) {
     Stack(){
       Image(info.bgPicture)
