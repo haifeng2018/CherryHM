@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "storePassword": "000000181DE6D8A00F29DDF945F4A2A03CE6957B41A07B7587D4A8D6A6B1D45004F077F81A08CBBE",
+          "certpath": "../CherryHM/docs/cherry_online.cer",
+          "keyAlias": "Cherry",
+          "keyPassword": "00000018F3E62B0243108274AD7D15192855BFECF50011D4BCDA3DB400B7B97570D95BCB7F1B5909",
+          "profile": "../CherryHM/docs/cherry_onlineRelease.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "../CherryHM/docs/cherry_online.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [
