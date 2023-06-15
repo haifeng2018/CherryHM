@@ -69,9 +69,9 @@ export struct HomeTabContent {
       }).id('mHomeTab')
 
       Image($r('app.media.ic_home_search'))
-        .width($r('app.float.vp_40'))
-        .height($r('app.float.vp_40'))
-        .margin({top:$r('app.float.status_bar_height'),right:$r('app.float.vp_24')})
+        .width($r('app.float.vp_50'))
+        .height($r('app.float.vp_50'))
+        .margin({top:$r('app.float.vp_5'),right:$r('app.float.vp_24')})
         .padding($r('app.float.vp_10'))
         .alignRules({
           top: {anchor: "mHomeTab", align: VerticalAlign.Top},
