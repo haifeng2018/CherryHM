@@ -3,7 +3,6 @@ import { DiscoveryTabContent } from './DiscoveryTabContent';
 import { CategoryTabContent } from './CategoryTabContent';
 import { FollowTabContent } from './FollowTabContent';
 import { RecommendTabContent } from './RecommendTabContent';
-import { TopicsTabContent } from './TopicsTabContent';
 import { NewsTabContent } from './NewsTabContent';
 import Constants from '../../util/Constants';
 /*
@@ -44,28 +43,12 @@ export struct CommunityTabContent {
     Column() {
       Tabs() {
         TabContent() {
-          DiscoveryTabContent()
+          FollowTabContent()
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          RecommendTabContent()
-        }.tabBar(this.TabBuilder(1))
-
-        TabContent() {
-          FollowTabContent()
-        }.tabBar(this.TabBuilder(2))
-
-        TabContent() {
-          CategoryTabContent()
-        }.tabBar(this.TabBuilder(3))
-
-        TabContent() {
-          TopicsTabContent()
-        }.tabBar(this.TabBuilder(4))
-
-        TabContent() {
           NewsTabContent()
-        }.tabBar(this.TabBuilder(5))
+        }.tabBar(this.TabBuilder(1))
       }
       .vertical(false)
       .barWidth(Constants.MATCH_PARENT)

@@ -9,5 +9,4 @@
  * -----------------------------------------------------------------
  */
 
-export const communityPageTabTitles = [{ id: 0, name: '发现' },{ id: 1, name: '推荐' },{ id: 2, name: '关注' },
-  { id: 3, name: '分类' },{ id: 4, name: '专题' }, { id: 5, name: '资讯' }]
+export const communityPageTabTitles = [{ id: 2, name: '关注' }, { id: 4, name: '资讯' }]
