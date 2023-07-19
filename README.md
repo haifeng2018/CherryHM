@@ -10,9 +10,7 @@
  - gitee:https://gitee.com/victor1990/CherryHM
 
 # 项目视频预览
-<video id="video" controls="" preload="none" poster="封面">
-  <source id="mp4" src="https://cdn2.mywave.video/embed/64b75b60a9d16363c8f7a3d0/64b75b60a9d16363c8f7a3ce.mp4?filename=rendering_288x640.mp4" type="video/mp4">
-</video>
+https://cdn2.mywave.video/embed/64b75b60a9d16363c8f7a3d0/64b75b60a9d16363c8f7a3ce.mp4?filename=rendering_288x640.mp4
 
 # 项目截图：
 ![image](https://s2.loli.net/2023/03/28/XmI9AJShr4jCPFH.png)
