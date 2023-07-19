@@ -11,8 +11,8 @@
 
 # 项目视频预览
 <video id="video" controls="" preload="none" poster="封面">
-      <source id="mp4" src="https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/rendering.mp4" type="video/mp4">
-</videos>
+  <source id="mp4" src="https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/rendering.mp4" type="video/mp4">
+</video>
 
 # 项目截图：
 ![image](https://s2.loli.net/2023/03/28/XmI9AJShr4jCPFH.png)
