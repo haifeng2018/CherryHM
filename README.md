@@ -9,6 +9,9 @@
  - github:https://github.com/haifeng2018/CherryHM
  - gitee:https://gitee.com/victor1990/CherryHM
 
+# 项目视频预览
+![image](https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/rendering.mp4)
+
 # 项目截图：
 ![image](https://s2.loli.net/2023/03/28/XmI9AJShr4jCPFH.png)
 ![image](https://s2.loli.net/2023/03/28/g7VCG6YW29XErxF.png)

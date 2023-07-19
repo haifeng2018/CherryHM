@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "storePassword": "00000018456BE4BB5B1E82DD4B5137F2ACF4CC9F85D1B73FB22688D059D691FD2CD9C048307E88A0",
-          "certpath": "D:/victor/github/CherryHM/docs/cherry_online.cer",
-          "keyAlias": "Cherry",
-          "keyPassword": "00000018512651DD6F6A373DA26C6B4A16D92EA0825A688DC01565E6A09D122BC0DA046422760DF7",
-          "profile": "D:/victor/github/CherryHM/docs/cherry_onlineRelease.p7b",
+          "certpath": "C:\\Users\\BS-WX\\.ohos\\config\\auto_debug_CherryHM_com.victor.hm.cherry_2850086000432686851.cer",
+          "storePassword": "0000001B75D4F20D8A29FE78F002F1D9F925A85BC1D9AD7057539C0C922449385FD06690D885C0B053AF3B",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B3FFE5D64D06D505743CB88CEAD6DF0E408E3FEDEC6219E380226F44B249C5CE5D9B7C03DE248D0",
+          "profile": "C:\\Users\\BS-WX\\.ohos\\config\\auto_debug_CherryHM_com.victor.hm.cherry_2850086000432686851.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "D:/victor/github/CherryHM/docs/cherry_online.p12"
+          "storeFile": "C:\\Users\\BS-WX\\.ohos\\config\\auto_debug_CherryHM_com.victor.hm.cherry_2850086000432686851.p12"
         }
       }
     ],
