@@ -11,7 +11,7 @@
 
 # 项目视频预览
 <video id="video" controls="" preload="none" poster="封面">
-  <source id="mp4" src="https://github.com/haifeng2018/CherryHM/raw/master/SrceenShot/rendering.mp4" type="video/mp4">
+  <source id="mp4" src="https://cdn2.mywave.video/embed/64b75b60a9d16363c8f7a3d0/64b75b60a9d16363c8f7a3ce.mp4?filename=rendering_288x640.mp4" type="video/mp4">
 </video>
 
 # 项目截图：
