@@ -81,11 +81,6 @@ struct VideoDetailPage {
     .width(Constants.MATCH_PARENT)
     .height(Constants.MATCH_PARENT)
     .backgroundColor($r('app.color.color_F9F9F9'))
-    .sharedTransition(this.shareId, {
-      duration: Constants.TRANSITION_ANIMATION_DURATION,
-      curve: Curve.Smooth,
-      delay: Constants.SHARE_ITEM_ANIMATION_DELAY
-    })
   }
 
   @Builder itemLayout () {
@@ -94,6 +89,11 @@ struct VideoDetailPage {
         Player({
           controller: this.controller
         })
+          .sharedTransition(this.shareId, {
+            duration: Constants.TRANSITION_ANIMATION_DURATION,
+            curve: Curve.Smooth,
+            delay: Constants.SHARE_ITEM_ANIMATION_DELAY
+          })
 
         Text(this.data.title)
           .width(Constants.MATCH_PARENT)
@@ -234,7 +234,7 @@ struct VideoDetailPage {
         .width(Constants.MATCH_PARENT)
         .height($r('app.float.vp_56'))
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_24'))
+        .fontSize($r('app.float.fp_20'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .onStart(() => {

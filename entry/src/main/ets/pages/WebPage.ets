@@ -36,8 +36,8 @@ struct WebPage {
   @Builder titleBar() {
     Row(){
       Image($r('app.media.ic_back'))
-        .width($r('app.float.vp_30'))
-        .height($r('app.float.vp_30'))
+        .width($r('app.float.vp_20'))
+        .height($r('app.float.vp_20'))
         .objectFit(ImageFit.Contain)
         .margin({left:$r('app.float.vp_14')})
         .onClick(() =>{
@@ -47,14 +47,14 @@ struct WebPage {
       Text(this.title)
         .height($r('app.float.vp_56'))
         .layoutWeight(1)
-        .fontSize($r('app.float.fp_24'))
+        .fontSize($r('app.float.fp_20'))
         .fontColor($r('app.color.color_333333'))
         .fontWeight(500)
         .textAlign(TextAlign.Center)
 
       Image($r('app.media.ic_copy_link_grey'))
-        .width($r('app.float.vp_40'))
-        .height($r('app.float.vp_40'))
+        .width($r('app.float.vp_30'))
+        .height($r('app.float.vp_30'))
         .margin({right:$r('app.float.vp_24')})
         .onClick(() => {
         })

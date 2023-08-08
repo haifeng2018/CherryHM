@@ -33,8 +33,8 @@ export default struct PrivacyPolicyDialog {
         })
 
       Text($r('app.string.privacy_policy_content'))
-        .fontSize($r('app.float.fp_18'))
-        .lineHeight($r('app.float.vp_28'))
+        .fontSize($r('app.float.fp_14'))
+        .lineHeight($r('app.float.vp_24'))
         .width(Constants.MATCH_PARENT)
       .padding({left:$r('app.float.vp_24'),right:$r('app.float.vp_24')})
 
@@ -100,7 +100,7 @@ export default struct PrivacyPolicyDialog {
           })
       }
       .width(Constants.MATCH_PARENT)
-      .height($r('app.float.vp_60'))
+      .height($r('app.float.vp_50'))
     }
     .width('92%')
     .borderRadius($r('app.float.vp_10'))

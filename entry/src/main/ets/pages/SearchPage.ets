@@ -59,10 +59,10 @@ struct SearchPage {
   }
 
   @Builder titleBar() {
-    /*Divider().vertical(false)
-      .strokeWidth('36vp')
+    Divider().vertical(false)
+      .strokeWidth('30vp')
       .color($r('app.color.white'))
-      .lineCap(LineCapStyle.Square)*/
+      .lineCap(LineCapStyle.Square)
 
     Row(){
       Stack() {

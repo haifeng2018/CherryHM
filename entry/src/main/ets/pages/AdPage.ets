@@ -54,8 +54,8 @@ struct AdPage {
           color: Color.White
         })
         .margin({
-          top: $r('app.float.vp_30'),
-          left: $r('app.float.vp_260')
+          top: $r('app.float.vp_50'),
+          left: $r('app.float.vp_240')
         })
         .padding({
           left: $r('app.float.vp_12'),

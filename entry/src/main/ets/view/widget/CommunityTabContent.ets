@@ -25,14 +25,14 @@ export struct CommunityTabContent {
       Text(communityPageTabTitles[index].name)
         .height(Constants.MATCH_PARENT)
         .padding('12vp')
-        .fontSize(this.currentIndex === index ? $r('app.float.fp_22') : $r('app.float.fp_20'))
-        .fontWeight(this.currentIndex === index ? 700 : 500)
+        .fontSize(this.currentIndex === index ? $r('app.float.fp_18') : $r('app.float.fp_16'))
+        .fontWeight(this.currentIndex === index ? FontWeight.Bold : FontWeight.Normal)
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
 
       Divider()
-        .strokeWidth('5vp')
+        .strokeWidth('3vp')
         .width($r('app.float.vp_20'))
-        .margin({bottom:$r('app.float.vp_5')})
+        .margin({bottom:$r('app.float.vp_10')})
         .color($r('app.color.color_333333'))
         .opacity(this.currentIndex === index ? 1 : 0)
 

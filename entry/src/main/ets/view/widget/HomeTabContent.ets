@@ -24,14 +24,14 @@ export struct HomeTabContent {
       Text(homePageTabTitles[index].name)
         .height(Constants.MATCH_PARENT)
         .padding({left:$r('app.float.vp_20'),right:$r('app.float.vp_20')})
-        .fontSize(this.currentIndex === index ? $r('app.float.fp_22') : $r('app.float.fp_20'))
-        .fontWeight(this.currentIndex === index ? 700 : 500)
+        .fontSize(this.currentIndex === index ? $r('app.float.fp_18') : $r('app.float.fp_16'))
+        .fontWeight(this.currentIndex === index ? FontWeight.Bold : FontWeight.Normal)
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
 
       Divider()
-        .strokeWidth('5vp')
+        .strokeWidth('3vp')
         .width($r('app.float.vp_20'))
-        .margin({bottom:$r('app.float.vp_5')})
+        .margin({bottom:$r('app.float.vp_10')})
         .color($r('app.color.color_333333'))
         .opacity(this.currentIndex === index ? 1 : 0)
 
@@ -71,7 +71,7 @@ export struct HomeTabContent {
       Image($r('app.media.ic_home_search'))
         .width($r('app.float.vp_50'))
         .height($r('app.float.vp_50'))
-        .margin({top:$r('app.float.vp_5'),right:$r('app.float.vp_24')})
+        .margin({top:$r('app.float.vp_24'),right:$r('app.float.vp_24')})
         .padding($r('app.float.vp_10'))
         .alignRules({
           top: {anchor: "mHomeTab", align: VerticalAlign.Top},

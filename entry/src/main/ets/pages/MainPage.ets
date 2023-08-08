@@ -14,15 +14,15 @@ struct MainPage {
   @Builder TabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? NavList[index].icon_selected : NavList[index].icon)
-        .width($r('app.float.vp_30'))
-        .height($r('app.float.vp_30'))
+        .width($r('app.float.vp_20'))
+        .height($r('app.float.vp_20'))
         .objectFit(ImageFit.Contain)
         .opacity(this.currentIndex === index ? 1 : 0.4)
         .scale({x:this.currentIndex === index ? 1.1 : 1.0,
           y:this.currentIndex === index ? 1.1 : 1.0})
       Text(NavList[index].text)
         .margin({top:$r('app.float.vp_4')})
-        .fontSize(this.currentIndex === index ? $r('app.float.fp_18') : $r('app.float.fp_16'))
+        .fontSize(this.currentIndex === index ? $r('app.float.fp_14') : $r('app.float.fp_12'))
         .fontColor(this.currentIndex === index ? $r('app.color.color_333333') : $r('app.color.color_999999'))
     }.justifyContent(FlexAlign.Center)
   }

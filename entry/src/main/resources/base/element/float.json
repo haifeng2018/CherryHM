@@ -2,7 +2,7 @@
   "float": [
     {
       "name": "status_bar_height",
-      "value": "0vp"
+      "value": "20vp"
     },
     {
       "name": "vp_1",
@@ -162,6 +162,10 @@
     },
     {
       "name": "vp_226",
+      "value": "226vp"
+    },
+    {
+      "name": "vp_240",
       "value": "226vp"
     },
     {

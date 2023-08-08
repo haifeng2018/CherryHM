@@ -18,6 +18,8 @@ export default class Constants {
   static readonly TOPIC_ID = 'topicId';
   static readonly USER_ID = 'userId';
 
+  static readonly TRANSPARENT_COLOR: string = '#00ffffff';
+
   /**
    * Preference saved key.
    */
